@@ -10,8 +10,6 @@ import org.apache.ibatis.annotations.Update;
 
 import com.litbo.hospitalzj.supplier.entity.EqFj;
 
-import junit.framework.Test;
-
 @Mapper
 public interface EqFjMapper {
 	@Insert(

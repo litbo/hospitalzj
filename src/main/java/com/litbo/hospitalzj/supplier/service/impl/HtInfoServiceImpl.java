@@ -1,9 +1,6 @@
 package com.litbo.hospitalzj.supplier.service.impl;
 
 import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
-import org.hibernate.id.IntegralDataTypeHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +10,6 @@ import com.litbo.hospitalzj.supplier.entity.HtInfo;
 import com.litbo.hospitalzj.supplier.mapper.EqHtFjVoMapper;
 import com.litbo.hospitalzj.supplier.mapper.HtInfoMapper;
 import com.litbo.hospitalzj.supplier.service.HtInfoService;
-import com.litbo.hospitalzj.supplier.vo.EqHtFjVo;
 import com.litbo.hospitalzj.supplier.vo.EqHtVo;
 
 @Service

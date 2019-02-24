@@ -16,14 +16,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.litbo.hospitalzj.controller.BaseController;
 import com.litbo.hospitalzj.controller.ex.FileUploadException;
-import com.litbo.hospitalzj.supplier.entity.EqFj;
-import com.litbo.hospitalzj.supplier.entity.EqInfo;
 import com.litbo.hospitalzj.supplier.entity.HtInfo;
 import com.litbo.hospitalzj.supplier.service.HtInfoService;
 import com.litbo.hospitalzj.supplier.util.Upload;
 import com.litbo.hospitalzj.supplier.vo.EqHtVo;
 import com.litbo.hospitalzj.util.ResponseResult;
-import com.mysql.cj.Session;
+
 
 @RestController
 @RequestMapping("/htInfo")

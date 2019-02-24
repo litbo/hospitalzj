@@ -1,6 +1,5 @@
 package com.litbo.hospitalzj.supplier.controller;
 
-import static org.junit.Assume.assumeTrue;
 
 import java.util.List;
 
@@ -8,15 +7,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import com.litbo.hospitalzj.controller.BaseController;
-import com.litbo.hospitalzj.supplier.entity.EqFj;
+
 import com.litbo.hospitalzj.supplier.entity.EqInfo;
-import com.litbo.hospitalzj.supplier.entity.HtInfo;
+
 import com.litbo.hospitalzj.supplier.service.EqInfoService;
-import com.litbo.hospitalzj.supplier.service.HtInfoService;
 import com.litbo.hospitalzj.supplier.vo.SelHtEqVo;
 import com.litbo.hospitalzj.util.ResponseResult;
 

@@ -5,15 +5,14 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.litbo.hospitalzj.supplier.entity.EqInfo;
-import com.litbo.hospitalzj.supplier.vo.EqHtVo;
+
 import com.litbo.hospitalzj.supplier.vo.SelHtEqVo;
 
-import junit.framework.Test;
+
 
 @Mapper
 public interface EqInfoMapper {
