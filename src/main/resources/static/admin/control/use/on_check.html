@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>验收管理</title>
+    <link rel="stylesheet" type="text/css" href="../../../static/admin/layui/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/admin/css/admin.css"/>
+    <link rel="stylesheet" href="../../../static/admin/css/all.min.css"/>
+    <script src="../../../static/admin/js/jquery-3.3.1.min.js"></script>
+    <script src="../../../static/admin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+    <!--[if IE 8]>
+    <script type="text/javascript" src="../../../../static/admin/js/jquery-1.11.3.min.js"></script>
+    <![endif]-->
+    <script src="../static/admin/js/basic.js"></script>
+    <style>
+        /*.layui-form{
+            width: 50%;
+            margin: 0 auto;
+        }*/
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center;">检测仪器基础信息</h1>
+    <div class="layui-row">
+        <div class="col-xs-12">
+            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+              <ul class="layui-tab-title">
+                <li class="layui-this">生命体征模拟器</li>
+                <li>电气安全分析仪</li>
+              </ul>
+              <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <div class="col-xs-12">
+                        <form class="layui-form layui-form-pane" action="">
+                            <div class="layui-row">
+                                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                                    <legend>检测仪器基础信息</legend>
+                                </fieldset>
+                                <div class="upinfo">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">仪器名称</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="sbcsName" class="layui-input" autocomplete="off" lay-verify="required">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">档案号</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="sbcsPwd" class="layui-input" autocomplete="off" lay-verify="required">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">校准日期</label>
+                                        <div class="layui-input-block">
+                                            <input id="date" type="text" name="resbcsPwd" class="layui-input" autocomplete="off" lay-verify="required">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">机身编码</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="sbcsAddress" class="layui-input" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">型号</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="sbcsTel" class="layui-input" autocomplete="off" lay-verify="required">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">品牌</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="sbcsLicense" class="layui-input" autocomplete="off" lay-verify="required">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn layui-btn-normal btn" lay-submit lay-filter="register" id="check-btn">保存</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="col-xs-12">
+                        <form class="layui-form layui-form-pane" action="">
+                            <table class="layui-table">
+                                <thead>
+                                  <tr>
+                                    <th>类型</th>
+                                    <th>定量检测</th>
+                                    <th>检测结果</th>
+                                    <th>允许值</th>
+                                    <th>是否符合</th>
+                                    <!-- <th>营业执照(统一社会信用代码)</th>
+                                    <th>操作</th> -->
+                                  </tr> 
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td rowspan="4">电源部分</td>
+                                    <td>电源电压(V)</td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                            <div class="layui-input-block">
+                                                <input type="text" name="sbcsName" class="layui-input" autocomplete="off" lay-verify="required">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                            <div class="layui-input-block">
+                                                <input type="text" name="sbcsName" class="layui-input" autocomplete="off" lay-verify="required" value="(220+22)">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                          <input type="radio" name="sex" value="符合" title="符合">
+                                          <input type="radio" name="sex" value="不符合" title="不符合" checked>
+                                        </div>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <!-- <td>1022</td> -->
+                                    <td>保护接地电阻(m)</td>
+                                    <td>
+                                        <div class="layui-input-block">
+                                                <input type="text" name="sbcsName" class="layui-input" autocomplete="off" lay-verify="required">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="layui-input-block">
+                                                <input type="text" name="sbcsName" class="layui-input" autocomplete="off" lay-verify="required">
+                                            </div>
+                                    </td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                          <input type="radio" name="sex" value="符合" title="符合">
+                                          <input type="radio" name="sex" value="不符合" title="不符合" checked>
+                                        </div>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <!-- <td>1023</td> -->
+                                    <td>对地漏电流</td>
+                                    <td>
+                                        <div class="layui-input-block">
+                                                <input type="text" name="sbcsName" class="layui-input" autocomplete="off" lay-verify="required">
+                                            </div>
+                                    </td>
+                                    <td>1886411234</td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                          <input type="radio" name="sex" value="符合" title="符合">
+                                          <input type="radio" name="sex" value="不符合" title="不符合" checked>
+                                        </div>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <!-- <td></td> -->
+                                    <td>外壳漏电流</td>
+                                    <td>
+                                        <div class="layui-input-block">
+                                                <input type="text" name="sbcsName" class="layui-input" autocomplete="off" lay-verify="required">
+                                            </div>
+                                    </td>
+                                    <td>1996611234</td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                          <input type="radio" name="sex" value="符合" title="符合">
+                                          <input type="radio" name="sex" value="不符合" title="不符合" checked>
+                                        </div>
+                                      </div>
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td rowspan="4">应用部分</td>
+                                    <td>电源电压(V)</td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                            <div class="layui-input-block">
+                                                <input type="text" name="sbcsName" class="layui-input" autocomplete="off" lay-verify="required">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                            <div class="layui-input-block">
+                                                <input type="text" name="sbcsName" class="layui-input" autocomplete="off" lay-verify="required" value="(220+22)">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                          <input type="radio" name="sex" value="符合" title="符合">
+                                          <input type="radio" name="sex" value="不符合" title="不符合" checked>
+                                        </div>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <!-- <td>1022</td> -->
+                                    <td>保护接地电阻(m)</td>
+                                    <td>
+                                        <div class="layui-input-block">
+                                                <input type="text" name="sbcsName" class="layui-input" autocomplete="off" lay-verify="required">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="layui-input-block">
+                                                <input type="text" name="sbcsName" class="layui-input" autocomplete="off" lay-verify="required">
+                                            </div>
+                                    </td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                          <input type="radio" name="sex" value="符合" title="符合">
+                                          <input type="radio" name="sex" value="不符合" title="不符合" checked>
+                                        </div>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <!-- <td>1023</td> -->
+                                    <td>对地漏电流</td>
+                                    <td>
+                                        
+                                    </td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                            <div class="layui-input-block">
+                                                <input type="text" name="sbcsName" class="layui-input" autocomplete="off" lay-verify="required" value="(220+22)">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                          <input type="radio" name="sex" value="符合" title="符合">
+                                          <input type="radio" name="sex" value="不符合" title="不符合" checked>
+                                        </div>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <!-- <td></td> -->
+                                    <td>外壳漏电流</td>
+                                    <td>北京市XX区XX路XX号</td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                            <div class="layui-input-block">
+                                                <input type="text" name="sbcsName" class="layui-input" autocomplete="off" lay-verify="required" value="(220+22)">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                          <input type="radio" name="sex" value="符合" title="符合">
+                                          <input type="radio" name="sex" value="不符合" title="不符合" checked>
+                                        </div>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                          </form>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+    layui.use(['element','form','laydate'], function(){
+        var element = layui.element;
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#date',
+            // value: today,
+            format: "y-M-d"
+        });
+        var form = layui.form;
+        form.on('submit(formDemo)', function(data){
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>电子资料</title>
+    <link rel="stylesheet" type="text/css" href="../../static/admin/layui/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../static/admin/css/admin.css"/>
+    <link rel="stylesheet" href="../../static/admin/css/all.min.css"/>
+    <script src="../../static/admin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../static/admin/js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <!--[if IE 8]>
+    <script type="text/javascript" src="../../../../static/admin/js/jquery-1.11.3.min.js"></script>
+    <![endif]-->
+    <style>
+        .layui-row{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+        #num_code{
+            display: none;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        #num_code h1{
+            padding-top: 50px;
+            font-size: 24px;
+            text-align: center;
+        }
+        #num_code p{
+            width: 280px;
+            text-align: center;
+            padding-top: 50px;
+            font-size: 18px;
+        }
+        #num_code p span{
+            font-size: 24px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="layui-row">
+        <p style="height: 34px;width: 100%;line-height: 34px;background-color: lightyellow; text-align: center;"><span class="sign">***</span>请认真填写并妥善保管验证码<span class="sign">***</span></p>
+        <div class="col-xs-12 col-md-6">
+            <table class="layui-table">
+                <thead>
+                    <tr>
+                        <th>文件类型</th>
+                        <th>上传</th>
+                        <th>查看</th>
+                    </tr> 
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>厂家安装报告</td>
+                        <td>
+                            <button type="button" class="layui-btn" id="test1">
+                                <i class="layui-icon">&#xe67c;</i>上传文件
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="layui-btn layui-btn-normal" id="test1">
+                                查看
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>延保协议、售后承诺</td>
+                        <td>
+                            <button type="button" class="layui-btn" id="test1">
+                                <i class="layui-icon">&#xe67c;</i>上传文件
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="layui-btn layui-btn-normal" id="test1">
+                                查看
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>技术资料</td>
+                        <td>
+                            <button type="button" class="layui-btn" id="test1">
+                                <i class="layui-icon">&#xe67c;</i>上传文件
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="layui-btn layui-btn-normal" id="test1">
+                                查看
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>合格证/检测报告</td>
+                        <td>
+                            <button type="button" class="layui-btn" id="test1">
+                                <i class="layui-icon">&#xe67c;</i>上传文件
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="layui-btn layui-btn-normal" id="test1">
+                                查看
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <input id="btn" type="button" value="提交" name="">
+    <div id="num_code">
+        <h1>验证码信息</h1>
+        <p>感谢提交验收信息，系统生成的验证码为：<span id="ncode"></span>,<br>请妥善保存验证码，以方便您查看本次合同验收进度。</p>
+    </div>
+    <script>
+        // 随机四位验证码
+        var code;
+        function createCode(){
+            code = "";
+            var codeLength = 4;
+            var codeV = document.getElementById("ncode");
+            var random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+            for(var i=0;i<codeLength;i++){
+                var index = Math.floor(Math.random()*36);
+                code += random[index];
+            }
+            codeV.innerHTML = code;
+        }
+        //Demo
+        layui.use(['upload','layer'], function(){
+            var upload = layui.upload;
+            var layer = layui.layer;
+            var btn = document.getElementById("btn");
+            btn.onclick = function(){
+                layer.open({
+                    type: 1,
+                    content: $("#num_code"),
+                    area:["500px","500px"]
+                });
+            }
+            //执行实例
+            var uploadInst = upload.render({
+                elem: '#test1' //绑定元素
+                ,url: '/upload/' //上传接口
+                ,done: function(res){
+                  //上传完毕回调
+                }
+                ,error: function(){
+                  //请求异常回调
+                }
+              });
+        })
+            
+            
+        $(function(){
+            createCode();
+        })
+    </script>
+</body>
+</html>
