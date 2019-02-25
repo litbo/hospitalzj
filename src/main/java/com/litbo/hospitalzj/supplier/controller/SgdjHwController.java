@@ -7,10 +7,7 @@ import java.util.Random;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.litbo.hospitalzj.controller.BaseController;
@@ -21,7 +18,7 @@ import com.litbo.hospitalzj.supplier.util.Upload;
 import com.litbo.hospitalzj.util.ResponseResult;
 
 @RestController
-@RequestMapping("/ sgdjhw")
+@RequestMapping("/sgdjhw")
 public class SgdjHwController extends BaseController{
 	@Autowired
 	private SgdjHwService sgdjHwService;
@@ -30,7 +27,7 @@ public class SgdjHwController extends BaseController{
 		SgdjHw all= sgdjHwService.selectSgdjHw(htIds);
 		return new ResponseResult<SgdjHw>(SUCCESS,all);
 	}
-	@RequestMapping("/insert")
+	@RequestMapping(value = "/insert",method = RequestMethod.POST)
 	public ResponseResult<Void> insert(SgdjHw sgdjHw) {
 		sgdjHwService.InsertSgdjHw(sgdjHw);
 		return new ResponseResult<Void>(SUCCESS);

@@ -59,52 +59,47 @@
                         <div class="layui-form-item col-md-4">
                             <label class="layui-form-label">外包装</label>
                             <div class="layui-input-block">
-                                <input type="radio" name="packing" value="木箱" title="木箱">
-                                <input type="radio" name="packing" value="纸箱" title="纸箱" checked>
-                                <input type="radio" name="packing" value="铁箱" title="铁箱">
-                            </div>
-                        </div>
-                        <div class="layui-form-item col-md-4">
-                            <label class="layui-form-label">外包装状况</label>
-                            <div class="layui-input-block">
-                                <input type="radio" name="intact" value="外包装完好" title="外包装完好" checked>
-                                <input type="radio" name="intact" value="外包装有残损" title="外包装有残损">
+                                <input type="radio" name="djhwWbz" value="木箱" title="木箱">
+                                <input type="radio" name="djhwWbz" value="纸箱" title="纸箱" checked>
+                                <input type="radio" name="djhwWbz" value="铁箱" title="铁箱">
+                                <input type="radio" name="djhwWbz" value="外包装完好" title="外包装完好" checked>
+                                <input type="radio" name="djhwWbz" value="外包装有残损" title="外包装有残损">
                             </div>
                         </div>
                         <div class="layui-form-item  col-md-6">
                             <label class="layui-form-label">防倾斜标识</label>
                             <div class="layui-input-block">
-                                <input type="radio" name="tilt" value="无" title="无">
-                                <input type="radio" name="tilt" value="有但变色" title="有但变色">
-                                <input type="radio" name="tilt" value="有且完好" title="有且完好" checked>
+                                <input type="radio" name="djhwYsbs" value="无" title="无">
+                                <input type="radio" name="djhwYsbs" value="有但变色" title="有但变色">
+                                <input type="radio" name="djhwYsbs" value="有且完好" title="有且完好" checked>
                             </div>
                         </div>
                         <div class="layui-form-item col-md-8">
                             <label class="layui-form-label">设备外观</label>
                             <div class="layui-input-block">
-                                <input type="checkbox" name="file[write]" title="全新完好" checked>
-                                <input type="checkbox" name="file[read]" title="表面污渍">
-                                <input type="checkbox" name="file[write]" title="表面污渍">
-                                <input type="checkbox" name="file[read]" title="拆卸痕迹">
-                                <input type="checkbox" name="file[dai]" title="无铭牌标识">
-                                <input type="checkbox" name="file[dai]" title="铭牌信息不全">
-                                <input type="checkbox" name="file[dai]" title="库存机">
+                                <input type="checkbox" name="djhwSbwg" title="全新完好" checked>
+                                <input type="checkbox" name="djhwSbwg" title="表面污渍">
+                                <input type="checkbox" name="djhwSbwg" title="表面污渍">
+                                <input type="checkbox" name="djhwSbwg" title="拆卸痕迹">
+                                <input type="checkbox" name="djhwSbwg" title="无铭牌标识">
+                                <input type="checkbox" name="djhwSbwg" title="铭牌信息不全">
+                                <input type="checkbox" name="djhwSbwg" title="库存机">
                             </div>
                         </div>
                         <div class="layui-form-item col-md-9">
                             <label class="layui-form-label">随箱文件</label>
                             <div class="layui-input-block">
-                                <input type="checkbox" name="file[write]" title="合格证/进口设备出厂检测报告" checked>
-                                <input type="checkbox" name="file[read]" title="电子光盘">
-                                <input type="checkbox" name="file[write]" title="中文操作说明书">
-                                <input type="checkbox" name="file[read]" title="中文维修手册">
-                                <input type="checkbox" name="file[dai]" title="设备原理线图">
-                                <input type="checkbox" name="file[dai]" title="备注">
+                                <input type="checkbox" name="djhwSxwj" title="合格证/进口设备出厂检测报告" checked>
+                                <input type="checkbox" name="djhwSxwj" title="电子光盘">
+                                <input type="checkbox" name="djhwSxwj" title="中文操作说明书">
+                                <input type="checkbox" name="djhwSxwj" title="中文维修手册">
+                                <input type="checkbox" name="djhwSxwj" title="设备原理线图">
+                                <input type="checkbox" name="djhwSxwj" title="备注">
                             </div>
                         </div>
                         <div class="layui-form-item col-md-9">
                         <div class="layui-input-block" style="border: none;">
-                          <button class="layui-btn layui-btn-primary" lay-submit>返回</button>
+                          <button class="layui-btn layui-btn-primary">返回</button>
                           <button type="reset" class="layui-btn layui-btn-normal" lay-filter="submit">提交</button>
                         </div>
                       </div>
@@ -121,13 +116,13 @@
         layui.use(['element','jquery','form','layer'], function(){
             var element = layui.element
             ,   $ = layui.jquery
-            ,   layer = layui.layer;
-            var form = layui.form;
+            ,   layer = layui.layer
+            ,   form = layui.form;
             //监听提交
             form.on('submit(submit)', function(data){
                 console.log(data.field);
                 $.ajax({
-                    url:"?htId="+ids,
+                    url:"/sgdjhw/insert?htId="+ids,
                     method:"POST",
                     data:data.field,
                     dataType:"JSON",

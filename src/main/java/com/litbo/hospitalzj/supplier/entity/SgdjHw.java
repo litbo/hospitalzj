@@ -7,7 +7,7 @@ package com.litbo.hospitalzj.supplier.entity;
 public class SgdjHw {
 	private Integer djhwId;
 	private Integer htIds;
-	private String djhwWbz;
+	private String djhwWbz;//
 	private String djhwYsbs;
 	private String djhwSbwg;
 	private String djhwSxwj;
