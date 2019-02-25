@@ -1,0 +1,44 @@
+    [
+        {
+            "title": "首页",
+            "url": "?p=home",
+            "href": "?p=home",
+            "id": "0",
+            "icon": "home",
+            "shiro": "a",
+        },
+        {
+            "page": "home",
+            "tools": [],
+            "items": [
+                {
+                    "title": "待检设备管理",
+                    "url": "./home/not_manage.html",
+                    "id": "11",
+                    "icon": "calendar-check",
+                    "shiro": "a"
+                },
+                {
+                    "title": "检测仪器管理",
+                    "url": "./home/apply_manage.html",
+                    "id": "12",
+                    "icon": "clipboard",
+                    "shiro": "a"
+                },
+                {
+                    "title": "年度计划管理",
+                    "url": "./home/already_manage.html",
+                    "id": "13",
+                    "icon": "star",
+                    "shiro": "a",
+                },
+                {
+                    "title": "统计查询",
+                    "url": "./home/statistics.html",
+                    "id": "14",
+                    "icon": "star",
+                    "shiro": "a",
+                }
+            ]
+        },
+    ]

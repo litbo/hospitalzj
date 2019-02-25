@@ -1,0 +1,44 @@
+    [
+        {
+            "title": "首页",
+            "url": "?p=home",
+            "href": "?p=home",
+            "id": "0",
+            "icon": "home",
+            "shiro": "a",
+        },
+        {
+            "page": "home",
+            "tools": [],
+            "items": [
+                {
+                    "title": "待验收管理",
+                    "url": "./home/not_manage.html",
+                    "id": "11",
+                    "icon": "calendar-check",
+                    "shiro": "a"
+                },
+                {
+                    "title": "验收管理",
+                    "url": "./home/apply_manage.html",
+                    "id": "12",
+                    "icon": "clipboard",
+                    "shiro": "a"
+                },
+                {
+                    "title": "已验收管理",
+                    "url": "./home/already_manage.html",
+                    "id": "13",
+                    "icon": "star",
+                    "shiro": "a",
+                },
+                {
+                    "title": "验收统计",
+                    "url": "./home/statistics.html",
+                    "id": "14",
+                    "icon": "star",
+                    "shiro": "a",
+                }
+            ]
+        },
+    ]

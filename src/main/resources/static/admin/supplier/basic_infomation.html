@@ -16,82 +16,105 @@
     <script src="../../static/admin/layui/layui.js"></script>
 </head>
 <body>
-  <h1 style="text-align: center;">供应商基本信息</h1>
   <div class="layui-row">
     <div class="col-xs-12">
-      <table class="layui-table">
-        <thead>
-          <tr>
-            <th>合同号</th>
-            <th>代理商全称</th>
-            <th>办公地址</th>
-            <th>固定电话</th>
-            <th>医疗器械经营许可证号</th>
-            <th>营业执照(统一社会信用代码)</th>
-            <th>操作</th>
-          </tr> 
-        </thead>
-        <tbody>
-          <tr>
-            <td>1021</td>
-            <td>杭州医疗器械总公司</td>
-            <td>浙江省杭州市XX区XX路XX号</td>
-            <td>1886411234</td>
-            <td>123456789</td>
-            <td>987654321</td>
-            <td>
-              <a class="layui-btn layui-btn-sm layui-btn-normal" lay-event="edit">编辑</a>
-            </td>
-          </tr>
-          <tr>
-            <td>1022</td>
-            <td>北京医疗器械有限公司</td>
-            <td>北京市XX区XX路XX号</td>
-            <td>1996611234</td>
-            <td>987654321</td>
-            <td>123456789</td>
-            <td>
-              <a class="layui-btn layui-btn-sm layui-btn-normal" lay-event="edit">编辑</a>
-            </td>
-          </tr>
-          <tr>
-            <td>1023</td>
-            <td>南阳医疗器械总公司</td>
-            <td>浙江省杭州市XX区XX路XX号</td>
-            <td>1886411234</td>
-            <td>123456789</td>
-            <td>987654321</td>
-            <td>
-              <a class="layui-btn layui-btn-sm layui-btn-normal" lay-event="edit">编辑</a>
-            </td>
-          </tr>
-          <tr>
-            <td>1024</td>
-            <td>南京医疗器械有限公司</td>
-            <td>北京市XX区XX路XX号</td>
-            <td>1996611234</td>
-            <td>987654321</td>
-            <td>123456789</td>
-            <td>
-              <a class="layui-btn layui-btn-sm layui-btn-normal" lay-event="edit">编辑</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px; width: 100%;color: red;">
+          <legend>供应商基本信息管理</legend>
+      </fieldset>
+      <table class="layui-hide" id="supplierInfo" lay-filter="handle"></table>
     </div>
   </div>
-<!-- <script>
-//Demo
-layui.use('form', function(){
-  var form = layui.form;
-  
-  //监听提交
-  form.on('submit(formDemo)', function(data){
-    layer.msg(JSON.stringify(data.field));
-    return false;
-  });
-});
-</script> -->
+  <script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+      <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+      <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+      <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+    </div>
+  </script>
+   
+  <script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">查看详情</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+  </script>
+  <script>
+    layui.use(['table','jquery','layer'], function(){
+      var table = layui.table
+      , $ = layui.jquery
+      , layer = layui.layer;
+      var tableIns = table.render({
+        elem:"#supplierInfo",
+        cellMinWidth:80,
+        url:"",
+        method:"GET",
+        toolbar: '#toolbarDemo',
+        response:{
+          statusName:"status",
+          statusCode:200,
+          msgName:"message",
+          countName:"total",
+          dataName:"data"
+        },
+        parseData:function(res){
+          console.log(res);
+          return{
+            "status":200
+            ,"msg":res.message
+            ,"count":res.total
+            ,"data":res.data
+          }
+        },
+        title:"供应商基本信息表",
+        page:true,
+        cols:[[
+          {type: 'checkbox', fixed: 'left'}
+          ,{field:'sbcsName', title:'代理商全称',align:"center"}
+          ,{field:'sbcsAddress', title:'办公地址',align:"center"}
+          ,{field:'sbcsAddress', title:'固定电话',align:"center"}
+          ,{field:'sbcsCertificate', title:'医疗器械经营许可证号',align:"center",sort: true}
+          ,{field:'sbcsCreditcode', title:'营业执照(统一社会信用代码)',sort: true,align:"center"}
+          ,{fixed: 'right', title:'操作', toolbar: '#barDemo',align:"center"}
+        ]]
+      });
+      //头工具栏事件
+      table.on('toolbar(handle)', function(obj){
+        var checkStatus = table.checkStatus(obj.config.id);
+        switch(obj.event){
+          case 'getCheckData':
+            var data = checkStatus.data;
+            layer.alert(JSON.stringify(data));
+          break;
+          case 'getCheckLength':
+            var data = checkStatus.data;
+            layer.msg('选中了：'+ data.length + ' 个');
+          break;
+          case 'isAll':
+            layer.msg(checkStatus.isAll ? '全选': '未全选');
+          break;
+        };
+      });
+      
+      //监听行工具事件
+      table.on('tool(handle)', function(obj){
+        var data = obj.data;
+        //console.log(obj)
+        if(obj.event === 'del'){
+          layer.confirm('真的删除行么', function(index){
+            obj.del();
+            layer.close(index);
+          });
+        } else if(obj.event === 'edit'){
+          layer.prompt({
+            formType: 2
+            ,value: data.email
+          }, function(value, index){
+            obj.update({
+              email: value
+            });
+            layer.close(index);
+          });
+        }
+      });
+    });
+  </script>
 </body>
-
 </html>
