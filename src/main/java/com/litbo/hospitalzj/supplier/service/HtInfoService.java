@@ -20,6 +20,8 @@ public interface HtInfoService {
 	HtInfo select(Integer htId);
 	
 	List<HtInfo> selectHtinfo(Integer sbcsId);
+
+	List<HtInfo> selectHtinfo();
 	
 	List<EqHtVo> selectEqHtVo(String htYzm);
 	

@@ -1,6 +1,8 @@
 package com.litbo.hospitalzj.supplier.service.impl;
 
 import java.util.List;
+
+import com.litbo.hospitalzj.hospital.enums.EnumProcess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,10 +35,19 @@ public class HtInfoServiceImpl implements HtInfoService {
 		}
 		return date;
 	}
-	
+
+	@Override
+	public List<HtInfo> selectHtinfo() {
+		List<HtInfo> data=htInfoMapper.findAll(EnumProcess.WAIT_ACCEPT.getCode());
+		if (data== null) {
+			throw new HtInfoIsNullException("合同不存在，请根据需要添加合同");
+		}
+		return data;
+	}
+
 	/*private Integer findByHtYzm(@Param("htYzm") String htYzm) {
-		return htInfoMapper.findByHtYzm(htYzm);
-	}*/
+            return htInfoMapper.findByHtYzm(htYzm);
+        }*/
 	/*@Override
 	public void updateState(Integer htId, String htState) {
 		htInfoMapper.updateState(htId, htState);
