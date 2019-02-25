@@ -6,17 +6,16 @@ package com.litbo.hospitalzj.supplier.service;
  */
 
 import java.util.List;
+import com.litbo.hospitalzj.supplier.entity.EqSglb;
 
-import com.litbo.hospitalzj.supplier.entity.EqLy;
-
-public interface EqLyService {
+public interface EqSglbService {
 	/*
 	 * 查找设备来源名称
 	 */
-	EqLy getById(String eqlyId);
+	EqSglb getById(String eqsgId);
 	
 	/*
 	 * 查找所有设备来源
 	 */
-	List<EqLy> getAll();
+	List<EqSglb> getAll();
 }

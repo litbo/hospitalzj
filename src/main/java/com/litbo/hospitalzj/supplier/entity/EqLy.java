@@ -5,13 +5,13 @@ package com.litbo.hospitalzj.supplier.entity;
  *
  */
 public class EqLy {
-	private String eqlyCode;
+	private String eqlyId;
 	private String eqlyName;
-	public String getEqlyCode() {
-		return eqlyCode;
+	public String getEqlyId() {
+		return eqlyId;
 	}
-	public void setEqlyCode(String eqlyCode) {
-		this.eqlyCode = eqlyCode;
+	public void setEqlyId(String eqlyId) {
+		this.eqlyId = eqlyId;
 	}
 	public String getEqlyName() {
 		return eqlyName;
@@ -21,8 +21,7 @@ public class EqLy {
 	}
 	@Override
 	public String toString() {
-		return "EqLy [eqlyCode=" + eqlyCode + ", eqlyName=" + eqlyName + "]";
+		return "EqLy [eqlyId=" + eqlyId + ", eqlyName=" + eqlyName + "]";
 	}
-	
 	
 }

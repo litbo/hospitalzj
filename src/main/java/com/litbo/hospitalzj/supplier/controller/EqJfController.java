@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.litbo.hospitalzj.controller.BaseController;
+import com.litbo.hospitalzj.supplier.entity.EqJfly;
 import com.litbo.hospitalzj.supplier.entity.EqLy;
+import com.litbo.hospitalzj.supplier.service.EqJfService;
 import com.litbo.hospitalzj.supplier.service.EqLyService;
 import com.litbo.hospitalzj.util.ResponseResult;
 /**
@@ -17,19 +19,19 @@ import com.litbo.hospitalzj.util.ResponseResult;
  *
  */
 @RestController
-@RequestMapping("/eqly")
-public class EqLyController extends BaseController{
+@RequestMapping("/eqjf")
+public class EqJfController extends BaseController{
 	@Autowired
-	public EqLyService eqLyService;
+	public EqJfService eqJfService;
 	
-	@RequestMapping("/{eqlyId}")
-	public ResponseResult<EqLy> getByCode(@PathVariable("eqlyId") String eqlyId) {
-		EqLy data=eqLyService.getById(eqlyId);
-		return new ResponseResult<EqLy>(SUCCESS,data);
+	@RequestMapping("/{eqjfId}")
+	public ResponseResult<EqJfly> getByCode(@PathVariable("eqlyId") String eqjfId) {
+		EqJfly data=eqJfService.getById(eqjfId);
+		return new ResponseResult<EqJfly>(SUCCESS,data);
 	}
 	@RequestMapping("all")
-	public ResponseResult<List<EqLy>> getAll() {
-		List<EqLy> data=eqLyService.getAll();
-		return new ResponseResult<List<EqLy>>(SUCCESS,data);
+	public ResponseResult<List<EqJfly>> getAll() {
+		List<EqJfly> data=eqJfService.getAll();
+		return new ResponseResult<List<EqJfly>>(SUCCESS,data);
 	}
 }
