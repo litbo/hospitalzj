@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.litbo.hospitalzj.supplier.entity.EqInfo;
+
 import com.litbo.hospitalzj.supplier.entity.HtInfo;
 import com.litbo.hospitalzj.supplier.vo.EqHtVo;
 
@@ -21,7 +21,7 @@ public interface HtInfoService {
 	
 	List<HtInfo> selectHtinfo(Integer sbcsId);
 
-	List<HtInfo> selectHtinfo();
+	List<HtInfo> selectAllHtInfo();
 	
 	List<EqHtVo> selectEqHtVo(String htYzm);
 	
@@ -36,4 +36,8 @@ public interface HtInfoService {
 	void updateFour(@Param("htId") Integer htId, @Param("htFile4") String htFile4);
 	
 	void updateFive(@Param("htId") Integer htId, @Param("htFile5") String htFile5);
+
+	int agreeHtInfoById(Integer htId, String yy, String date);
+
+	int refuseHtInfoById(Integer htId, String yy, String date);
 }
