@@ -16,10 +16,10 @@ import com.litbo.hospitalzj.supplier.vo.EqHtVo;
 public interface HtInfoMapper {
 
 	@Insert("insert into ht_info(ht_id,ht_ghsn,ht_ghslxr,ht_ghsdh,ht_hthao,ht_gzspd,ht_zhbhao,ht_bz,ht_qytime,ht_dhtime,ht_bxtime,"
-			+ "ht_syks,ht_azdd,ht_ly,ht_cgfs,ht_sglb,ht_sbyt,ht_jfly,ht_jlsb,ht_fssb,ht_file1,ht_file2,ht_file3,ht_file4,ht_file5"
+			+ "ht_syks,ht_azdd,ht_ly,ht_cgfs,ht_sglb,ht_sbyt,ht_jfly,ht_file1,ht_file2,ht_file3,ht_file4,ht_file5"
 			+ ",ht_state,ht_yzm,sbcs_id,ht_yssj,ht_ysbz) value "
 			+ "(#{htId},#{htGhsn},#{htGhslxr},#{htGhsdh},#{htHthao},#{htGzspd},#{htZhbhao},#{htBz},#{htQytime},#{htDhtime},#{htBxtime},"
-			+ "#{htSyks},#{htAzdd},#{htLy},#{htCgfs},#{htSglb},#{htSbyt},#{htJfly},#{htJlsb},#{htFssb},#{htFile1},#{htFile2},"
+			+ "#{htSyks},#{htAzdd},#{htLy},#{htCgfs},#{htSglb},#{htSbyt},#{htJfly},#{htFile1},#{htFile2},"
 			+ "#{htFile3},#{htFile4},#{htFile5},#{htState},#{htYzm},#{sbcsId},#{htYssj},#{htYsbz})")
 	@Options(useGeneratedKeys = true, keyProperty = "htId", keyColumn = "ht_id")
 	Integer insertHt(HtInfo htInfo);
@@ -62,7 +62,7 @@ public interface HtInfoMapper {
 			+ "ht_file5 htFile5,ht_state htState,ht_yzm htYzm,sbcs_id sbcdId,ht_yssj htYssj,"
 			+ "ht_ysbz htYsbz from ht_info where sbcs_id=#{sbcsId}")
 	List<HtInfo> findBySbcsId(Integer sbcsId);
-	
+
 	@Select("select ht_id htId,ht_ghsn htGhsn,ht_ghslxr htGhslxr,ht_ghsdh htGhsdh,ht_ghsdh htGhsdh,IFNULL(ht_hthao,'无') htHthao,IFNULL(ht_gzspd,'无') htGzspd,"
 			+ "ht_zhbhao htZhbhao,ht_bz htBz,ht_qytime htQytime,ht_dhtime htDhtime,ht_bxtime htBxtime,"
 			+ "ht_syks htSyks,ht_azdd htAzdd,ht_ly htLy,ht_cgfs htCgfs,ht_sglb htSglb,ht_sbyt htSbyt,"
