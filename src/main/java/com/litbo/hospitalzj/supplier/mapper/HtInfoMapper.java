@@ -2,7 +2,6 @@
 
 import java.util.List;
 
-import com.litbo.hospitalzj.hospital.enums.EnumProcess;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -39,9 +38,10 @@ public interface HtInfoMapper {
 	
 	@Update("UPDATE ht_info SET ht_file5=#{htFile5} where ht_id=#{htId}")
 	Integer updateFive(@Param("htId") Integer htId, @Param("htFile5") String htFile5);
-	
-	@Update("UPDATE ht_info SET ht_State=#{htState} where ht_id=#{htId}")
-	Integer updateState(@Param("htId") Integer htId, @Param("htState") String htState);
+
+//
+//	@Update("UPDATE ht_info SET ht_State=#{htState}  where ht_id=#{htId}")
+//	Integer updateState(@Param("htId") Integer htId, String yy, @Param("htState") String htState);
 	
 /*	@Update("UPDATE ht_info SET ht_yzm=#{htYzm},ht_state=#{htState} where sbcs_id=#{sbcsId}")*/
 	@Update("UPDATE ht_info SET ht_yzm=#{htYzm},ht_state=#{htState} where ht_id=#{htId}")
@@ -58,7 +58,7 @@ public interface HtInfoMapper {
 	@Select("select ht_id htId,ht_ghsn htGhsn,ht_ghslxr htGhslxr,ht_ghsdh htGhsdh,ht_ghsdh htGhsdh,IFNULL(ht_hthao,'无') htHthao,IFNULL(ht_gzspd,'无') htGzspd,"
 			+ "ht_zhbhao htZhbhao,ht_bz htBz,ht_qytime htQytime,ht_dhtime htDhtime,ht_bxtime htBxtime,"
 			+ "ht_syks htSyks,ht_azdd htAzdd,ht_ly htLy,ht_cgfs htCgfs,ht_sglb htSglb,ht_sbyt htSbyt,"
-			+ "ht_jfly htJfly,ht_jlsb htJlsb,ht_fssb htFssb,ht_file1 htFile1,ht_file2 htFile2,ht_file3 htFile3,ht_file4 htFile4,"
+			+ "ht_jfly htJfly,ht_file1 htFile1,ht_file2 htFile2,ht_file3 htFile3,ht_file4 htFile4,"
 			+ "ht_file5 htFile5,ht_state htState,ht_yzm htYzm,sbcs_id sbcdId,ht_yssj htYssj,"
 			+ "ht_ysbz htYsbz from ht_info where sbcs_id=#{sbcsId}")
 	List<HtInfo> findBySbcsId(Integer sbcsId);
@@ -66,7 +66,7 @@ public interface HtInfoMapper {
 	@Select("select ht_id htId,ht_ghsn htGhsn,ht_ghslxr htGhslxr,ht_ghsdh htGhsdh,ht_ghsdh htGhsdh,IFNULL(ht_hthao,'无') htHthao,IFNULL(ht_gzspd,'无') htGzspd,"
 			+ "ht_zhbhao htZhbhao,ht_bz htBz,ht_qytime htQytime,ht_dhtime htDhtime,ht_bxtime htBxtime,"
 			+ "ht_syks htSyks,ht_azdd htAzdd,ht_ly htLy,ht_cgfs htCgfs,ht_sglb htSglb,ht_sbyt htSbyt,"
-			+ "ht_jfly htJfly,ht_jlsb htJlsb,ht_fssb htFssb,ht_file1 htFile1,ht_file2 htFile2,ht_file3 htFile3,ht_file4 htFile4,"
+			+ "ht_jfly htJfly,ht_file1 htFile1,ht_file2 htFile2,ht_file3 htFile3,ht_file4 htFile4,"
 			+ "ht_file5 htFile5,ht_state htState,ht_yzm htYzm,sbcs_id sbcdId,ht_yssj htYssj,"
 			+ "ht_ysbz htYsbz from ht_info where ht_id=#{htId}")
 	HtInfo findByHtId(Integer htId);
@@ -78,11 +78,13 @@ public interface HtInfoMapper {
 	
 	@Select("select ht_ids htIds,ht_hthao htHthao,eq_pm eqPm,eq_gg eqGg,eq_xh eqXh,ht_qytime htQytime,ht_state htState,ht_yzm htYzm from ht_info inner join eq_info on ht_info.ht_id=eq_info.ht_ids where ht_yzm=#{htYzm}")
 	List<EqHtVo> EqHtVo(String htYzm);
-	@Select("select ht_id htId,ht_ghsn htGhsn,ht_ghslxr htGhslxr,ht_ghsdh htGhsdh,ht_ghsdh htGhsdh,IFNULL(ht_hthao,'无') htHthao,IFNULL(ht_gzspd,'无') htGzspd,"
-			+ "ht_zhbhao htZhbhao,ht_bz htBz,ht_qytime htQytime,ht_dhtime htDhtime,ht_bxtime htBxtime,"
-			+ "ht_syks htSyks,ht_azdd htAzdd,ht_ly htLy,ht_cgfs htCgfs,ht_sglb htSglb,ht_sbyt htSbyt,"
-			+ "ht_jfly htJfly,ht_jlsb htJlsb,ht_fssb htFssb,ht_file1 htFile1,ht_file2 htFile2,ht_file3 htFile3,ht_file4 htFile4,"
-			+ "ht_file5 htFile5,ht_state htState,ht_yzm htYzm,sbcs_id sbcdId,ht_yssj htYssj,"
-			+ "ht_ysbz htYsbz from ht_info where ht_state=#{state}")
+	@Select("select ht_id ,ht_ghsn ,ht_ghslxr ,ht_ghsdh ,ht_ghsdh ,IFNULL(ht_hthao,'无') ,IFNULL(ht_gzspd,'无') ,"
+			+ "ht_zhbhao ,ht_bz ,ht_qytime ,ht_dhtime ,ht_bxtime ,"
+			+ "ht_syks ,ht_azdd ,ht_ly ,ht_cgfs ,ht_sglb ,ht_sbyt ,"
+			+ "ht_jfly   ,ht_file1 ,ht_file2 ,ht_file3 ,ht_file4 ,"
+			+ "ht_file5 ,ht_state ,ht_yzm ,sbcs_id ,ht_yssj ,"
+			+ "ht_ysbz  from ht_info where ht_state=#{state}")
     List<HtInfo> findAll(Integer state);
+	@Update("UPDATE ht_info SET ht_State=#{htState},ht_bz =#{yy},ht_yssj=#{date} where ht_id=#{htId}")
+	int updateState(@Param("htId") Integer htId, @Param("yy") String yy, @Param("date") String date,@Param("htState")Integer htState);
 }

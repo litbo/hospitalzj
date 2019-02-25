@@ -1,8 +1,6 @@
 package com.litbo.hospitalzj.hospital.controller;
 
-import com.litbo.hospitalzj.hospital.enums.EnumProcess;
 import com.litbo.hospitalzj.hospital.service.AcceptService;
-import com.litbo.hospitalzj.supplier.entity.EqCs;
 import com.litbo.hospitalzj.supplier.entity.HtInfo;
 import com.litbo.hospitalzj.supplier.service.EqCsService;
 import com.litbo.hospitalzj.supplier.service.HtInfoService;
@@ -28,8 +26,24 @@ public class AcceptController {
     private HtInfoService htInfoService;
     @RequestMapping("selectAllHt")
     public ResponseResult selectAllHt(){
-        List<HtInfo> htInfos=htInfoService.selectHtinfo();
+        List<HtInfo> htInfos=htInfoService.selectAllHtInfo();
 
         return new ResponseResult<List<HtInfo>>(SUCCESS,htInfos);
     }
+    @RequestMapping("selectHtInfoById")
+    public ResponseResult selectAllHt(Integer htId){
+        HtInfo htInfo=htInfoService.select(htId);
+        return new ResponseResult<HtInfo>(SUCCESS,htInfo);
+    }
+    @RequestMapping("agreeHtInfoById")
+    public ResponseResult AgreeHtInfoById(Integer htId,String yy,String date){
+        int res = htInfoService.agreeHtInfoById(htId,yy,date);
+        return new ResponseResult<>(SUCCESS);
+    }
+    @RequestMapping("refuseHtInfoById")
+    public ResponseResult RefuseHtInfoById(Integer htId,String yy,String date){
+        int res = htInfoService.refuseHtInfoById(htId,yy,date);
+        return new ResponseResult<>(SUCCESS);
+    }
+
 }

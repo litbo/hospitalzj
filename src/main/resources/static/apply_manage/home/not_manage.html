@@ -53,7 +53,7 @@
       elem:"#applyTable",
       cellMinWidth:100,
       toolbar: '#toolbarDemo',
-      url:"",
+      url:"/accept/selectAllHt",
       method:"GET",
       response: {
           statusName: 'status'
@@ -124,7 +124,7 @@
           layer.close(index);
         });
       } else if(obj.event === 'more'){
-        location.href="/apply_manage/not_manage/fixing.html?htId="+obj.data.htId;
+        location.href="/apply_manage/not_manage/fixing_info.html?htId="+obj.data.htId;
       }
     });
   })
