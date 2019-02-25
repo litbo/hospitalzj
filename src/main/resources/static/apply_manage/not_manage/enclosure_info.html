@@ -60,7 +60,7 @@
       elem:"#enclosureInfo",
       cellMinWidth:100,
       toolbar: '#toolbarDemo',
-      url:"?eqId="+ids,
+      url:"/eqfj/selectInfo?eqIds="+ids,
       method:"GET",
       response: {
           statusName: 'status'
@@ -89,8 +89,8 @@
           {field:'eqFjdw', title:'单位',sort: true,align:'center'},
           {field:'eqFjsccs', title:'生产厂商',align:'center'},
           {field:'eqFjccbh', title:'出厂编号',sort: true,align:'center'},
-          {field:'bz', title:'备注',align:'center'},
-          {fixed: 'right', title:'操作', toolbar: '#barDemo',align:'center'}
+          {field:'bz', title:'备注',align:'center'}
+  /*        {fixed: 'right', title:'操作', toolbar: '#barDemo',align:'center'}*/
         ]]
     });
     //头工具栏事件
@@ -127,7 +127,7 @@
     });
     $("#back").click(function(){
       $.ajax({
-        url:"?eqId="+ids,
+        url:"?eqIds="+ids,
         method:"GET",
         dataType:"JSON",
         success:function(res){

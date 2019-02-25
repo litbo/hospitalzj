@@ -112,6 +112,7 @@ public class HtInfoServiceImpl implements HtInfoService {
 
 	@Override
 	public int agreeHtInfoById(Integer htId, String yy, String date) {
+		System.out.println(123);
 		return htInfoMapper.updateState(htId,yy,date,EnumProcess.APPOINMENT_ACCEPTANCE.getCode());
 	}
 

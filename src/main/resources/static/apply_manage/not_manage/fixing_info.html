@@ -60,7 +60,7 @@
           <div class="layui-form-item layui-form-text col-md-6">
             <label class="layui-form-label">验收要求</label>
             <div class="layui-input-block">
-              <textarea name="desc" placeholder="请输入本次验收要求" class="layui-textarea"></textarea>
+              <textarea name="yy" placeholder="请输入本次验收要求" class="layui-textarea"></textarea>
             </div>
           </div>
           <div class="layui-form-item btn">
@@ -101,7 +101,7 @@
       elem:"#fixingInfo",
       cellMinWidth:100,
       toolbar: '#toolbarDemo',
-      url:"/htInfo/selectOne?htId="+ids,
+      url:"/eqInfo/selectEqHt?htIds="+ids,
       method:"GET",
       response: {
           statusName: 'status'
@@ -144,8 +144,8 @@
           {field:'eqShJldh', title:'经理电话',align:'center'},
           {field:'eqShLxr', title:'售后联系人',sort: true,align:'center'},
           {field:'eqShLxrdh', title:'联系人电话',align:'center'},
-          {field:'eqShJlsb', title:'计量设备',sort: true,align:'center'},
-          {field:'eqShFs', title:'放射设备',align:'center'},
+          // {field:'eqShJlsb', title:'计量设备',sort: true,align:'center'},
+          // {field:'eqShFs', title:'放射设备',align:'center'},
           {fixed: 'right', title:'操作', toolbar: '#barDemo',align:'center'}
         ]]
     });
@@ -211,7 +211,7 @@
   form.on('submit(submit)', function(data){
     console.log(data.field);
     $.ajax({
-      url:"?htId="+ids,
+      url:"/accept/acceptHtInfoById?htId="+ids,
       method:"POST",
       data:data.field,
       dataType:"JSON",
