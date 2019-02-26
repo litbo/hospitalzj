@@ -26,6 +26,16 @@
             align-items: center;
             flex-wrap: wrap;
         }
+        .btn{
+            width: 100%;
+            text-align: center;
+        }
+        .inp{
+            margin-left: -100px;
+        }
+        .layui-form-item{
+            height: 20px;
+        }
     </style>
 </head>
 <body>
@@ -86,12 +96,285 @@
                     <fieldset class="layui-elem-field layui-field-title">
                         <legend>检测数据</legend>
                     </fieldset>
-
+                    <h2 style="text-align: center">医疗设备通用电气安全检测原始记录表</h2>
+                    <form class="layui-form layui-form-pane" action="">
+                        <table class="layui-table">
+                            <thead>
+                                <tr>
+                                    <td colspan="3">定量检测</td>
+                                    <td colspan="4">检测结果</td>
+                                    <td colspan="2">允许值</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="7">电源部分</td>
+                                    <td colspan="2">电源电压</td>
+                                    <td colspan="4" class="text">
+                                        <div class="layui-form-item">
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input inp">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="2">(220+22)V</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">保护接地阻抗</td>
+                                    <td colspan="4">
+                                        <div class="layui-form-item">
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input inp">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="2">&lt;220m</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">绝缘阻抗</td>
+                                    <td colspan="4">
+                                        <div class="layui-form-item">
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input inp">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="2">&gt;10M</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">对地漏电流</td>
+                                    <td>正常状态</td>
+                                    <td colspan="2" class="intext">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">正向</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="2">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">反向</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="2">&lt;500A</td>
+                                </tr>
+                                <tr>
+                                    <td>单一故障状态</td>
+                                    <td colspan="2">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">正向断零</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="2">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">反向断零</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="2">&lt;1000A</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">外壳漏电流</td>
+                                    <td>正常状态</td>
+                                    <td colspan="2">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">正向</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="2">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">反向</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="2">&lt;100A</td>
+                                </tr>
+                                <tr>
+                                    <td>单一故障状态</td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">正向断零</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">正向短地</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">反向断零</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">反向断地</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="2">&lt;500A</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="5">应用部分</td>
+                                    <td colspan="6">应用端类型</td>
+                                    <td>B型BF型</td>
+                                    <td>CF型</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">患者漏电流</td>
+                                    <td>正常状态</td>
+                                    <td colspan="2">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">正向</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="2">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">反向</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>&lt;100A</td>
+                                    <td>&lt;10A</td>
+                                </tr>
+                                <tr>
+                                    <td>单一故障状态</td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">正向断零</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">正向断地</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">反向断零</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">反向断地</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>&lt;500A</td>
+                                    <td>&lt;50A</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">患者辅助漏电流</td>
+                                    <td>正常状态</td>
+                                    <td colspan="2">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">正向</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="2">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">反向</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>&lt;100A</td>
+                                    <td>&lt;10A</td>
+                                </tr>
+                                <tr>
+                                    <td>单一故障状态</td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">正向断零</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">正向断地</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">反向断零</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">反向断地</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测结果" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>&lt;500A</td>
+                                    <td>&lt;50A</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="layui-form-item btn">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>
 <script type="text/html" id="toolbarDemo">

@@ -56,7 +56,7 @@
                         <legend>到货登记信息</legend>
                     </fieldset>
                     <div class="upinfo">
-                        <div class="layui-form-item col-md-4">
+                        <div class="layui-form-item col-md-6">
                             <label class="layui-form-label">外包装</label>
                             <div class="layui-input-block">
                                 <input type="radio" name="djhwWbz" value="木箱" title="木箱">
@@ -98,6 +98,55 @@
                             </div>
                         </div>
                         <div class="layui-form-item col-md-9">
+                            <table class="layui-table">
+                                <thead>
+                                <tr>
+                                    <th>文件名称</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>外包装图片上传</td>
+                                    <td>
+                                        <div class="layui-upload">
+                                            <button type="button" name="file" class="layui-btn" id="upload1">上传图片</button>
+                                            <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                                                预览图：
+                                                <div class="layui-upload-list" id="img1"></div>
+                                            </blockquote>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>防倾斜图片上传</td>
+                                    <td>
+                                        <div class="layui-upload">
+                                            <button type="button" name="file" class="layui-btn" id="upload2">上传图片</button>
+                                            <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                                                预览图：
+                                                <div class="layui-upload-list" id="img2"></div>
+                                            </blockquote>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>设备外观图片上传</td>
+                                    <td>
+                                        <div class="layui-upload">
+                                            <button type="button" name="file" class="layui-btn" id="upload3">上传图片</button>
+                                            <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                                                预览图：
+                                                <div class="layui-upload-list" id="img3"></div>
+                                            </blockquote>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="layui-form-item col-md-9">
                         <div class="layui-input-block" style="border: none;">
                           <button class="layui-btn layui-btn-primary">返回</button>
                           <button class="layui-btn" lay-submit lay-filter="submit">立即提交</button>
@@ -113,11 +162,12 @@
         var type = window.location.search;
         var ids = parseInt(type.split("=")[1]);
         //Demo
-        layui.use(['element','jquery','form','layer'], function(){
+        layui.use(['element','jquery','form','layer','upload'], function(){
             var element = layui.element
             ,   $ = layui.jquery
             ,   layer = layui.layer
-            ,   form = layui.form;
+            ,   form = layui.form
+            ,   upload = layui.upload;
             //监听提交
             form.on('submit(submit)', function(data){
                 console.log(data.field);
@@ -140,6 +190,71 @@
                     }
                 })
             });
+            var uploadIns = upload.render({
+                elem:"#upload1",
+                url:"",
+                multiple: true,
+                before: function(obj){
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, file, result){
+                        $('#img1').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+                    });
+                },
+                done: function(res){
+                    if(res.state === 200){
+                        layer.msg("上传成功");
+                    }else{
+                        layer.msg("上传失败");
+                    }
+                },
+                error:function(){
+                    layer.msg("上传失败,请稍后再试");
+                }
+            });
+            upload.render({
+                elem:"#upload2",
+                url:"",
+                multiple: true,
+                before: function(obj){
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, file, result){
+                        $('#img2').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+                    });
+                },
+                done: function(res){
+                    //上传完毕
+                    if(res.state === 200){
+                        layer.msg("上传成功");
+                    }else{
+                        layer.msg("上传失败");
+                    }
+                },
+                error:function(){
+                    layer.msg("上传失败,请稍后再试");
+                }
+            });
+            upload.render({
+                elem:"#upload3",
+                url:"",
+                multiple: true,
+                before: function(obj){
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, file, result){
+                        $('#img3').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+                    });
+                },
+                done: function(res){
+                    //上传完毕
+                    if(res.state === 200){
+                        layer.msg("上传成功");
+                    }else{
+                        layer.msg("上传失败");
+                    }
+                },
+                error:function(){
+                    layer.msg("上传失败,请稍后再试");
+                }
+            })
         });
     </script>
 </body>

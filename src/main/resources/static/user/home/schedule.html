@@ -52,25 +52,8 @@
     <a class="layui-btn layui-btn-xs" lay-event="lookinfo">查看详情</a>
   </script>
   <script>
-    // $(function(){
-    //   var type = $("#stype").text();
-    //   var handle = $("#handle");
-    //   if(type == "待预约验收"){
-    //     handle.append("<p style='color:red;'>正在验收，请耐心等待...</p>")
-    //   }else if(type == "预约验收"){
-    //     handle.append("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>查看</a>");
-    //   }else if(type == "预约未通过"){
-    //     handle.append("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>修改</a>");
-    //   }else if(type == "完善资料"){
-    //     handle.append("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>查看</a><a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>修改</a>");
-    //   }else if(type == "验收申请"){
-    //     handle.append("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>查看</a>");
-    //   }else if(type == "资料未完善"){
-    //     handle.append("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>修改</a>");
-    //   }else if(type == "验收通过"){
-    //     handle.append("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>查看</a><a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>打印</a>");
-    //   }
-    // })
+      // 定义全局对象
+    var rate;
     //Demo
     layui.use(['form','table','jquery','layer'], function(){
       var form = layui.form
@@ -119,16 +102,32 @@
       //监听行工具事件
       table.on('tool(code)', function(obj){
         var data = obj.data;
+        rate = obj.data.state;
         console.log(obj);
         if(obj.event === 'lookinfo'){
             location.href="../checked/look_all_info.html?htId="+obj.data.htId;
         }
       });
     });
+    alert(rate);
+    // var type = $("#stype").text();
+    // var handle = $("#handle");
+    // if( == "待预约验收"){
+    //   handle.append("<p style='color:red;'>正在验收，请耐心等待...</p>")
+    // }else if(type == "预约验收"){
+    //   handle.append("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>查看</a>");
+    // }else if(type == "预约未通过"){
+    //   handle.append("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>修改</a>");
+    // }else if(type == "完善资料"){
+    //   handle.append("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>查看</a><a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>修改</a>");
+    // }else if(type == "验收申请"){
+    //   handle.append("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>查看</a>");
+    // }else if(type == "资料未完善"){
+    //   handle.append("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>修改</a>");
+    // }else if(type == "验收通过"){
+    //   handle.append("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>查看</a><a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>打印</a>");
+    // }
   </script>
-<!-- <script>
-
-</script> -->
 </body>
 
 </html>
