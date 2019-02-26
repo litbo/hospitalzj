@@ -16,7 +16,6 @@
             align-items: center;
             justify-content: center;
             flex-wrap: wrap;
-            text-align: center;
         }
         #codeBody{
             width: 300px;
@@ -42,13 +41,21 @@
             color: red;
             text-align: center;
         }
+        .layui-elem-field{
+            width: 100%;
+            margin-top: 20px;
+            color: red;
+        }
     </style>
 </head>
 <body>
     <div class="layui-row">
         <p style="height: 34px;width: 100%;line-height: 34px;background-color: lightyellow; text-align: center;"><span class="sign">***</span>文件上传成功后请妥善保管验证码<span class="sign">***</span></p>
-        <div class="col-xs-12 col-md-6">
-            <table class="layui-table">
+        <div class="col-xs-12">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>购置审批单号附件上传</legend>
+            </fieldset>
+            <table class="layui-table col-md-6">
                 <thead>
                     <tr>
                         <th>文件类型</th>
@@ -59,33 +66,49 @@
                     <tr>
                         <td>购置审批申请单</td>
                         <td>
-                            <button type="button" name="file" class="layui-btn" id="hgsp">
-                                <i class="layui-icon">&#xe67c;</i>上传文件
-                            </button>
+                            <div class="layui-upload">
+                                <button type="button" name="file" class="layui-btn" id="hgsp">上传图片</button>
+                                <div class="layui-upload-list">
+                                    <img class="layui-upload-img" id="hgspimg">
+                                    <p id="hgsptry"></p>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td>医疗器械注册登记证</td>
                         <td>
-                            <button type="button" name="file" class="layui-btn" id="ylqx">
-                                <i class="layui-icon">&#xe67c;</i>上传文件
-                            </button>
+                            <div class="layui-upload">
+                                <button type="button" name="file" class="layui-btn" id="ylqx">上传图片</button>
+                                <div class="layui-upload-list">
+                                    <img class="layui-upload-img" id="ylqximg">
+                                    <p id="ylqxtry"></p>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td>厂家授权证明书</td>
                         <td>
-                            <button type="button" name="file" class="layui-btn" id="cjsq">
-                                <i class="layui-icon">&#xe67c;</i>上传文件
-                            </button>
+                            <div class="layui-upload">
+                                <button type="button" name="file" class="layui-btn" id="cjsq">上传图片</button>
+                                <div class="layui-upload-list">
+                                    <img class="layui-upload-img" id="cjsqimg">
+                                    <p id="cjsqtry"></p>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td>海关进口货物报关单</td>
                         <td>
-                            <button type="button" name="file" class="layui-btn" id="hgjk">
-                                <i class="layui-icon">&#xe67c;</i>上传文件
-                            </button>
+                            <div class="layui-upload">
+                                <button type="button" name="file" class="layui-btn" id="hgjk">上传图片</button>
+                                <div class="layui-upload-list">
+                                    <img class="layui-upload-img" id="hgjkimg">
+                                    <p id="hgjktry"></p>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -129,27 +152,51 @@
             ,   layer = layui.layer
             ,   $ = layui.jquery;
             var uploadInst = upload.render({
-                elem:"#hgsp",
-                url:"/htInfo/uploadOne?htId="+ids,
-                done:function(res){
+                elem: '#hgsp'
+                ,url: "/htInfo/uploadOne?htId="+ids
+                ,before: function(obj){
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, file, result){
+                        $('#hgspimg').attr('src', result); //图片链接（base64）
+                    });
+                }
+                ,done: function(res){
                     if(res.state === 200){
                         layer.msg("上传成功");
                         upload.render({
-                            elem:"#ylqx",
-                            url:"/htInfo/uploadTwo?htId="+ids,
-                            done:function(res){
+                            elem: '#ylqx'
+                            ,url: "/htInfo/uploadTwo?htId="+ids
+                            ,before: function(obj){
+                                //预读本地文件示例，不支持ie8
+                                obj.preview(function(index, file, result){
+                                    $('#ylqximg').attr('src', result); //图片链接（base64）
+                                });
+                            }
+                            ,done: function(res){
                                 if(res.state === 200){
                                     layer.msg("上传成功");
                                     upload.render({
-                                        elem:"#cjsq",
-                                        url:"/htInfo/uploadThree?htId="+ids,
-                                        done:function(res){
+                                        elem: '#cjsq'
+                                        ,url: "/htInfo/uploadThree?htId="+ids
+                                        ,before: function(obj){
+                                            //预读本地文件示例，不支持ie8
+                                            obj.preview(function(index, file, result){
+                                                $('#cjsqimg').attr('src', result); //图片链接（base64）
+                                            });
+                                        }
+                                        ,done: function(res){
                                             if(res.state === 200){
                                                 layer.msg("上传成功");
                                                 upload.render({
-                                                    elem:"#hgjk",
-                                                    url:"/htInfo/uploadFour?htId="+ids,
-                                                    done:function(res){
+                                                    elem: '#hgjk'
+                                                    ,url: "/htInfo/uploadFour?htId="+ids
+                                                    ,before: function(obj){
+                                                        //预读本地文件示例，不支持ie8
+                                                        obj.preview(function(index, file, result){
+                                                            $('#hgjkimg').attr('src', result); //图片链接（base64）
+                                                        });
+                                                    }
+                                                    ,done: function(res){
                                                         if(res.state === 200){
                                                             layer.msg("上传成功");
                                                             layer.open({
@@ -164,14 +211,9 @@
                                                                         url:"/htInfo/updateYzm?htId="+ids,
                                                                         method:"POST",
                                                                         data:{"htYzm":code},
-                                                                        //dataType:"JSON",
-                                                                        succress:function(res){
-                                                                            if(res.code === 200){
-                                                                                layer.msg("验证码成功");
-                                                                                location.href = "../index.html";
-                                                                            }else{
-                                                                                layer.msg("验证码失败");
-                                                                            }
+                                                                        dataType:"JSON",
+                                                                        success:function(res){
+                                                                            location.href = "/user/home/schedule.html";
                                                                         },
                                                                         error:function(data){
                                                                             layer.msg("服务器错误");
@@ -184,33 +226,53 @@
                                                         }else{
                                                             layer.msg("上传失败");
                                                         }
-                                                    },
-                                                    error:function(){
-                                                        layer.msg("上传失败,请稍后再试");
+                                                    }
+                                                    ,error: function(){
+                                                        //演示失败状态，并实现重传
+                                                        var demoText = $('#hgjktry');
+                                                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                                                        demoText.find('.demo-reload').on('click', function(){
+                                                            uploadInst.upload();
+                                                        });
                                                     }
                                                 })
                                             }else{
                                                 layer.msg("上传失败");
                                             }
-                                        },
-                                        error:function(){
-                                            layer.msg("上传失败,请稍后再试");
+                                        }
+                                        ,error: function(){
+                                            //演示失败状态，并实现重传
+                                            var demoText = $('#cjsqtry');
+                                            demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                                            demoText.find('.demo-reload').on('click', function(){
+                                                uploadInst.upload();
+                                            });
                                         }
                                     })
                                 }else{
-                                    layer.msg("上传失败")
+                                    layer.msg("上传失败");
                                 }
-                            },
-                            error:function(){
-                                layer.msg("上传失败,请稍后再试");
+                            }
+                            ,error: function(){
+                                //演示失败状态，并实现重传
+                                var demoText = $('#ylqxtry');
+                                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                                demoText.find('.demo-reload').on('click', function(){
+                                    uploadInst.upload();
+                                });
                             }
                         })
                     }else{
                         layer.msg("上传失败");
                     }
-                },
-                error:function(){
-                    layer.msg("上传失败,请稍后再试");
+                }
+                ,error: function(){
+                    //演示失败状态，并实现重传
+                    var demoText = $('#hgsptry');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function(){
+                        uploadInst.upload();
+                    });
                 }
             })
         })

@@ -11,32 +11,14 @@
     <link rel="stylesheet" href="../../static/css/all.min.css"/>
     <script src="../../static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
     <style>
-        .upinfo{
-            width: 100%;
-            display: flex;
-            /*justify-content: center;*/
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .layui-form-item{
-            margin-left: 30px;
-            text-align: center;
-        }
-        .layui-row,.col-xs-12{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
         .layui-elem-field{
             width: 100%;
+            margin-top: 20px;
             color: red;
         }
-        .bootom{
-            width: 100%;
-            height: 100px;
+        .btn{
             text-align: center;
-            line-height: 100px;
+            margin-top: 30px;
         }
     </style>
 </head>
@@ -44,86 +26,67 @@
     <div class="layui-row">
         <p style="height: 34px;width: 100%;line-height: 34px;background-color: lightyellow; text-align: center;"><span class="sign">***</span>请认真核对信息然后点击下一步<span class="sign">***</span></p>
         <div class="col-xs-12">
-            <form class="layui-form layui-form-pane" action="">
-                <div class="layui-row">
-                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;width: 100%;">
-                        <legend>到货登记信息</legend>
-                    </fieldset>
-                    <div class="upinfo">
-                        <div class="layui-form-item col-md-4" pane>
-                            <label class="layui-form-label">外包装</label>
-                            <div class="layui-input-block">
-                                <input type="radio" name="packing" value="木箱" title="木箱">
-                                <input type="radio" name="packing" value="纸箱" title="纸箱" checked>
-                                <input type="radio" name="packing" value="铁箱" title="铁箱">
-                            </div>
-                        </div>
-                        <div class="layui-form-item col-md-4" pane>
-                            <label class="layui-form-label">外包装状况</label>
-                            <div class="layui-input-block">
-                                <input type="radio" name="intact" value="外包装完好" title="外包装完好" checked>
-                                <input type="radio" name="intact" value="外包装有残损" title="外包装有残损">
-                            </div>
-                        </div>
-                        <div class="layui-form-item  col-md-6" pane>
-                            <label class="layui-form-label">防倾斜标识</label>
-                            <div class="layui-input-block">
-                                <input type="radio" name="tilt" value="无" title="无">
-                                <input type="radio" name="tilt" value="有但变色" title="有但变色">
-                                <input type="radio" name="tilt" value="有且完好" title="有且完好" checked>
-                            </div>
-                        </div>
-                        <div class="layui-form-item col-md-8" pane>
-                            <label class="layui-form-label">设备外观</label>
-                            <div class="layui-input-block">
-                                <input type="radio" name="surface" value="全新完好" title="全新完好"" checked>
-                                <input type="radio" name="surface" value="表面污渍" title="表面污渍">
-                                <input type="radio" name="surface" value="拆卸痕迹" title="拆卸痕迹">
-                                <input type="radio" name="surface" value="无铭牌标识" title="无铭牌标识">
-                                <input type="radio" name="surface" value="铭牌信息不全" title="铭牌信息不全">
-                                <input type="radio" name="surface" value="库存机" title="库存机">
-                            </div>
-                        </div>
-                        <div class="layui-form-item col-md-9" pane>
-                            <label class="layui-form-label">随箱文件</label>
-                            <div class="layui-input-block">
-                                <input type="checkbox" name="file[write]" title="合格证/进口设备出厂检测报告" checked>
-                                <input type="checkbox" name="file[read]" title="电子光盘">
-                                <input type="checkbox" name="file[write]" title="中文操作说明书">
-                                <input type="checkbox" name="file[read]" title="中文维修手册">
-                                <input type="checkbox" name="file[dai]" title="设备原理线图">
-                                <input type="checkbox" name="file[dai]" title="备注">
-                            </div>
-                        </div>
-                        <div class="layui-form-item col-md-9">
-                        <div class="layui-input-block">
-                          <button class="layui-btn layui-btn-primary" lay-submit>返回</button>
-                          <button type="reset" class="layui-btn layui-btn-normal" lay-filter="formDemo">下一步</button>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-            </form>
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>到货登记信息</legend>
+            </fieldset>
+            <table class="layui-hide" id="arrivalInfo"></table>
+            <div class="col-xs-12 btn">
+                <button id="back" class="layui-btn">返回</button>
+                <button id="upfile" class="layui-btn layui-btn-normal">上传电子附件</button>
+            </div>
         </div>
     </div>
+    <script type="text/html" id="toolbarDemo">
+        <div class="layui-btn-container">
+        </div>
+    </script>
     <script>
+        // 获取上个页面传递的类型
+        var type = window.location.search;
+        var ids = parseInt(type.split("=")[1]);
         //Demo
-        layui.use(['element','laydate','form'], function(){
-            var element = layui.element
-            ,   laydate = layui.laydate;
-            laydate.render({
-                elem: '#date' //指定元素
+        layui.use(['table','layer','form','jquery'], function(){
+            var table = layui.table
+            ,   layer = layui.layer
+            ,   form = layui.form
+            ,   $ = layui.jquery;
+            var tableInst = table.render({
+                elem:"#arrivalInfo"
+                ,cellMinWidth: 80
+                ,url:"?htId="+ids
+                ,toolbar: '#toolbarDemo'
+                ,method:"GET"
+                ,response: {
+                    statusName: 'status' //规定数据状态的字段名称，默认：code
+                    ,statusCode: 200 //规定成功的状态码，默认：0
+                    ,msgName: 'hint' //规定状态信息的字段名称，默认：msg
+                    ,countName: 'total' //规定数据总数的字段名称，默认：count
+                    ,dataName: 'data' //规定数据列表的字段名称，默认：data
+                }
+                ,parseData:function(res){
+                    console.log(res);
+                    return{
+                        "status":200
+                        ,"msg":res.message
+                        ,"count":res.total
+                        ,"data":[res.data]
+                    }
+                },
+                cols:[[
+                    {field:'djhwWbz', title:'外包装', edit: 'text',align:'center'}
+                    ,{field:'djhwYsbs', title:'防倾斜运输标记', edit: 'text',align:'center'}
+                    ,{field:'djhwSbwg', title:'设备外观',edit: 'text',align:'center'}
+                    ,{field:'djhwSxwj', title:'随箱文件',align:'center'}
+                    ,{field:'file', title:'图片'}
+                ]]
             });
-            var form = layui.form;
-            //监听提交
-            form.on('submit(formDemo)', function(data){
-                layer.msg(JSON.stringify(data.field));
-                return false;
-            });
+            $("#back").click(function () {
+                window.history.back(-1);
+            })
+            $("#upfile").click(function () {
+                location.href="/user/checked/electronic_materials.html?htId="+ids;
+            })
         });
-        $(function(){
-            
-        })
     </script>
 </body>
 </html>

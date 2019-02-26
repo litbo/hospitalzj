@@ -80,7 +80,7 @@
         dataType:"JSON",
         success:function(res){
           if(res.state === 200){
-            location.href="./fixing_table.html?htIds="+res.data;
+            location.href="/user/apply/fixing_table.html?htIds="+res.data;
             layer.msg("成功");
           }else{
             layer.msg("失败");

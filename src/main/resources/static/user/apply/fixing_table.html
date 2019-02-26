@@ -23,7 +23,7 @@
 </head>
 <body>
   <div class="layui-row">
-    <p style="height: 34px;width: 100%;line-height: 34px;background-color: lightyellow; text-align: center;"><span class="sign">***</span>请认真核对设备信息是否正确<span class="sign">***</span></p>
+    <p style="height: 34px;width: 100%;line-height: 34px;background-color: lightyellow; text-align: center;"><span class="sign">***</span>购置审批单号无需提交设备附件信息<span class="sign">***</span></p>
     <div class="col-xs-12">
       <fieldset class="layui-elem-field layui-field-title">
           <legend>设备信息记录表</legend>
@@ -42,6 +42,7 @@
   // 获取上个页面传递的类型
   var type = window.location.search;
   var ids = parseInt(type.split("=")[1]);
+  var rate;
   //Demo
   layui.use(['layer','jquery','table'], function(){
       var layer = layui.layer
@@ -85,30 +86,29 @@
     });
     //监听行工具事件
     table.on('tool(sb)', function(obj){
-      var data = obj.data;
+      var data = obj.data
+      ,  rate = obj.data.htGzspd;
       console.log(obj);
-      if(obj.data.htGzspd == "无"){
+      if(rate == "无"){
         if(obj.event === 'adds'){
-          location.href="./hhsbfj_table.html?eqIds="+obj.data.eqId;
-          //$("#nextap").click(function(){
-          //  location.href="./hh_upload_enclosure.html?htIds="+ids;
-          //})
+          location.href="/user/apply/hhsbfj_table.html?eqIds="+obj.data.eqId;
         }else{
-          if(obj.event ==='adds'){
-            layer.msg("您是申购添加,无需添加设备附件，请点击下一步即可");
-            //$("#nextap").click(function(){
-            //  location.href="./hg_upload_enclosure.html?htIds="+ids;
-            //})
-          }
+          layer.msg("您是购置审批单号供应商,无需提交设备附件信息,进行下一步即可")
         }
       }
-    })
-    $("#nextap").click(function(){
-      location.href="./hg_upload_enclosure.html?htIds="+ids;
-    })
-    $("#addcheck").click(function(){
-      location.href="./fixing_info.html?htIds="+ids;
-    })
+    });
+      $("#addcheck").click(function(){
+          location.href="/user/apply/fixing_info.html?htIds="+ids;
+      })
+    if(rate == "无"){
+        $("#nextap").click(function(){
+            location.href="/user/apply/hh_upload_enclosure.html?htIds="+ids;
+        })
+    }else{
+        $("#nextap").click(function(){
+            location.href="/user/apply/hg_upload_enclosure.html?htIds="+ids;
+        })
+    }
   });
 </script>
 </body>
