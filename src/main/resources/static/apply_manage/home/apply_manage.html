@@ -78,7 +78,6 @@
             ,"data":res.data
           }
         },
-        title:"验收管理",
         cols:[[
           {field:'htHthao', title:'合同号',align:'center'},
           {field:'htGhsn', title:'供应商',align:'center'},
@@ -113,7 +112,6 @@
                 ,"data":res.data
             }
         },
-        title:"验收管理",
         cols:[[
             {field:'htHthao', title:'合同号',align:'center'},
             {field:'htGhsn', title:'供应商',align:'center'},
@@ -125,24 +123,7 @@
             {field:'state', title:'状态',sort: true,align:'center'},
             {fixed: 'right', title:'操作', toolbar: '#barDemo2',align:'center'}
         ]]
-    })
-    //头工具栏事件
-  table.on('toolbar(handle)', function(obj){
-    var checkStatus = table.checkStatus(obj.config.id);
-    switch(obj.event){
-      case 'getCheckData':
-        var data = checkStatus.data;
-        layer.alert(JSON.stringify(data));
-      break;
-      case 'getCheckLength':
-        var data = checkStatus.data;
-        layer.msg('选中了：'+ data.length + ' 个');
-      break;
-      case 'isAll':
-        layer.msg(checkStatus.isAll ? '全选': '未全选');
-      break;
-    };
-  });
+    });
   
     //监听行工具事件
     table.on('tool(handle)', function(obj){

@@ -155,7 +155,7 @@
                     success:function(res){
                         if(res.state === 200){
                             layer.mag("提交成功");
-                            location.href="/apply_manage/home/apply_manage.html?htId="+ids;
+                            window.history.back(-1);
                         }else{
                             layer.msg("提交失败")
                         }

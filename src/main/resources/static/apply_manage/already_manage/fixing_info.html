@@ -23,9 +23,10 @@
         color: #000000;
         font-weight: bold;
       }
-      .pform{
-        margin: 30px auto;
-      }
+       .btn{
+           margin-top: 30px;
+           text-align: center;
+       }
     </style>
 </head>
 <body>
@@ -39,44 +40,13 @@
           <legend>附件文件</legend>
       </fieldset>
       <table class="layui-table" id="fixingFile" lay-filter="handle"></table>
-      <div id="postMsg" class="col-xs-12">
-        <fieldset class="layui-elem-field layui-field-title manage">
-            <legend>验收审批</legend>
-        </fieldset>
-        <form class="layui-form layui-form-pane pform" action="">
-          <div class="layui-form-item col-md-4">
-            <label class="layui-form-label">验收意见</label>
-            <div class="layui-input-block" style="border: 1px solid #cccccc">
-              <input type="radio" name="view" value="同意" title="同意" checked>
-              <input type="radio" name="view" value="不同意" title="不同意">
-            </div>
-          </div>
-          <div class="layui-form-item col-md-4">
-            <label class="layui-form-label">预约验收时间</label>
-            <div class="layui-input-block">
-              <input type="text" id="date" name="date" required  lay-verify="required" placeholder="预约验收时间" autocomplete="off" class="layui-input">
-            </div>
-          </div>
-          <div class="layui-form-item layui-form-text col-md-6">
-            <label class="layui-form-label">验收要求</label>
-            <div class="layui-input-block">
-              <textarea name="desc" placeholder="请输入本次验收要求" class="layui-textarea"></textarea>
-            </div>
-          </div>
-          <div class="layui-form-item btn">
-            <div class="layui-input-block">
-              <button class="layui-btn layui-btn-normal" lay-submit lay-filter="submit">立即提交</button>
-            </div>
-          </div>
-        </form>
-      </div>
+        <div class="col-xs-12 btn">
+            <button id="back" class="layui-btn">返回</button>
+        </div>
     </div>
   </div>
   <script type="text/html" id="toolbarDemo">
   <div class="layui-btn-container">
-    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
   </div>
 </script>
 <script type="text/html" id="barDemo">
@@ -93,9 +63,6 @@
     , $ = layui.jquery
     , form = layui.form
     , laydate = layui.laydate;
-    laydate.render({
-      elem:"#date"
-    })
     var tableIns = table.render({
       elem:"#fixingInfo",
       cellMinWidth:100,
@@ -118,10 +85,7 @@
             ,"data":res.data
           }
         },
-        title:"待验收申请表",
-        page:true,
         cols:[[
-          {type: 'checkbox', fixed: 'left'},
           {field:'id', title:'ID',fixed: 'left', unresize: true, sort: true,align:'center'},
           {field:'eqPm', title:'设备品名',align:'center'},
           {field:'eqXh', title:'型号',align:'center'},
@@ -171,29 +135,10 @@
           }
         },
         cols:[[
-          {type: 'checkbox', fixed: 'left'},
           {field:'fileName', title:'文件名称',align:'center'},
           {field: 'picture', title: '图片', width: 150,templet:'<div><img src="{{ d.picture }}"></div>'},
         ]]
     });
-    //头工具栏事件
-  table.on('toolbar(handle)', function(obj){
-    var checkStatus = table.checkStatus(obj.config.id);
-    switch(obj.event){
-      case 'getCheckData':
-        var data = checkStatus.data;
-        layer.alert(JSON.stringify(data));
-      break;
-      case 'getCheckLength':
-        var data = checkStatus.data;
-        layer.msg('选中了：'+ data.length + ' 个');
-      break;
-      case 'isAll':
-        layer.msg(checkStatus.isAll ? '全选': '未全选');
-      break;
-    };
-  });
-  
   //监听行工具事件
   table.on('tool(handle)', function(obj){
     var data = obj.data;
@@ -202,27 +147,9 @@
       location.href="/apply_manage/already_manage/enclosure_info.html?eqId="+obj.data.eqId;
     }
   });
-  form.on('submit(submit)', function(data){
-    console.log(data.field);
-    $.ajax({
-      url:"?htId="+ids,
-      method:"POST",
-      data:data.field,
-      dataType:"JSON",
-      success:function(res){
-        if(res.state === 200){
-          layer.msg("提交成功");
-        }else{
-          layer.msg("提交失败");
-        }
-      },
-      error:function(data){
-          layer.msg("提交失败,请稍后再试");
-      }
-    })
-    return false;
-  });
-
+      $("#back").click(function(){
+          window.history.back(-1);
+      })
   })
 </script>
 </body>

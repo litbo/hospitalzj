@@ -74,9 +74,6 @@
   </div>
   <script type="text/html" id="toolbarDemo">
   <div class="layui-btn-container">
-    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
   </div>
 </script>
 <script type="text/html" id="barDemo">
@@ -118,10 +115,7 @@
             ,"data":res.data
           }
         },
-        title:"待验收申请表",
-        page:true,
         cols:[[
-          {type: 'checkbox', fixed: 'left'},
           {field:'id', title:'ID',fixed: 'left', unresize: true, sort: true,align:'center'},
           {field:'eqPm', title:'设备品名',align:'center'},
           {field:'eqXh', title:'型号',align:'center'},
@@ -171,29 +165,10 @@
           }
         },
         cols:[[
-          {type: 'checkbox', fixed: 'left'},
           {field:'fileName', title:'文件名称',align:'center'},
           {field: 'picture', title: '图片', width: 150,templet:'<div><img src="{{ d.picture }}"></div>'},
         ]]
     });
-    //头工具栏事件
-  table.on('toolbar(handle)', function(obj){
-    var checkStatus = table.checkStatus(obj.config.id);
-    switch(obj.event){
-      case 'getCheckData':
-        var data = checkStatus.data;
-        layer.alert(JSON.stringify(data));
-      break;
-      case 'getCheckLength':
-        var data = checkStatus.data;
-        layer.msg('选中了：'+ data.length + ' 个');
-      break;
-      case 'isAll':
-        layer.msg(checkStatus.isAll ? '全选': '未全选');
-      break;
-    };
-  });
-  
   //监听行工具事件
   table.on('tool(handle)', function(obj){
     var data = obj.data;
@@ -211,6 +186,9 @@
       dataType:"JSON",
       success:function(res){
         if(res.state === 200){
+          setTimeout(function () {
+              location.href="/apply_manage/home/not_manage.html";
+          },1000)
           layer.msg("提交成功");
         }else{
           layer.msg("提交失败");

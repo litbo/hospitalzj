@@ -26,7 +26,7 @@
   <div class="layui-row">
     <div class="col-xs-12">
       <fieldset class="layui-elem-field layui-field-title">
-          <legend>已验收合同列表</legend>
+          <legend>已验收完成合同记录表</legend>
       </fieldset>
       <table class="layui-table" id="applyTable" lay-filter="handle">
       </table>
@@ -34,9 +34,6 @@
   </div>
   <script type="text/html" id="toolbarDemo">
   <div class="layui-btn-container">
-    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
   </div>
 </script>
 <script type="text/html" id="barDemo">
@@ -70,10 +67,7 @@
             ,"data":res.data
           }
         },
-        title:"已验收数据表",
-        page:true,
         cols:[[
-          {type: 'checkbox', fixed: 'left'}
           ,{field:'id', title:'ID',fixed: 'left', unresize: true, sort: true,align:'center'}
           ,{field:'htGhsn', title:'供应商', edit: 'text',align:'center'}
           ,{field:'htGhslxr', title:'供方联系人',align:'center'}
@@ -95,30 +89,12 @@
           ,{fixed: 'right', title:'操作', toolbar: '#barDemo',align:'center'}
         ]]
     });
-    //头工具栏事件
-  table.on('toolbar(handle)', function(obj){
-    var checkStatus = table.checkStatus(obj.config.id);
-    switch(obj.event){
-      case 'getCheckData':
-        var data = checkStatus.data;
-        layer.alert(JSON.stringify(data));
-      break;
-      case 'getCheckLength':
-        var data = checkStatus.data;
-        layer.msg('选中了：'+ data.length + ' 个');
-      break;
-      case 'isAll':
-        layer.msg(checkStatus.isAll ? '全选': '未全选');
-      break;
-    };
-  });
-  
     //监听行工具事件
     table.on('tool(handle)', function(obj){
       var data = obj.data;
       //console.log(obj)
       if(obj.event === 'edit'){
-        location.href="/apply_manage/already_manage/fixing.html?htId="+obj.data.htId;
+        location.href="/apply_manage/already_manage/fixing_info.html?htId="+obj.data.htId;
       }
     });
   })
