@@ -1,6 +1,8 @@
 package com.litbo.hospitalzj.user.bean;
 
-
+/**
+ * 角色实体类
+ */
 public class SRole {
 
     private String roleId;

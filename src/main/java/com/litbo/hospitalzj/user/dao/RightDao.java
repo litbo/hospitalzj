@@ -6,7 +6,9 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-
+/**
+ * 权限持久层
+ */
 @Mapper
 public interface RightDao {
 

@@ -27,33 +27,6 @@ public class LoginController {
         return "/admin/index/index";
     }
 
-   /* public Map<String,Object> submit(@Valid LoginVo loginVo, BindingResult bindingResult){
-        Map<String,Object> map = new HashMap<String, Object>();
-        if(bindingResult.hasErrors()){
-            map.put("success",false);
-            map.put("msg",bindingResult.getFieldError());
-        }
-
-        Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(loginVo.getUserName(),loginVo.getUserPwd());
-        try {
-            subject.login(token);
-            //把用户名存入session
-            Session session =  subject.getSession();
-            session.setAttribute("username",loginVo.getUserName());
-
-            map.put("success",true);
-            map.put("msg","登录验证通过");
-
-            return map;
-
-        }catch (Exception e){
-            map.put("success",false);
-            map.put("msg","用户名密码错误");
-            return map;
-        }
-    }*/
-
     @RequestMapping("/submit")
     @ResponseBody
     public Result submit(@Valid LoginVo loginVo, BindingResult bindingResult){

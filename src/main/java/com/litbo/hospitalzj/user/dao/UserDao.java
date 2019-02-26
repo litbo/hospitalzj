@@ -4,7 +4,9 @@ package com.litbo.hospitalzj.user.dao;
 import com.litbo.hospitalzj.user.bean.SUser;
 import org.apache.ibatis.annotations.*;
 
-
+/**
+ * 用户持久层
+ */
 @Mapper
 public interface UserDao {
 

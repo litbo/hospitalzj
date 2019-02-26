@@ -1,6 +1,8 @@
 package com.litbo.hospitalzj.user.bean;
 
-
+/**
+ * 权限实体类
+ */
 public class SRight {
 
     private String rightId;

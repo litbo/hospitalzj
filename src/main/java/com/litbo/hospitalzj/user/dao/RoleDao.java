@@ -9,7 +9,9 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-
+/**
+ * 角色持久层
+ */
 @Mapper
 public interface RoleDao {
     @Select("SELECT\n" +

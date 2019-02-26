@@ -5,9 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.w3c.dom.ls.LSInput;
 
-import com.litbo.hospitalzj.supplier.entity.EqLy;
 import com.litbo.hospitalzj.supplier.entity.EqPm;
 /**
  * 设备品名持久层接口
