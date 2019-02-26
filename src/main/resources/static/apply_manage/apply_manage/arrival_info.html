@@ -107,37 +107,13 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>外包装图片上传</td>
+                                    <td>到货登记图片上传</td>
                                     <td>
                                         <div class="layui-upload">
-                                            <button type="button" name="file" class="layui-btn" id="upload1">上传图片</button>
+                                            <button type="button" name="file" class="layui-btn" id="upload">上传图片</button>
                                             <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
                                                 预览图：
-                                                <div class="layui-upload-list" id="img1"></div>
-                                            </blockquote>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>防倾斜图片上传</td>
-                                    <td>
-                                        <div class="layui-upload">
-                                            <button type="button" name="file" class="layui-btn" id="upload2">上传图片</button>
-                                            <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
-                                                预览图：
-                                                <div class="layui-upload-list" id="img2"></div>
-                                            </blockquote>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>设备外观图片上传</td>
-                                    <td>
-                                        <div class="layui-upload">
-                                            <button type="button" name="file" class="layui-btn" id="upload3">上传图片</button>
-                                            <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
-                                                预览图：
-                                                <div class="layui-upload-list" id="img3"></div>
+                                                <div class="layui-upload-list" id="img"></div>
                                             </blockquote>
                                         </div>
                                     </td>
@@ -197,7 +173,7 @@
                 before: function(obj){
                     //预读本地文件示例，不支持ie8
                     obj.preview(function(index, file, result){
-                        $('#img1').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+                        $('#img').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
                     });
                 },
                 done: function(res){
@@ -211,50 +187,6 @@
                     layer.msg("上传失败,请稍后再试");
                 }
             });
-            upload.render({
-                elem:"#upload2",
-                url:"",
-                multiple: true,
-                before: function(obj){
-                    //预读本地文件示例，不支持ie8
-                    obj.preview(function(index, file, result){
-                        $('#img2').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
-                    });
-                },
-                done: function(res){
-                    //上传完毕
-                    if(res.state === 200){
-                        layer.msg("上传成功");
-                    }else{
-                        layer.msg("上传失败");
-                    }
-                },
-                error:function(){
-                    layer.msg("上传失败,请稍后再试");
-                }
-            });
-            upload.render({
-                elem:"#upload3",
-                url:"",
-                multiple: true,
-                before: function(obj){
-                    //预读本地文件示例，不支持ie8
-                    obj.preview(function(index, file, result){
-                        $('#img3').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
-                    });
-                },
-                done: function(res){
-                    //上传完毕
-                    if(res.state === 200){
-                        layer.msg("上传成功");
-                    }else{
-                        layer.msg("上传失败");
-                    }
-                },
-                error:function(){
-                    layer.msg("上传失败,请稍后再试");
-                }
-            })
         });
     </script>
 </body>
