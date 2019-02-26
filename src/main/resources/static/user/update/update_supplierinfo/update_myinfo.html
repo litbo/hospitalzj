@@ -37,6 +37,10 @@
             margin-top: 20px;
             color: red;
         }
+        .layui-upload-img{
+            width: 150px;
+            height: 200px;
+        }
     </style>
 </head>
 <body>
@@ -79,21 +83,23 @@
                                 <input type="text" name="sbcsCreditcode" placeholder="营业执照(统一社会信用代码)" class="layui-input" autocomplete="off" lay-verify="required">
                             </div>
                         </div>
-                        <div class="layui-form-item col-md-3">
-                            <label class="layui-form-label">医疗器械经营许可证影印件</label>
-                            <div class="layui-input-block">
-                                <button type="button" name="flie" class="layui-btn" id="medicalImg">
-                                    <i class="layui-icon">&#xe67c;</i>上传图片
-                                </button>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 200px;">医疗器械经营许可证影印件</label>
+                            <div class="layui-upload" style="width: 200px; text-align: center">
+                                <button type="button" class="layui-btn" id="ylqx">上传图片</button>
+                                <div class="layui-upload-list">
+                                    <img class="layui-upload-img" id="ylqximg">
+                                    <p id="ylqxtry"></p>
+                                </div>
                             </div>
                         </div>
-                        <div class="layui-form-item col-md-3">
-                            <label class="layui-form-label">营业执照影印件</label>
-                            <div class="layui-input-block">
-                                <div class="layui-upload">
-                                    <button type="button" name="flie" class="layui-btn" id="businessImg">
-                                        <i class="layui-icon">&#xe67c;</i>上传图片
-                                    </button>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 200px;">营业执照影印件</label>
+                            <div class="layui-upload" style="width: 200px; text-align: center">
+                                <button type="button" class="layui-btn" id="yyzz">上传图片</button>
+                                <div class="layui-upload-list">
+                                    <img class="layui-upload-img" id="yyzzimg">
+                                    <p id="yyzztry"></p>
                                 </div>
                             </div>
                         </div>
@@ -116,40 +122,62 @@
             ,   $ = layui.jquery
             ,   form = layui.form;
             var uploadInst = upload.render({
-                elem: '#medicalImg',
-                url: '/supplier/uploadOne',
-                done: function(res){
+                elem: '#ylqx'
+                ,url: '/supplier/uploadOne'
+                ,before: function(obj){
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, file, result){
+                        $('#ylqximg').attr('src', result); //图片链接（base64）
+                    });
+                }
+                ,done: function(res){
                     if(res.state === 200){
                         layer.msg("上传成功");
                         upload.render({
-                            elem: '#businessImg',
-                            url: '/supplier/uploadTwo',
-                            done:function(res){
+                            elem: '#yyzz'
+                            ,url: '/supplier/uploadTwo'
+                            ,before: function(obj){
+                                //预读本地文件示例，不支持ie8
+                                obj.preview(function(index, file, result){
+                                    $('#yyzzimg').attr('src', result); //图片链接（base64）
+                                });
+                            }
+                            ,done: function(res){
                                 if(res.state === 200){
                                     layer.msg("上传成功");
                                     form.on('submit(update)', function(data){
-                                        $.ajax({
-                                            url:"/supplier/updateInfo",
-                                            method:"POST",
-                                            data:data.field,
-                                            dataType:"JSON",
-                                            success:function(res){
-                                                if(res.state === 200){
-                                                    layer.msg("修改成功");
-                                                }else{
-                                                    layer.msg("修改失败");
+                                        // console.log(data.field.sbcsPwd.length);
+                                            $.ajax({
+                                                url:"/supplier/updateInfo",
+                                                method:"POST",
+                                                data:data.field,
+                                                dataType:"JSON",
+                                                success:function(res){
+                                                    console.log(res.state)
+                                                    if(res.state === 200){
+                                                        layer.msg("修改成功");
+                                                    }else{
+                                                        layer.msg("修改失败");
+                                                    }
+                                                },
+                                                error:function(res){
+                                                    console.log(data);
+                                                    layer.msg("修改失败，请稍后再试");
                                                 }
-                                            },
-                                            error:function(res){
-                                                console.log(data);
-                                                layer.msg("修改失败，请稍后再试");
-                                            }
-                                        })
+                                            })
                                         return false;
                                     });
                                 }else{
                                     layer.msg("上传失败");
                                 }
+                            }
+                            ,error: function(){
+                                //演示失败状态，并实现重传
+                                var demoText = $('#yyzztry');
+                                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                                demoText.find('.demo-reload').on('click', function(){
+                                    uploadInst.upload();
+                                });
                             }
                         })
                     }else{
@@ -157,8 +185,12 @@
                     }
                 }
                 ,error: function(){
-                  //请求异常回调
-                    layer.msg("图片上传失败,请稍后再试");
+                    //演示失败状态，并实现重传
+                    var demoText = $('#ylqxtry');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function(){
+                        uploadInst.upload();
+                    });
                 }
             });
         });

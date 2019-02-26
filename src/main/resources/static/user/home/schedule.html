@@ -45,15 +45,14 @@
           </div>
         </div>
       </form>
-      <table class="layui-table" id="codeInfo" lay-filter="code"></table>
+      <table class="layui-table" id="codeInfo" lay-filter="handle"></table>
     </div>
   </div>
-  <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="lookinfo">查看详情</a>
+  <script type="text/html" id="handle">
   </script>
   <script>
-      // 定义全局对象
-    var rate;
+     // 定义全局对象
+     var rate;
     //Demo
     layui.use(['form','table','jquery','layer'], function(){
       var form = layui.form
@@ -62,7 +61,6 @@
       , layer = layui.layer;
       //监听提交
       form.on('submit(selectCode)', function(data){
-          console.log(data.field.htYzm);
           var tableIns = table.render({
             elem:"#codeInfo",
             cellMinWidth:80,
@@ -100,33 +98,39 @@
         return false;
       });
       //监听行工具事件
-      table.on('tool(code)', function(obj){
-        var data = obj.data;
-        rate = obj.data.state;
+      table.on('tool(handle)', function(obj){
+        var data = obj.data
+        ,   rate = obj.data.state;
         console.log(obj);
         if(obj.event === 'lookinfo'){
-            location.href="../checked/look_all_info.html?htId="+obj.data.htId;
+            location.href="/user/checked/look_all_info.html?htId="+obj.data.htId;
+        }else if(obj.event === 'update'){
+            location.href="/user/home/check_accept.html";
+        }else if(obj.event === 'uploads'){
+            location.href="/user/checked/arrival_registration.html?htId="+obj.data.htId;
+        }else if(obj.event === 'stamp'){
+            location.href="/user/checked/look_all_info.html?htId="+obj.data.htId;
         }
       });
     });
     alert(rate);
-    // var type = $("#stype").text();
-    // var handle = $("#handle");
-    // if( == "待预约验收"){
-    //   handle.append("<p style='color:red;'>正在验收，请耐心等待...</p>")
-    // }else if(type == "预约验收"){
-    //   handle.append("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>查看</a>");
-    // }else if(type == "预约未通过"){
-    //   handle.append("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>修改</a>");
-    // }else if(type == "完善资料"){
-    //   handle.append("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>查看</a><a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>修改</a>");
-    // }else if(type == "验收申请"){
-    //   handle.append("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>查看</a>");
-    // }else if(type == "资料未完善"){
-    //   handle.append("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>修改</a>");
-    // }else if(type == "验收通过"){
-    //   handle.append("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>查看</a><a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='edit'>打印</a>");
-    // }
+    $(function () {
+        var handle = $("#handle");
+        if(rate == "待预约验收"){
+            handle.innerHTML("<p style='color:red;'>正在验收，请耐心等待...</p>")
+        }else if(rate == "预约验收"){
+            handle.innerHTML("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='lookinfo'>查看详情</a>");
+        }else if(rate == "信息未完善"){
+            handle.innerHTML("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='lookinfo'>查看详情</a><a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='update'>重新提交</a>");
+        }else if(rate == "完善资料"){
+            handle.innerHTML("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='uploads'>查看到货登记</a>");
+        }else if(rate == "等待审核"){
+            handle.innerHTML("<p style='color:red;'>正在审核电子资料，请耐心等待...</p>");
+        }else if(rate == "验收通过"){
+            handle.innerHTML("<a class='layui-btn layui-btn-sm layui-btn-normal' lay-event='stamp'>打印</a>");
+        }
+    })
+
   </script>
 </body>
 
