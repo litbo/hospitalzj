@@ -47,9 +47,9 @@
     var type = window.location.search;
     var ids = parseInt(type.split("=")[1]);
     if(!ids){
-      document.getElementById("barDemo").innerHTML =  "<a class='layui-btn layui-btn-xs' lay-event='more'>到货登记</a><a class='layui-btn layui-btn-danger layui-btn-xs' lay-event='del'>删除</a>";
+      document.getElementById("barDemo").innerHTML =  "<a class='layui-btn layui-btn-xs' lay-event='more'>到货登记</a>";
     }else{
-      document.getElementById("barDemo").innerHTML =  "<a class='layui-btn layui-btn-xs' lay-event='checkInfo'>查看电子资料</a><a class='layui-btn layui-btn-danger layui-btn-xs' lay-event='del'>删除</a>";
+      document.getElementById("barDemo").innerHTML =  "<a class='layui-btn layui-btn-xs' lay-event='checkInfo'>查看电子资料</a>";
     }
   
   //Demo
@@ -117,12 +117,7 @@
     table.on('tool(handle)', function(obj){
       var data = obj.data;
       //console.log(obj)
-      if(obj.event === 'del'){
-        layer.confirm('真的删除行么', function(index){
-          obj.del();
-          layer.close(index);
-        });
-      } else if(obj.event === 'more'){
+      if(obj.event === 'more'){
         location.href="/apply_manage/apply_manage/arrival_info.html?htId="+obj.data.htId;
       }else if(obj.event === 'checkInfo'){
         location.href="/apply_manage/apply_manage/arrival_info.html?htId="+obj.data.htId;

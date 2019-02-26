@@ -682,8 +682,7 @@ function tableFunc(fn){
  * @arguments
  * @return
  */
-// document.write("<script type='text/javascript' data-version='x2' src='" + window.location.origin + "/static/layui/layui.js'></script>");
-// document.write("<script type='text/javascript' data-version='x2' src='" + window.location.origin + "/static/js/renderMod.js'></script>");
+
 
 window.onload = function(){
     //手机版显示 数据查找 按钮

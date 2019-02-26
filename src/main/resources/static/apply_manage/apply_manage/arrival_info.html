@@ -100,7 +100,7 @@
                         <div class="layui-form-item col-md-9">
                         <div class="layui-input-block" style="border: none;">
                           <button class="layui-btn layui-btn-primary">返回</button>
-                          <button type="reset" class="layui-btn layui-btn-normal" lay-filter="submit">提交</button>
+                          <button class="layui-btn" lay-submit lay-filter="submit">立即提交</button>
                         </div>
                       </div>
                     </div>
@@ -126,7 +126,7 @@
                     method:"POST",
                     data:data.field,
                     dataType:"JSON",
-                    succress:function(res){
+                    success:function(res){
                         if(res.state === 200){
                             layer.mag("提交成功");
                             location.href="/apply_manage/home/apply_manage.html?htId="+ids;

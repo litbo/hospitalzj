@@ -5,7 +5,7 @@
             "href": "?p=home",
             "id": "0",
             "icon": "home",
-            "shiro": "a",
+            "shiro": "a"
         },
         {
             "page": "home",
@@ -30,8 +30,8 @@
                     "url": "./home/schedule.html",
                     "id": "13",
                     "icon": "star",
-                    "shiro": "a",
+                    "shiro": "a"
                 }
             ]
-        },
+        }
     ]

@@ -1,0 +1,37 @@
+[
+  {
+    "title": "首页",
+    "url": "?p=home",
+    "href": "?p=home",
+    "id": "0",
+    "icon": "home",
+    "shiro": "a"
+  },
+  {
+    "page": "home",
+    "tools": [],
+    "items": [
+      {
+        "title": "详细信息",
+        "url": "./home/my_info.html",
+        "id": "11",
+        "icon": "calendar-check",
+        "shiro": "a"
+      },
+      {
+        "title": "验收申请",
+        "url": "./home/check_accept.html",
+        "id": "12",
+        "icon": "clipboard",
+        "shiro": "a"
+      },
+      {
+        "title": "验收进度查询",
+        "url": "./home/schedule.html",
+        "id": "13",
+        "icon": "star",
+        "shiro": "a"
+      }
+    ]
+  }
+]

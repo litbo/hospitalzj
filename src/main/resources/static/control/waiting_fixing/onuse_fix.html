@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>在用设备定期检测</title>
+    <link rel="stylesheet" type="text/css" href="../../static/layui/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../static/css/admin.css"/>
+    <script src="../../static/js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <!--[if IE 8]>
+    <script type="text/javascript" src="../../static/js/jquery-1.11.3.min.js"></script>
+    <![endif]-->
+    <script src="../../static/js/basic.js"></script>
+    <script src="../../static/layui/layui.js"></script>
+    <style>
+        .layui-elem-field{
+            width: 100%;
+            margin-top: 20px;
+            color: red;
+        }
+        .basicInfo{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-row">
+    <div class="col-xs-12">
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend style="font-size: 24px;color: #0C0C0C;font-weight: bold">在用设备定期检测</legend>
+        </fieldset>
+        <form class="layui-form layui-form-pane basicInfo" action="">
+            <div class="layui-form-item col-md-4">
+                <label class="layui-form-label">机身编码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" required  lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item col-md-4">
+                <div class="layui-input-block">
+                    <!--<input type="file" accept="image/*;capture=camera" value="扫码录入">-->
+                    <button class="layui-btn" lay-submit lay-filter="searchNum">扫码录入</button>
+                </div>
+            </div>
+        </form>
+
+        <table class="layui-hide" id="basicInfo" lay-filter="handle"></table>
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>检测仪器基础信息</legend>
+            </fieldset>
+            <ul class="layui-tab-title">
+                <li class="layui-this">生命体征模拟器</li>
+                <li>电气安全分析仪</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>被检设备基础信息</legend>
+                    </fieldset>
+                    <table class="layui-hide" id="lifeInfo" lay-filter="handle"></table>
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>检测数据</legend>
+                    </fieldset>
+                    <div class="layui-tab">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">成人心电监护仪</li>
+                            <li>新生儿心电监护仪</li>
+                        </ul>
+                        <div class="layui-tab-content">
+                            <div class="layui-tab-item layui-show">内容1</div>
+                            <div class="layui-tab-item">内容2</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>被检设备基础信息</legend>
+                    </fieldset>
+                    <table class="layui-hide" id="electricInfo" lay-filter="handle"></table>
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>检测数据</legend>
+                    </fieldset>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+    </div>
+</script>
+<script>
+    //Demo
+    layui.use(['form','layer','jquery','table','element'], function(){
+        var form = layui.form
+        ,   layer = layui.layer
+        ,   $ = layui.jquery
+        ,   table = layui.table
+        ,   element = layui.element;
+        form.on('submit(searchNum)',function(data){
+            console.log(data.field);
+            $.ajax({
+                url:"",
+                method:"POST",
+                data:data.field,
+                dataType:"JSON",
+                success:function (res) {
+                    if(res.state === 200){
+                        layer.msg("查询成功");
+                        var tableIns = table.render({
+                            elem:"#basicInfo",
+                            cellMinWidth:100,
+                            toolbar: '#toolbarDemo',
+                            url:"",
+                            method:"GET",
+                            response: {
+                                statusName: 'status'
+                                ,statusCode: 200
+                                ,msgName: 'hint'
+                                ,countName: 'total'
+                                ,dataName: 'data'
+                            },
+                            parseData:function(res){
+                                console.log(res);
+                                return{
+                                    "status":200
+                                    ,"msg":res.message
+                                    ,"count":res.total
+                                    ,"data":res.data
+                                }
+                            },
+                            cols:[[
+                                {field:'id', title:'ID',fixed: 'left', unresize: true, sort: true,align:'center'},
+                                {field:'null', title:'设备名称',align:'center'},
+                                {field:'null', title:'档案号',align:'center'},
+                                {field:'null', title:'品牌',align:'center'},
+                                {field:'null', title:'启用日期',align:'center'},
+                                {field:'null', title:'使用科室',align:'center'},
+                                {field:'null', title:'机身编码',align:'center'},
+                                {field:'null', title:'型号',align:'center'}
+                            ]]
+                        });
+                        table.render({
+                            elem:"#lifeInfo",
+                            cellMinWidth:100,
+                            toolbar: '#toolbarDemo',
+                            url:"",
+                            method:"GET",
+                            response: {
+                                statusName: 'status'
+                                ,statusCode: 200
+                                ,msgName: 'hint'
+                                ,countName: 'total'
+                                ,dataName: 'data'
+                            },
+                            parseData:function(res){
+                                console.log(res);
+                                return{
+                                    "status":200
+                                    ,"msg":res.message
+                                    ,"count":res.total
+                                    ,"data":res.data
+                                }
+                            },
+                            cols:[[
+                                {field:'id', title:'ID',fixed: 'left', unresize: true, sort: true,align:'center'},
+                                {field:'null', title:'仪器名称',align:'center'},
+                                {field:'null', title:'档案号',align:'center'},
+                                {field:'null', title:'校准日期',align:'center'},
+                                {field:'null', title:'机身编码',align:'center'},
+                                {field:'null', title:'型号',align:'center'},
+                                {field:'null', title:'品牌',align:'center'}
+                            ]]
+                        });
+                        table.render({
+                            elem:"#electricInfo",
+                            cellMinWidth:100,
+                            toolbar: '#toolbarDemo',
+                            url:"",
+                            method:"GET",
+                            response: {
+                                statusName: 'status'
+                                ,statusCode: 200
+                                ,msgName: 'hint'
+                                ,countName: 'total'
+                                ,dataName: 'data'
+                            },
+                            parseData:function(res){
+                                console.log(res);
+                                return{
+                                    "status":200
+                                    ,"msg":res.message
+                                    ,"count":res.total
+                                    ,"data":res.data
+                                }
+                            },
+                            cols:[[
+                                {field:'id', title:'ID',fixed: 'left', unresize: true, sort: true,align:'center'},
+                                {field:'null', title:'仪器名称',align:'center'},
+                                {field:'null', title:'档案号',align:'center'},
+                                {field:'null', title:'校准日期',align:'center'},
+                                {field:'null', title:'机身编码',align:'center'},
+                                {field:'null', title:'型号',align:'center'},
+                                {field:'null', title:'品牌',align:'center'}
+                            ]]
+                        });
+                    }else{
+                        layer.msg("该设备不存在");
+                    }
+                },
+                error:function (data) {
+                    layer.msg("查询失败,请稍后再试");
+                    console.log(data);
+                }
+            })
+        });
+
+    });
+</script>
+</body>
+
+</html>

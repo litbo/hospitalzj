@@ -9,12 +9,7 @@
     <link rel="stylesheet" type="text/css" href="../../static/layui/css/layui.css"/>
     <link rel="stylesheet" type="text/css" href="../../static/css/admin.css"/>
     <link rel="stylesheet" href="../../static/css/all.min.css"/>
-    <script src="../../static/js/jquery-3.3.1.min.js"></script>
     <script src="../../static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
-    <!--[if IE 8]>
-    <script type="text/javascript" src="../../../../static/admin/js/jquery-1.11.3.min.js"></script>
-    <![endif]-->
-    <script src="../../static/js/basic.js"></script>
     <style>
         .upinfo{
             width: 100%;
@@ -114,8 +109,8 @@
     <script>
         //Demo
         layui.use(['element','laydate','form'], function(){
-            var element = layui.element;
-            var laydate = layui.laydate;
+            var element = layui.element
+            ,   laydate = layui.laydate;
             laydate.render({
                 elem: '#date' //指定元素
             });
