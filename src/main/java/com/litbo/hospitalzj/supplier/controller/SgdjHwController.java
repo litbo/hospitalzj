@@ -2,6 +2,9 @@ package com.litbo.hospitalzj.supplier.controller;
 
 import javax.servlet.http.HttpSession;
 
+import com.litbo.hospitalzj.hospital.enums.EnumProcess;
+import com.litbo.hospitalzj.supplier.entity.HtInfo;
+import com.litbo.hospitalzj.supplier.service.HtInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +19,7 @@ import com.litbo.hospitalzj.util.ResponseResult;
 public class SgdjHwController extends BaseController{
 	@Autowired
 	private SgdjHwService sgdjHwService;
+
 	@RequestMapping("/select")
 	public ResponseResult<SgdjHw> select(Integer htIds,HttpSession session) {
 		SgdjHw all= sgdjHwService.selectSgdjHw(htIds);
@@ -23,7 +27,8 @@ public class SgdjHwController extends BaseController{
 	}
 	@RequestMapping(value = "/insert",method = RequestMethod.POST)
 	public ResponseResult<Void> insert(SgdjHw sgdjHw) {
-		sgdjHwService.InsertSgdjHw(sgdjHw);
+
+		int res  = sgdjHwService.InsertSgdjHw(sgdjHw);
 		return new ResponseResult<Void>(SUCCESS);
 	}
 	@RequestMapping("/updateInfo")

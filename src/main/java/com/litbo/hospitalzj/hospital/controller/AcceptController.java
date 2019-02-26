@@ -31,6 +31,11 @@ public class AcceptController {
 
         return new ResponseResult<List<HtInfo>>(SUCCESS,htInfos);
     }
+    @RequestMapping(value = "selectAllHtWaitRegister",method = RequestMethod.GET)
+    public ResponseResult selectAllHtWaitRegister(){
+        List<HtInfo> htInfos=htInfoService.selectAllHtWaitRegister();
+        return new ResponseResult<List<HtInfo>>(SUCCESS,htInfos);
+    }
     @RequestMapping(value = "selectHtInfoById",method = RequestMethod.POST)
     public ResponseResult selectAllHt(Integer htId){
         HtInfo htInfo=htInfoService.select(htId);

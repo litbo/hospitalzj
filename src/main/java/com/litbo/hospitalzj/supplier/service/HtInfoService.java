@@ -40,4 +40,8 @@ public interface HtInfoService {
 	int agreeHtInfoById(Integer htId, String yy, String date);
 
 	int refuseHtInfoById(Integer htId, String yy, String date);
+
+	List<HtInfo> selectAllHtWaitRegister();
+
+	int updateHtInfoState(Integer htId,Integer htState);
 }

@@ -122,7 +122,7 @@
             form.on('submit(submit)', function(data){
                 console.log(data.field);
                 $.ajax({
-                    url:"/sgdjhw/insert?htId="+ids,
+                    url:"/sgdjhw/insert?htIds="+ids,
                     method:"POST",
                     data:data.field,
                     dataType:"JSON",

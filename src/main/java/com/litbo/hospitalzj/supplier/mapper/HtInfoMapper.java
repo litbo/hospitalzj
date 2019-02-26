@@ -78,7 +78,7 @@ public interface HtInfoMapper {
 	
 	@Select("select ht_ids htIds,ht_hthao htHthao,eq_pm eqPm,eq_gg eqGg,eq_xh eqXh,ht_qytime htQytime,ht_state htState,ht_yzm htYzm from ht_info inner join eq_info on ht_info.ht_id=eq_info.ht_ids where ht_yzm=#{htYzm}")
 	List<EqHtVo> EqHtVo(String htYzm);
-	@Select("select ht_id ,ht_ghsn ,ht_ghslxr ,ht_ghsdh ,ht_ghsdh ,IFNULL(ht_hthao,'无') ,IFNULL(ht_gzspd,'无') ,"
+	@Select("select ht_id ,ht_ghsn ,ht_ghslxr ,ht_ghsdh ,ht_ghsdh ,IFNULL(ht_hthao,'无') ht_hthao,IFNULL(ht_gzspd,'无') ht_gzspd,"
 			+ "ht_zhbhao ,ht_bz ,ht_qytime ,ht_dhtime ,ht_bxtime ,"
 			+ "ht_syks ,ht_azdd ,ht_ly ,ht_cgfs ,ht_sglb ,ht_sbyt ,"
 			+ "ht_jfly   ,ht_file1 ,ht_file2 ,ht_file3 ,ht_file4 ,"
@@ -87,4 +87,7 @@ public interface HtInfoMapper {
     List<HtInfo> findAll(Integer state);
 	@Update("UPDATE ht_info SET ht_State=#{htState},ht_bz =#{yy},ht_yssj=#{date} where ht_id=#{htId}")
 	int updateState(@Param("htId") Integer htId, @Param("yy") String yy, @Param("date") String date,@Param("htState")Integer htState);
+
+	@Update("UPDATE ht_info SET ht_State=#{htState} where ht_id=#{htId}")
+	int updateStateById(@Param("htId") Integer htId,@Param("htState")Integer htState);
 }

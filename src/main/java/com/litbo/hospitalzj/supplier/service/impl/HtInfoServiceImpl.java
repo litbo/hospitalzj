@@ -120,4 +120,18 @@ public class HtInfoServiceImpl implements HtInfoService {
 	public int refuseHtInfoById(Integer htId, String yy, String date) {
 		return htInfoMapper.updateState(htId,yy,date,EnumProcess.IMPERFECT_CONTRACT_INFORMATION.getCode());
 	}
+
+	@Override
+	public List<HtInfo> selectAllHtWaitRegister() {
+		List<HtInfo> data=htInfoMapper.findAll(EnumProcess.APPOINMENT_ACCEPTANCE.getCode());
+		if (data== null) {
+			throw new HtInfoIsNullException("合同不存在，请根据需要添加合同");
+		}
+		return data;
+	}
+
+	@Override
+	public int updateHtInfoState(Integer htId, Integer htState) {
+		return htInfoMapper.updateStateById(htId,htState);
+	}
 }
