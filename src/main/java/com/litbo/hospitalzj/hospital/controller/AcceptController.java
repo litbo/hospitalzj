@@ -28,12 +28,21 @@ public class AcceptController {
     @RequestMapping(value = "selectAllHt",method = RequestMethod.GET)
     public ResponseResult selectAllHt(){
         List<HtInfo> htInfos=htInfoService.selectAllHtInfo();
-
         return new ResponseResult<List<HtInfo>>(SUCCESS,htInfos);
     }
     @RequestMapping(value = "selectAllHtWaitRegister",method = RequestMethod.GET)
     public ResponseResult selectAllHtWaitRegister(){
         List<HtInfo> htInfos=htInfoService.selectAllHtWaitRegister();
+        return new ResponseResult<List<HtInfo>>(SUCCESS,htInfos);
+    }
+    @RequestMapping(value = "selectAllHtWaitAccept",method = RequestMethod.GET)
+    public ResponseResult selectAllHtWaitAccept(){
+        List<HtInfo> htInfos=htInfoService.selectAllHtWaitAccept();
+        return new ResponseResult<List<HtInfo>>(SUCCESS,htInfos);
+    }
+    @RequestMapping(value = "selectAllHtAccept",method = RequestMethod.GET)
+    public ResponseResult selectAllHtAccept(){
+        List<HtInfo> htInfos=htInfoService.selectAllHtAccept();
         return new ResponseResult<List<HtInfo>>(SUCCESS,htInfos);
     }
     @RequestMapping(value = "selectHtInfoById",method = RequestMethod.POST)
