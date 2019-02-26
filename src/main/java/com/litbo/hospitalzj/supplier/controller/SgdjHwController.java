@@ -1,20 +1,14 @@
 package com.litbo.hospitalzj.supplier.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Random;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.litbo.hospitalzj.controller.BaseController;
-import com.litbo.hospitalzj.controller.ex.FileUploadException;
+import com.litbo.hospitalzj.supplier.controller.ex.FileUploadException;
 import com.litbo.hospitalzj.supplier.entity.SgdjHw;
 import com.litbo.hospitalzj.supplier.service.SgdjHwService;
-import com.litbo.hospitalzj.supplier.util.Upload;
 import com.litbo.hospitalzj.util.ResponseResult;
 
 @RestController

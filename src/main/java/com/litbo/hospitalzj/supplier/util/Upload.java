@@ -1,18 +1,15 @@
 package com.litbo.hospitalzj.supplier.util;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.litbo.hospitalzj.controller.ex.FileEmptyException;
-import com.litbo.hospitalzj.controller.ex.FileSizeOutOfLimitException;
-import com.litbo.hospitalzj.controller.ex.FileTypeNotSupportException;
+import com.litbo.hospitalzj.supplier.controller.ex.FileEmptyException;
+import com.litbo.hospitalzj.supplier.controller.ex.FileSizeOutOfLimitException;
+import com.litbo.hospitalzj.supplier.controller.ex.FileTypeNotSupportException;
 
 public  abstract class Upload {
 	/**

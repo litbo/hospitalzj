@@ -1,32 +1,26 @@
 package com.litbo.hospitalzj.supplier.controller;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.litbo.hospitalzj.controller.BaseController;
-import com.litbo.hospitalzj.controller.ex.FileEmptyException;
-import com.litbo.hospitalzj.controller.ex.FileSizeOutOfLimitException;
-import com.litbo.hospitalzj.controller.ex.FileTypeNotSupportException;
-import com.litbo.hospitalzj.controller.ex.FileUploadException;
+import com.litbo.hospitalzj.supplier.controller.ex.FileEmptyException;
+import com.litbo.hospitalzj.supplier.controller.ex.FileSizeOutOfLimitException;
+import com.litbo.hospitalzj.supplier.controller.ex.FileTypeNotSupportException;
+import com.litbo.hospitalzj.supplier.controller.ex.FileUploadException;
 import com.litbo.hospitalzj.supplier.entity.EqCs;
 import com.litbo.hospitalzj.supplier.service.EqCsService;
 import com.litbo.hospitalzj.supplier.util.Upload;

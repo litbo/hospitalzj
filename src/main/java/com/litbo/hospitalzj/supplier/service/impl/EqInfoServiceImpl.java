@@ -5,13 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.litbo.hospitalzj.controller.ex.EqInfoIsNullException;
+import com.litbo.hospitalzj.supplier.controller.ex.EqInfoIsNullException;
 import com.litbo.hospitalzj.supplier.entity.EqInfo;
-import com.litbo.hospitalzj.supplier.entity.HtInfo;
 import com.litbo.hospitalzj.supplier.mapper.EqInfoMapper;
-import com.litbo.hospitalzj.supplier.mapper.HtInfoMapper;
 import com.litbo.hospitalzj.supplier.service.EqInfoService;
-import com.litbo.hospitalzj.supplier.service.HtInfoService;
 import com.litbo.hospitalzj.supplier.vo.SelHtEqVo;
 
 @Service

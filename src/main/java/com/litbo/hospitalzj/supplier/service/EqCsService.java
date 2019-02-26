@@ -3,11 +3,10 @@ package com.litbo.hospitalzj.supplier.service;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Update;
 
-import com.litbo.hospitalzj.service.exception.PasswordNotMatchException;
-import com.litbo.hospitalzj.service.exception.UpdateException;
-import com.litbo.hospitalzj.service.exception.UserNotFoundException;
+import com.litbo.hospitalzj.supplier.service.exception.PasswordNotMatchException;
+import com.litbo.hospitalzj.supplier.service.exception.UpdateException;
+import com.litbo.hospitalzj.supplier.service.exception.UserNotFoundException;
 import com.litbo.hospitalzj.supplier.entity.EqCs;
 
 

@@ -3,7 +3,7 @@ package com.litbo.hospitalzj.supplier.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.litbo.hospitalzj.controller.ex.SgdjHwIsNullException;
+import com.litbo.hospitalzj.supplier.controller.ex.SgdjHwIsNullException;
 import com.litbo.hospitalzj.supplier.entity.SgdjHw;
 import com.litbo.hospitalzj.supplier.mapper.SgdjHwMapper;
 import com.litbo.hospitalzj.supplier.service.SgdjHwService;

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.litbo.hospitalzj.controller.BaseController;
-import com.litbo.hospitalzj.controller.ex.FileUploadException;
+import com.litbo.hospitalzj.supplier.controller.ex.FileUploadException;
 import com.litbo.hospitalzj.supplier.entity.HtInfo;
 import com.litbo.hospitalzj.supplier.service.HtInfoService;
 import com.litbo.hospitalzj.supplier.util.Upload;

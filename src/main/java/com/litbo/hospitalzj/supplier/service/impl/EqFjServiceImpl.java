@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.litbo.hospitalzj.controller.ex.EqFjIsNullException;
+import com.litbo.hospitalzj.supplier.controller.ex.EqFjIsNullException;
 import com.litbo.hospitalzj.supplier.entity.EqFj;
 import com.litbo.hospitalzj.supplier.mapper.EqFjMapper;
 import com.litbo.hospitalzj.supplier.service.EqFjService;

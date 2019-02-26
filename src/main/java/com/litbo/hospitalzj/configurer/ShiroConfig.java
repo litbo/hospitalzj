@@ -1,6 +1,8 @@
 package com.litbo.hospitalzj.configurer;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+
+import com.litbo.hospitalzj.user.util.UserRealm;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -10,12 +12,10 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.DependsOn;
 
-import com.litbo.hospitalzj.util.UserRealm;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-//@Configuration
+/*@Configuration*/
 public class  ShiroConfig {
 
     /**
@@ -36,7 +36,7 @@ public class  ShiroConfig {
         //设置SecurityManager
         shiroFilterFactoryBean.setSecurityManager(securityManager);
 
-      //设置默认访问路径
+        //设置默认访问路径
 
         shiroFilterFactoryBean.setLoginUrl("/admin/index/login.html");
         shiroFilterFactoryBean.setSuccessUrl("/success.html");
@@ -72,7 +72,7 @@ public class  ShiroConfig {
     }
 
     @Bean
-    public  UserRealm userRealm() {
+    public UserRealm userRealm() {
 
         UserRealm userRealm =new UserRealm();
         return userRealm;
