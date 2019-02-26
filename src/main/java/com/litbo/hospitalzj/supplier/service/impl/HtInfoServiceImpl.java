@@ -134,4 +134,22 @@ public class HtInfoServiceImpl implements HtInfoService {
 	public int updateHtInfoState(Integer htId, Integer htState) {
 		return htInfoMapper.updateStateById(htId,htState);
 	}
+
+	@Override
+	public List<HtInfo> selectAllHtWaitAccept() {
+		List<HtInfo> data=htInfoMapper.findAll(EnumProcess.WAIT_ACCEPT_YS.getCode());
+		if (data== null) {
+			throw new HtInfoIsNullException("合同不存在，请根据需要添加合同");
+		}
+		return data;
+	}
+
+	@Override
+	public List<HtInfo> selectAllHtAccept() {
+		List<HtInfo> data=htInfoMapper.findAll(EnumProcess.ACCEPT_OVER.getCode());
+		if (data== null) {
+			throw new HtInfoIsNullException("合同不存在，请根据需要添加合同");
+		}
+		return data;
+	}
 }

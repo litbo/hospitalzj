@@ -22,6 +22,9 @@ public class ResponseResult<E> implements Serializable {
 
 	public ResponseResult(Integer state) {
 		super();
+		if(state == 200){
+			setMessage("success");
+		}
 		setState(state);
 	}
 

@@ -44,4 +44,8 @@ public interface HtInfoService {
 	List<HtInfo> selectAllHtWaitRegister();
 
 	int updateHtInfoState(Integer htId,Integer htState);
+
+    List<HtInfo> selectAllHtWaitAccept();
+
+	List<HtInfo> selectAllHtAccept();
 }
