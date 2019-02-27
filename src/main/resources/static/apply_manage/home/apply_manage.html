@@ -130,9 +130,9 @@
       var data = obj.data;
       //console.log(obj)
       if(obj.event === 'manage'){
-        location.href="/apply_manage/apply_manage/arrival_info.html?htId="+obj.data.htId;
+        location.href="/apply_manage/apply_manage/arrival_info.html?htIds="+obj.data.htId;
       }else if(obj.event === 'over'){
-        location.href="/apply_manage/apply_manage/electron_info.html?htId="+obj.data.htId;
+        location.href="/apply_manage/apply_manage/electron_info.html?htIds="+obj.data.htId;
       }
     });
   })

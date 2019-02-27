@@ -20,9 +20,6 @@ public class SgdjHwServiceImpl implements SgdjHwService{
 	@Override
 	public SgdjHw selectSgdjHw(Integer htIds) {
 		SgdjHw data=SgdjHwMapper.selectSgdjHw(htIds);
-		if(data==null) {
-			throw new SgdjHwIsNullException("到货登记为空");
-		}
 		return data;
 	}
 
@@ -37,5 +34,16 @@ public class SgdjHwServiceImpl implements SgdjHwService{
 	public Integer updateInfo(SgdjHw sgdjhw) {
 		return SgdjHwMapper.updateInfo(sgdjhw);
 	}
+	@Transactional
+	@Override
+	public int updateURL(Integer htIds, String path) {
 
+
+		if(SgdjHwMapper.selectSgdjHwByHtIds(htIds)==null){
+			SgdjHw sgdjHw = new SgdjHw();
+			sgdjHw.setHtIds(htIds);
+			SgdjHwMapper.insertSgdjHw(sgdjHw);
+		}
+		return SgdjHwMapper.updateURL(htIds,path+" ");
+	}
 }

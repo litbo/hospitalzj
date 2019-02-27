@@ -27,6 +27,16 @@ public class SgdjHw {
 	private String djhwBz14;
 	private String djhwBz15;
 	private String djhwBz16;
+	private String djhwUrl;
+
+	public String getDjhwUrl() {
+		return djhwUrl;
+	}
+
+	public void setDjhwUrl(String djhwUrl) {
+		this.djhwUrl = djhwUrl;
+	}
+
 	public Integer getDjhwId() {
 		return djhwId;
 	}

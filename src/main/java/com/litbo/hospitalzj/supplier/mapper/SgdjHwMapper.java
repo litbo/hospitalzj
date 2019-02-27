@@ -22,11 +22,11 @@ public interface SgdjHwMapper {
 	@Select("select djhw_id djhwId,ht_ids htIds,djhw_wbz djhwWbz,djhw_ysbs djhwYsbs,"
 			+ "djhw_sbwg djhwSbwg,djhw_sxwj djhwSxwj,djhw_bz1 djhwBz1,djhw_bz2 djhwBz2,djhw_bz3 djhwBz3,djhw_bz4 djhwBz4,"
 			+ "djhw_bz5 djhwBz5,djhw_bz6 djhwBz6,djhw_bz7 djhwBz7,djhw_bz8 djhwBz8,djhw_bz9 djhwBz9,djhw_bz10 djhwBz10,"
-			+ "djhw_bz11 djhwBz11,djhw_bz12 djhwBz12,djhw_bz13 djhwBz13,djhw_bz14 djhwBz14,djhw_bz15 djhwBz15,djhw_bz16 djhwBz16 from "
-			+ "sg_djhw where djhw_id=#{djhwId}")
-	SgdjHw selectSgdjHw(Integer djhwId);
+			+ "djhw_bz11 djhwBz11,djhw_bz12 djhwBz12,djhw_bz13 djhwBz13,djhw_bz14 djhwBz14,djhw_bz15 djhwBz15,djhw_bz16 djhwBz16,djhw_url from "
+			+ "sg_djhw where ht_ids=#{htIds}")
+	SgdjHw selectSgdjHw(Integer htIds);
 	
-	@Update("update sg_djhw set ht_ids=#{htIds},djhw_wbz=#{djhwWbz},djhw_ysbs=#{djhwYsbs},"
+	@Update("update sg_djhw set djhw_wbz=#{djhwWbz},djhw_ysbs=#{djhwYsbs},"
 			+ "djhw_sbwg=#{djhwSbwg},djhw_sxwj=#{djhwSxwj},djhw_bz1=#{djhwBz1},djhw_bz2=#{djhwBz2},djhw_bz3=#{djhwBz3},"
 			+ "djhw_bz4=#{djhwBz4},djhw_bz5=#{djhwBz5},djhw_bz6=#{djhwBz6},djhw_bz7=#{djhwBz7},djhw_bz8=#{djhwBz8},"
 			+ "djhw_bz9=#{djhwBz9},djhw_bz10=#{djhwBz10},djhw_bz11=#{djhwBz11},djhw_bz12=#{djhwBz12},djhw_bz13=#{djhwBz13},"
@@ -35,4 +35,13 @@ public interface SgdjHwMapper {
 	
 	@Update("UPDATE sg_djhw SET djhw_bz1=#{djhwBz1},djhw_bz2=#{djhwBz2},djhw_bz3=#{djhwBz3},djhw_bz4=#{djhwBz4} where djhw_id=#{djhwId}")
 	Integer updateOne(@Param("djhwId") Integer djhwId, @Param("htFile") String htFile);
+	@Update("update sg_djhw set djhw_url = CONCAT(djhw_url,#{path}) where ht_ids = #{htIds}")
+    int updateURL(@Param("htIds") Integer htIds, @Param("path") String path);
+
+	@Select("select djhw_id djhwId,ht_ids htIds,djhw_wbz djhwWbz,djhw_ysbs djhwYsbs,"
+			+ "djhw_sbwg djhwSbwg,djhw_sxwj djhwSxwj,djhw_bz1 djhwBz1,djhw_bz2 djhwBz2,djhw_bz3 djhwBz3,djhw_bz4 djhwBz4,"
+			+ "djhw_bz5 djhwBz5,djhw_bz6 djhwBz6,djhw_bz7 djhwBz7,djhw_bz8 djhwBz8,djhw_bz9 djhwBz9,djhw_bz10 djhwBz10,"
+			+ "djhw_bz11 djhwBz11,djhw_bz12 djhwBz12,djhw_bz13 djhwBz13,djhw_bz14 djhwBz14,djhw_bz15 djhwBz15,djhw_bz16 djhwBz16 from "
+			+ "sg_djhw where ht_ids=#{htIds}")
+	SgdjHw selectSgdjHwByHtIds(Integer htIds);
 }

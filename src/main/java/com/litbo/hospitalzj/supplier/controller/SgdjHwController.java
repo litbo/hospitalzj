@@ -13,6 +13,7 @@ import com.litbo.hospitalzj.supplier.controller.ex.FileUploadException;
 import com.litbo.hospitalzj.supplier.entity.SgdjHw;
 import com.litbo.hospitalzj.supplier.service.SgdjHwService;
 import com.litbo.hospitalzj.util.ResponseResult;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/sgdjhw")
@@ -26,7 +27,7 @@ public class SgdjHwController extends BaseController{
 		return new ResponseResult<SgdjHw>(SUCCESS,all);
 	}
 	@RequestMapping(value = "/insert",method = RequestMethod.POST)
-	public ResponseResult<Void> insert(SgdjHw sgdjHw) {
+	public ResponseResult<Void> insert(SgdjHw sgdjHw, MultipartFile file[]) {
 
 		int res  = sgdjHwService.InsertSgdjHw(sgdjHw);
 		return new ResponseResult<Void>(SUCCESS);
