@@ -33,13 +33,14 @@
           <legend>设备信息详情</legend>
       </fieldset>
       <table class="layui-table" id="sbInfo" lay-filter="looksbfj"></table>
-      <!-- <fieldset class="layui-elem-field layui-field-title">
-          <legend>设备附件信息详情</legend>
+      <fieldset class="layui-elem-field layui-field-title">
+          <legend>设备文件信息</legend>
       </fieldset>
-      <table class="layui-table" id="sbfjInfo"></table> -->
-      <div class="col-xs-12 btn">
-        <button id="looksbimg" class="layui-btn layui-btn-normal">查看设备附件</button>
-      </div>
+      <table class="layui-table" id="fileInfo"></table>
+      <fieldset class="layui-elem-field layui-field-title">
+          <legend>验收信息</legend>
+      </fieldset>
+      <table class="layui-table" id="checkInfo"></table>
     </div>
   </div>
   <script type="text/html" id="barDemo">
@@ -148,16 +149,70 @@
           {fixed: 'right', title:'查看', toolbar: '#barDemo',align:'center'}
       ]]
       });
+      table.render({
+          elem:"#fileInfo"
+          ,cellMinWidth: 80
+          ,url:"?htIds="+ids
+          ,method:"GET"
+          ,response: {
+              statusName: 'status' //规定数据状态的字段名称，默认：code
+              ,statusCode: 200 //规定成功的状态码，默认：0
+              ,msgName: 'hint' //规定状态信息的字段名称，默认：msg
+              ,countName: 'total' //规定数据总数的字段名称，默认：count
+              ,dataName: 'data' //规定数据列表的字段名称，默认：data
+          }
+          ,parseData:function(res){
+              console.log(res);
+              return{
+                  "status":200
+                  ,"msg":res.message
+                  ,"count":res.total
+                  ,"data":res.data
+              }
+          },
+          // page:true,
+          cols:[[
+              {field:'fname', title:'文件名',align:'center'},
+              {field:'file', title:'文件'}
+          ]]
+      });
+      table.render({
+          elem:"#checkInfo"
+          ,cellMinWidth: 80
+          ,url:"?htIds="+ids
+          ,method:"GET"
+          ,response: {
+              statusName: 'status' //规定数据状态的字段名称，默认：code
+              ,statusCode: 200 //规定成功的状态码，默认：0
+              ,msgName: 'hint' //规定状态信息的字段名称，默认：msg
+              ,countName: 'total' //规定数据总数的字段名称，默认：count
+              ,dataName: 'data' //规定数据列表的字段名称，默认：data
+          }
+          ,parseData:function(res){
+              console.log(res);
+              return{
+                  "status":200
+                  ,"msg":res.message
+                  ,"count":res.total
+                  ,"data":res.data
+              }
+          },
+          // page:true,
+          cols:[[
+              {field:'yname', title:'预约验收时间',align:'center'},
+              {field:'yyaoq', title:'验收要求'}
+          ]]
+      });
     //监听行工具事件
     table.on('tool(looksbfj)', function(obj){
       var data = obj.data;
       console.log(obj);
       if(obj.event === 'sbfj'){
-          location.href="./look_sbfj_info.html?eqIds="+obj.data.eqId;
+          location.href="/user/checked/look_sbfj_info.html?eqIds="+obj.data.eqId;
        }
     });
     $("#looksbimg").click(function(){
-        location.href="../apply/check_accept.html";
+        location.href="/user/apply/check_accept.html";
     })
   });
 </script>

@@ -56,7 +56,7 @@
                         <legend>到货登记信息</legend>
                     </fieldset>
                     <div class="upinfo">
-                        <div class="layui-form-item col-md-4">
+                        <div class="layui-form-item col-md-6">
                             <label class="layui-form-label">外包装</label>
                             <div class="layui-input-block">
                                 <input type="radio" name="djhwWbz" value="木箱" title="木箱">
@@ -98,6 +98,31 @@
                             </div>
                         </div>
                         <div class="layui-form-item col-md-9">
+                            <table class="layui-table">
+                                <thead>
+                                <tr>
+                                    <th>文件名称</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>到货登记图片上传</td>
+                                    <td>
+                                        <div class="layui-upload">
+                                            <button type="button" name="file" class="layui-btn" id="upload">上传图片</button>
+                                            <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                                                预览图：
+                                                <div class="layui-upload-list" id="img"></div>
+                                            </blockquote>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="layui-form-item col-md-9">
                         <div class="layui-input-block" style="border: none;">
                           <button class="layui-btn layui-btn-primary">返回</button>
                           <button class="layui-btn" lay-submit lay-filter="submit">立即提交</button>
@@ -112,24 +137,26 @@
         // 获取上个页面传递的类型
         var type = window.location.search;
         var ids = parseInt(type.split("=")[1]);
+        alert(ids)
         //Demo
-        layui.use(['element','jquery','form','layer'], function(){
+        layui.use(['element','jquery','form','layer','upload'], function(){
             var element = layui.element
             ,   $ = layui.jquery
             ,   layer = layui.layer
-            ,   form = layui.form;
+            ,   form = layui.form
+            ,   upload = layui.upload;
             //监听提交
             form.on('submit(submit)', function(data){
                 console.log(data.field);
                 $.ajax({
-                    url:"/sgdjhw/insert?htIds="+ids,
+                    url:"/sgdjhw/updateInfo?htIds="+ids,
                     method:"POST",
                     data:data.field,
                     dataType:"JSON",
                     success:function(res){
                         if(res.state === 200){
                             layer.mag("提交成功");
-                            location.href="/apply_manage/home/apply_manage.html?htId="+ids;
+                            window.history.back(-1);
                         }else{
                             layer.msg("提交失败")
                         }
@@ -139,6 +166,27 @@
                         console.log(data);
                     }
                 })
+            });
+            var uploadIns = upload.render({
+                elem:"#upload",
+                url:"/accept/uploadFile?htIds="+ids,
+                multiple: true,
+                before: function(obj){
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, file, result){
+                        $('#img').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+                    });
+                },
+                done: function(res){
+                    if(res.state === 200){
+                        layer.msg("上传成功");
+                    }else{
+                        layer.msg(res.message);
+                    }
+                },
+                error:function(){
+                    layer.msg("上传失败,请稍后再试");
+                }
             });
         });
     </script>

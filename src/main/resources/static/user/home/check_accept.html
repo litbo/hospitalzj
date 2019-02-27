@@ -341,7 +341,7 @@
                     success:function(res){
                         if(res.state === 200){
                             setTimeout(function(){
-                                location.href="../apply/fixing_table.html?htId="+res.data;
+                                location.href="/user/apply/fixing_table.html?htId="+res.data;
                             },1000)
                             layer.msg("提交成功");
                         }else{
@@ -365,7 +365,7 @@
                     success:function(res){
                         if(res.state === 200){
                             setTimeout(function(){
-                                location.href="../apply/fixing_table.html?htId="+res.data;
+                                location.href="/user/apply/fixing_table.html?htId="+res.data;
                             },1000);
                             layer.msg("提交成功");
                         }else{

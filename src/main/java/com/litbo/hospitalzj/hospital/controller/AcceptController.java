@@ -1,14 +1,18 @@
 package com.litbo.hospitalzj.hospital.controller;
 
 import com.litbo.hospitalzj.hospital.service.AcceptService;
+import com.litbo.hospitalzj.hospital.utils.FileUpload;
 import com.litbo.hospitalzj.supplier.entity.HtInfo;
+import com.litbo.hospitalzj.supplier.entity.SgdjHw;
 import com.litbo.hospitalzj.supplier.service.EqCsService;
 import com.litbo.hospitalzj.supplier.service.HtInfoService;
+import com.litbo.hospitalzj.supplier.service.SgdjHwService;
 import com.litbo.hospitalzj.util.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,6 +22,8 @@ public class AcceptController {
     /**
      * 正确响应时的代号
      */
+    @Autowired
+    private SgdjHwService sgdjHwService;
     public static final Integer SUCCESS = 200;
     @Autowired
     private AcceptService acceptService;
@@ -59,5 +65,24 @@ public class AcceptController {
         }
         return new ResponseResult<>(SUCCESS);
     }
+    @RequestMapping(value = "uploadFile",method = RequestMethod.POST)
+    public ResponseResult uploadFile(Integer htIds, MultipartFile file){
+        if(htInfoService.select(htIds)==null){
+            ResponseResult responseResult = new ResponseResult();
+            responseResult.setMessage("找不到合同号");
+            return responseResult;
+        }
+        String path = FileUpload.upload("images/upload/",file);
+        System.out.println(path);
+        SgdjHw sgdjHw = sgdjHwService.selectSgdjHw(htIds);
+        if(sgdjHw!=null&&sgdjHw.getDjhwUrl().split(" ").length>7){
+            ResponseResult responseResult = new ResponseResult();
+            responseResult.setMessage("图片过多");
+            return responseResult;
+        }
+        int res  = sgdjHwService.updateURL(htIds,path);
+        return new ResponseResult(SUCCESS);
+    }
+
 
 }

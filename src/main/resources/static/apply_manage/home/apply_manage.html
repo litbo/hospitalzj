@@ -26,31 +26,30 @@
   <div class="layui-row">
     <div class="col-xs-12">
       <fieldset class="layui-elem-field layui-field-title">
-          <legend>验收管理列表</legend>
+          <legend>待到货验收列表</legend>
       </fieldset>
-      <table class="layui-table" id="manageTable" lay-filter="handle">
-      </table>
+      <table class="layui-table" id="manageTable" lay-filter="handle"></table>
+
+      <fieldset class="layui-elem-field layui-field-title">
+          <legend>待完善资料列表</legend>
+      </fieldset>
+      <table class="layui-table" id="overTable" lay-filter="handle"></table>
     </div>
   </div>
   <script type="text/html" id="toolbarDemo">
   <div class="layui-btn-container">
-    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
   </div>
 </script>
-<script type="text/html" id="barDemo">
-  
+<script type="text/html" id="barDemo1">
+    <a class="layui-btn layui-btn-xs" lay-event="manage">完善到货信息</a>
+</script>
+<script type="text/html" id="barDemo2">
+    <a class="layui-btn layui-btn-xs" lay-event="over">查看电子资料</a>
 </script>
 <script>
   // 获取上个页面传递的类型
     var type = window.location.search;
     var ids = parseInt(type.split("=")[1]);
-    if(!ids){
-      document.getElementById("barDemo").innerHTML =  "<a class='layui-btn layui-btn-xs' lay-event='more'>到货登记</a>";
-    }else{
-      document.getElementById("barDemo").innerHTML =  "<a class='layui-btn layui-btn-xs' lay-event='checkInfo'>查看电子资料</a>";
-    }
   
   //Demo
   layui.use(['table','layer','jquery'],function(){
@@ -79,11 +78,7 @@
             ,"data":res.data
           }
         },
-        title:"验收管理",
-        page:true,
         cols:[[
-          {type: 'checkbox', fixed: 'left'},
-          {field:'htId', title:'ID',fixed: 'left', unresize: true, sort: true,align:'center'},
           {field:'htHthao', title:'合同号',align:'center'},
           {field:'htGhsn', title:'供应商',align:'center'},
           {field:'htGhsdh', title:'联系电话',align:'center'},
@@ -92,35 +87,52 @@
           {field:'htBxtime', title:'保修期',align:'center'},
           {field:'htYzm', title:'验证码',sort: true,align:'center'},
           {field:'state', title:'状态',sort: true,align:'center'},
-          {fixed: 'right', title:'操作', toolbar: '#barDemo',align:'center'}
+          {fixed: 'right', title:'操作', toolbar: '#barDemo1',align:'center'}
         ]]
     });
-    //头工具栏事件
-  table.on('toolbar(handle)', function(obj){
-    var checkStatus = table.checkStatus(obj.config.id);
-    switch(obj.event){
-      case 'getCheckData':
-        var data = checkStatus.data;
-        layer.alert(JSON.stringify(data));
-      break;
-      case 'getCheckLength':
-        var data = checkStatus.data;
-        layer.msg('选中了：'+ data.length + ' 个');
-      break;
-      case 'isAll':
-        layer.msg(checkStatus.isAll ? '全选': '未全选');
-      break;
-    };
-  });
+    table.render({
+        elem:"#overTable",
+        cellMinWidth:100,
+        toolbar: '#toolbarDemo',
+        url:"/accept/selectAllHtWaitRegister",
+        method:"GET",
+        response: {
+            statusName: 'status'
+            ,statusCode: 200
+            ,msgName: 'hint'
+            ,countName: 'total'
+            ,dataName: 'data'
+        },
+        parseData:function(res){
+            console.log(res);
+            return{
+                "status":200
+                ,"msg":res.message
+                ,"count":res.total
+                ,"data":res.data
+            }
+        },
+        cols:[[
+            {field:'htHthao', title:'合同号',align:'center'},
+            {field:'htGhsn', title:'供应商',align:'center'},
+            {field:'htGhsdh', title:'联系电话',align:'center'},
+            {field:'htQytime', title:'签约日期',align:'center'},
+            {field:'htDhtime', title:'到货时间',sort: true,align:'center'},
+            {field:'htBxtime', title:'保修期',align:'center'},
+            {field:'htYzm', title:'验证码',sort: true,align:'center'},
+            {field:'state', title:'状态',sort: true,align:'center'},
+            {fixed: 'right', title:'操作', toolbar: '#barDemo2',align:'center'}
+        ]]
+    });
   
     //监听行工具事件
     table.on('tool(handle)', function(obj){
       var data = obj.data;
       //console.log(obj)
-      if(obj.event === 'more'){
-        location.href="/apply_manage/apply_manage/arrival_info.html?htId="+obj.data.htId;
-      }else if(obj.event === 'checkInfo'){
-        location.href="/apply_manage/apply_manage/arrival_info.html?htId="+obj.data.htId;
+      if(obj.event === 'manage'){
+        location.href="/apply_manage/apply_manage/arrival_info.html?htIds="+obj.data.htId;
+      }else if(obj.event === 'over'){
+        location.href="/apply_manage/apply_manage/electron_info.html?htIds="+obj.data.htId;
       }
     });
   })

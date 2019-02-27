@@ -30,7 +30,7 @@
       <fieldset class="layui-elem-field layui-field-title">
           <legend>设备附件信息</legend>
       </fieldset>
-      <table class="layui-table" id="enclosureInfo" lay-filter="handle"></table>
+      <table class="layui-table" id="enclosureInfo"></table>
       <div class="col-xs-12 btn">
         <button id="back" class="layui-btn">返回</button>
       </div>
@@ -38,9 +38,6 @@
   </div>
   <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
-      <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-      <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-      <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
     </div>
   </script>
 <script>
@@ -77,7 +74,6 @@
         title:"待验收申请表",
         page:true,
         cols:[[
-          {type: 'checkbox', fixed: 'left'},
           {field:'id', title:'ID',fixed: 'left', unresize: true, sort: true,align:'center'},
           {field:'eqFjmc', title:'附件名称',align:'center'},
           {field:'eqFjxh', title:'型号',align:'center'},
@@ -85,59 +81,11 @@
           {field:'eqFjdw', title:'单位',sort: true,align:'center'},
           {field:'eqFjsccs', title:'生产厂商',align:'center'},
           {field:'eqFjccbh', title:'出厂编号',sort: true,align:'center'},
-          {field:'bz', title:'备注',align:'center'},
-          {fixed: 'right', title:'操作', toolbar: '#barDemo',align:'center'}
+          {field:'bz', title:'备注',align:'center'}
         ]]
     });
-    //头工具栏事件
-    table.on('toolbar(handle)', function(obj){
-      var checkStatus = table.checkStatus(obj.config.id);
-      switch(obj.event){
-        case 'getCheckData':
-          var data = checkStatus.data;
-          layer.alert(JSON.stringify(data));
-        break;
-        case 'getCheckLength':
-          var data = checkStatus.data;
-          layer.msg('选中了：'+ data.length + ' 个');
-        break;
-        case 'isAll':
-          layer.msg(checkStatus.isAll ? '全选': '未全选');
-        break;
-      };
-    });
-  
-    //监听行工具事件
-    // table.on('tool(handle)', function(obj){
-    //   var data = obj.data;
-    //   //console.log(obj)
-    //   if(obj.event === 'del'){
-    //     layer.confirm('真的删除行么', function(index){
-    //       obj.del();
-    //       layer.close(index);
-    //     });
-    //   }
-    //   // else if(obj.event === 'more'){
-    //   //   location.href=""
-    //   // }
-    // });
     $("#back").click(function(){
-      $.ajax({
-        url:"?eqId="+ids,
-        method:"GET",
-        dataType:"JSON",
-        success:function(res){
-          if(res.state === 200){
-            location.href="/apply_manage/not_manage/fixing_info.html?htIds="+res.data;
-            layer.msg("成功");
-          }else{
-            layer.msg("失败");
-          }
-        },
-        error:function(data){
-          layer.msg("失败,请稍后再试");
-        }
-      })
+        window.history.back(-1);
     })
   })
 </script>

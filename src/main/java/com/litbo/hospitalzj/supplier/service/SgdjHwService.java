@@ -6,5 +6,7 @@ public interface SgdjHwService {
 	SgdjHw selectSgdjHw(Integer htIds);
 	Integer InsertSgdjHw(SgdjHw sgdjHw);
 	Integer updateInfo(SgdjHw sgdjHw);
-	/*Integer */
+
+    int updateURL(Integer htIds, String path);
+    /*Integer */
 }
