@@ -29,9 +29,24 @@ public class EqCgController extends BaseController{
 		EqCgfs data=eqCgService.getById(eqcgId);
 		return new ResponseResult<EqCgfs>(SUCCESS,data);
 	}
-	@RequestMapping("all")
+	@RequestMapping("/all")
 	public ResponseResult<List<EqCgfs>> getAll() {
 		List<EqCgfs> data=eqCgService.getAll();
 		return new ResponseResult<List<EqCgfs>>(SUCCESS,data);
+	}
+	@RequestMapping("/insert")
+	public ResponseResult<Void> insert(EqCgfs eqCgfs) {
+		eqCgService.insert(eqCgfs);
+		return new ResponseResult<Void>(SUCCESS);
+	}
+	@RequestMapping("/delete")
+	public ResponseResult<Void> delete(String eqcgId) {
+		eqCgService.delete(eqcgId);
+		return new ResponseResult<Void>(SUCCESS);
+	}
+	@RequestMapping("/update")
+	public ResponseResult<EqCgfs> update(EqCgfs eqCgfs) {
+		EqCgfs data=eqCgService.update(eqCgfs);
+		return new ResponseResult<EqCgfs>(SUCCESS,data);
 	}
 }

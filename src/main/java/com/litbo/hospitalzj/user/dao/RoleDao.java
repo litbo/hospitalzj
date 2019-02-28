@@ -20,9 +20,9 @@ public interface RoleDao {
             "r.role_name,\n" +
             "u.user_id\n" +
             "FROM\n" +
-            "dbo.s_user AS u\n" +
-            "INNER JOIN dbo.s_user_role AS ur ON u.user_id= ur.user_id\n" +
-            "INNER JOIN dbo.s_role AS r ON r.role_id= ur.role_id\n" +
+            "s_user AS u\n" +
+            "INNER JOIN s_user_role AS ur ON u.user_id= ur.user_id\n" +
+            "INNER JOIN s_role AS r ON r.role_id= ur.role_id\n" +
             "WHERE\n" +
             "u.user_name = #{userName}")
     List<SRole> getRoleByUsername(String username);

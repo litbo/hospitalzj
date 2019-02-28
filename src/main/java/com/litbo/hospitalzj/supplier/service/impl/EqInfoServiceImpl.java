@@ -2,6 +2,7 @@ package com.litbo.hospitalzj.supplier.service.impl;
 
 import java.util.List;
 
+import com.litbo.hospitalzj.supplier.service.exception.InsertException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +18,11 @@ public class EqInfoServiceImpl implements EqInfoService {
 	public EqInfoMapper eqInfoMapper;
 	@Override
 	public Integer InsertEqInfo(EqInfo eqInfo) {
+		EqInfo data=eqInfoMapper.selectByName(eqInfo.getEqMc());
+		if(data!=null){
+			throw new InsertException("设备信息已存在");
+		}
 		eqInfoMapper.insertEqInfo(eqInfo);
-/*		Integer id=eqInfo.getEqId();
-		System.out.println(id);*/
 		return eqInfo.getEqId();
 	}
 	@Override

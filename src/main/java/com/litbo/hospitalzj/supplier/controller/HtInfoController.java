@@ -2,11 +2,16 @@ package com.litbo.hospitalzj.supplier.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
+import com.litbo.hospitalzj.hospital.enums.EnumProcess;
+import com.litbo.hospitalzj.hospital.utils.FileUpload;
+import com.litbo.hospitalzj.supplier.service.HtLcService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,23 +33,59 @@ import com.litbo.hospitalzj.util.ResponseResult;
 public class HtInfoController extends BaseController{
 	@Autowired
 	private HtInfoService htinfoService;
+	@Autowired
+	public HtLcService htLcService;
 	@RequestMapping("/insert")
 	public ResponseResult<Integer> insertHtInfo(HtInfo htInfo,HttpSession session){
 		htInfo.setSbcsId(getUidFromSession(session));
 		htinfoService.InsertHtInfo(htInfo);
 		int htId=htInfo.getHtId();
 		session.setAttribute("htId", htId);
+		htinfoService.updateHtInfoState(htId, EnumProcess.WAIT_ACCEPT.getCode());
+		htLcService.InsertHtLc(htId,EnumProcess.CONTRACT_ENTRY.getMessage(),new Date());
 		return new ResponseResult<Integer>(SUCCESS,htInfo.getHtId());
 	}
-	/*@RequestMapping("updataState")
-	public ResponseResult<Void> updataState(String htState){
+
+	@RequestMapping("/yyys")
+	public ResponseResult<Void> updataStatePerfect(String view,Integer htId){
+		if("同意".equals(view)){
+			//预约验收
+			htinfoService.updateHtInfoState(htId, EnumProcess. APPOINMENT_ACCEPTANCE.getCode());
+			htLcService.InsertHtLc(htId,EnumProcess.APPOINMENT_ACCEPTANCE.getMessage(),new Date());
+		}else{
+			//合同信息不完善
+			htinfoService.updateHtInfoState(htId, EnumProcess.IMPERFECT_CONTRACT_INFORMATION.getCode());
+			htLcService.InsertHtLc(htId,EnumProcess.IMPERFECT_CONTRACT_INFORMATION.getMessage(),new Date());
+		}
 		return new ResponseResult<Void>(SUCCESS);
-	}*/
-	
+	}
+	//完善资料
+	@RequestMapping("/wszl")
+	public ResponseResult<Void> updataStatePerfectOne(Integer htId){
+		htinfoService.updateHtInfoState(htId, EnumProcess. PERFECT_INFORMATION.getCode());
+		htLcService.InsertHtLc(htId,EnumProcess.PERFECT_INFORMATION.getMessage(),new Date());
+		return new ResponseResult<Void>(SUCCESS);
+	}
+	//等待审核验收
+	@RequestMapping("/ddshjys")
+	public ResponseResult<Void> updataStatePerfectTwo(Integer htId){
+		htinfoService.updateHtInfoState(htId, EnumProcess. WAIT_ACCEPT_YS.getCode());
+		htLcService.InsertHtLc(htId,EnumProcess.WAIT_ACCEPT_YS.getMessage(),new Date());
+		return new ResponseResult<Void>(SUCCESS);
+	}
+	//验收完成
+	@RequestMapping("/yswc")
+	public ResponseResult<Void> updataStatePerfectThree(Integer htId){
+		htinfoService.updateHtInfoState(htId, EnumProcess.ACCEPT_OVER.getCode());
+		htLcService.InsertHtLc(htId,EnumProcess.ACCEPT_OVER.getMessage(),new Date());
+		return new ResponseResult<Void>(SUCCESS);
+	}
+
 	@RequestMapping("/updateInfo")
-	public ResponseResult<Void> updateInfo(HtInfo htInfo){
-		htinfoService.updateInfo(htInfo);
-		return new ResponseResult<Void>(SUCCESS);
+	public ResponseResult<HtInfo> updateInfo(HtInfo htInfo){
+		HtInfo data=htinfoService.updateInfo(htInfo);
+		htLcService.InsertHtLc(data.getHtId(),EnumProcess.REVISE_A_CONTRACT.getMessage(),new Date());
+		return new ResponseResult<HtInfo>(SUCCESS);
 	}
 	@RequestMapping("/select")
 	public ResponseResult<List<EqHtVo>> selectEqHtVo(String htYzm){
@@ -63,7 +104,8 @@ public class HtInfoController extends BaseController{
 	}
 	@RequestMapping("/updateYzm")
 	public ResponseResult<Void> updataYzm(@RequestParam("htId")Integer htId,@RequestParam("htYzm")String htYzm,HttpSession session){
-		htinfoService.updateYzm(htId, htYzm, 1);
+		htinfoService.updateYzm(htId, htYzm,EnumProcess.WAIT_ACCEPT.getCode());
+		htLcService.InsertHtLc(htId,EnumProcess.WAIT_ACCEPT.getMessage(),new Date());
 		return new ResponseResult<Void>(SUCCESS);
 	}
 	/*@RequestMapping("/selectEqHt")
@@ -80,42 +122,11 @@ public class HtInfoController extends BaseController{
 	@PostMapping("/uploadOne")
 	public ResponseResult<String> uploadOne(
 			@RequestParam("htId") Integer htId,
-			@RequestParam("file")MultipartFile file,
-			HttpSession session){
-		Upload.upload(file, session);
-		// 确定上传文件夹 > session.getServletContext.getRealPath(UPLOAD_DIR_NAME) > exists() > mkdirs()
-		String parentPath = session
-				.getServletContext().getRealPath(UPLOAD_DIR_NAME);
-		System.out.println(parentPath);
-		File parent = new File(parentPath);
-		if (!parent.exists()) {
-			parent.mkdirs();
-		}
-		// 确定文件名 > getOriginalFileName()
-		String originalFileName = file.getOriginalFilename();
-		int beginIndex = originalFileName.lastIndexOf(".");
-		String suffix = originalFileName.substring(beginIndex);
-		String fileName = System.currentTimeMillis() + "" + (new Random().nextInt(90000000) + 10000000) + suffix;
-		System.out.println(fileName);
-		// 确定文件
-		File dest = new File(parent, fileName);
-
-		// 执行保存文件
-		try {
-			file.transferTo(dest);
-			System.err.println("上传完成！");
-		} catch (IllegalStateException |IOException e) {
-			throw new FileUploadException("文件上传异常");
-		} 
-
-		// 获取当前用户的id
-		// 获取当前用户的id
-		String htFile1 = "/" + UPLOAD_DIR_NAME + "/" + fileName;
-		System.out.println(htFile1);
-		htinfoService.updateOne(htId, htFile1);
+			@RequestParam("file")MultipartFile file){
+		String htFile1 = FileUpload.upload("images/upload/",file);
+		htinfoService.updateTwo(htId, htFile1);
 		// 返回
-		ResponseResult<String> rr
-		= new ResponseResult<>();
+		ResponseResult<String> rr = new ResponseResult<>();
 		rr.setState(SUCCESS);
 		rr.setData(htFile1);
 		return rr;
@@ -125,35 +136,7 @@ public class HtInfoController extends BaseController{
 			@RequestParam("htId") Integer htId,
 			@RequestParam("file")MultipartFile file,
 			HttpSession session){
-		Upload.upload(file, session);
-		// 确定上传文件夹 > session.getServletContext.getRealPath(UPLOAD_DIR_NAME) > exists() > mkdirs()
-		String parentPath = session
-				.getServletContext().getRealPath(UPLOAD_DIR_NAME);
-		System.out.println(parentPath);
-		File parent = new File(parentPath);
-		if (!parent.exists()) {
-			parent.mkdirs();
-		}
-		// 确定文件名 > getOriginalFileName()
-		String originalFileName = file.getOriginalFilename();
-		int beginIndex = originalFileName.lastIndexOf(".");
-		String suffix = originalFileName.substring(beginIndex);
-		String fileName = System.currentTimeMillis() + "" + (new Random().nextInt(90000000) + 10000000) + suffix;
-		System.out.println(fileName);
-		// 确定文件
-		File dest = new File(parent, fileName);
-
-		// 执行保存文件
-		try {
-			file.transferTo(dest);
-			System.err.println("上传完成！");
-		} catch (IllegalStateException |IOException e) {
-			throw new FileUploadException("文件上传异常");
-		} 
-
-		// 获取当前用户的id
-		// 获取当前用户的id
-		String htFile2 = "/" + UPLOAD_DIR_NAME + "/" + fileName;
+		String htFile2 = FileUpload.upload("images/upload/",file);
 		htinfoService.updateTwo(htId, htFile2);
 		// 返回
 		ResponseResult<String> rr
@@ -167,39 +150,10 @@ public class HtInfoController extends BaseController{
 			@RequestParam("htId") Integer htId,
 			@RequestParam("file")MultipartFile file,
 			HttpSession session){
-		Upload.upload(file, session);
-		// 确定上传文件夹 > session.getServletContext.getRealPath(UPLOAD_DIR_NAME) > exists() > mkdirs()
-		String parentPath = session
-				.getServletContext().getRealPath(UPLOAD_DIR_NAME);
-		System.out.println(parentPath);
-		File parent = new File(parentPath);
-		if (!parent.exists()) {
-			parent.mkdirs();
-		}
-		// 确定文件名 > getOriginalFileName()
-		String originalFileName = file.getOriginalFilename();
-		int beginIndex = originalFileName.lastIndexOf(".");
-		String suffix = originalFileName.substring(beginIndex);
-		String fileName = System.currentTimeMillis() + "" + (new Random().nextInt(90000000) + 10000000) + suffix;
-		System.out.println(fileName);
-		// 确定文件
-		File dest = new File(parent, fileName);
-
-		// 执行保存文件
-		try {
-			file.transferTo(dest);
-			System.err.println("上传完成！");
-		} catch (IllegalStateException |IOException e) {
-			throw new FileUploadException("文件上传异常");
-		} 
-
-		// 获取当前用户的id
-		// 获取当前用户的id
-		String htFile3 = "/" + UPLOAD_DIR_NAME + "/" + fileName;
-		htinfoService.updateThree(htId, htFile3);
+		String htFile3 = FileUpload.upload("images/upload/",file);
+		htinfoService.updateTwo(htId,htFile3);
 		// 返回
-		ResponseResult<String> rr
-		= new ResponseResult<>();
+		ResponseResult<String> rr = new ResponseResult<>();
 		rr.setState(SUCCESS);
 		rr.setData(htFile3);
 		return rr;
@@ -209,39 +163,10 @@ public class HtInfoController extends BaseController{
 			@RequestParam("htId") Integer htId,
 			@RequestParam("file")MultipartFile file,
 			HttpSession session){
-		Upload.upload(file, session);
-		// 确定上传文件夹 > session.getServletContext.getRealPath(UPLOAD_DIR_NAME) > exists() > mkdirs()
-		String parentPath = session
-				.getServletContext().getRealPath(UPLOAD_DIR_NAME);
-		System.out.println(parentPath);
-		File parent = new File(parentPath);
-		if (!parent.exists()) {
-			parent.mkdirs();
-		}
-		// 确定文件名 > getOriginalFileName()
-		String originalFileName = file.getOriginalFilename();
-		int beginIndex = originalFileName.lastIndexOf(".");
-		String suffix = originalFileName.substring(beginIndex);
-		String fileName = System.currentTimeMillis() + "" + (new Random().nextInt(90000000) + 10000000) + suffix;
-		System.out.println(fileName);
-		// 确定文件
-		File dest = new File(parent, fileName);
-
-		// 执行保存文件
-		try {
-			file.transferTo(dest);
-			System.err.println("上传完成！");
-		} catch (IllegalStateException |IOException e) {
-			throw new FileUploadException("文件上传异常");
-		} 
-
-		// 获取当前用户的id
-		// 获取当前用户的id
-		String htFile4 = "/" + UPLOAD_DIR_NAME + "/" + fileName;
-		htinfoService.updateFour(htId, htFile4);
+		String htFile4 = FileUpload.upload("images/upload/",file);
+		htinfoService.updateTwo(htId,htFile4);
 		// 返回
-		ResponseResult<String> rr
-		= new ResponseResult<>();
+		ResponseResult<String> rr = new ResponseResult<>();
 		rr.setState(SUCCESS);
 		rr.setData(htFile4);
 		return rr;
@@ -251,39 +176,10 @@ public class HtInfoController extends BaseController{
 			@RequestParam("htId") Integer htId,
 			@RequestParam("file")MultipartFile file,
 			HttpSession session){
-		Upload.upload(file, session);
-		// 确定上传文件夹 > session.getServletContext.getRealPath(UPLOAD_DIR_NAME) > exists() > mkdirs()
-		String parentPath = session
-				.getServletContext().getRealPath(UPLOAD_DIR_NAME);
-		System.out.println(parentPath);
-		File parent = new File(parentPath);
-		if (!parent.exists()) {
-			parent.mkdirs();
-		}
-		// 确定文件名 > getOriginalFileName()
-		String originalFileName = file.getOriginalFilename();
-		int beginIndex = originalFileName.lastIndexOf(".");
-		String suffix = originalFileName.substring(beginIndex);
-		String fileName = System.currentTimeMillis() + "" + (new Random().nextInt(90000000) + 10000000) + suffix;
-		System.out.println(fileName);
-		// 确定文件
-		File dest = new File(parent, fileName);
-		
-		// 执行保存文件
-		try {
-			file.transferTo(dest);
-			System.err.println("上传完成！");
-		} catch (IllegalStateException |IOException e) {
-			throw new FileUploadException("文件上传异常");
-		} 
-		
-		// 获取当前用户的id
-		// 获取当前用户的id
-		String htFile5 = "/" + UPLOAD_DIR_NAME + "/" + fileName;
-		htinfoService.updateFive(htId, htFile5);
+		String htFile5 = FileUpload.upload("images/upload/",file);
+		htinfoService.updateTwo(htId,htFile5);
 		// 返回
-		ResponseResult<String> rr
-		= new ResponseResult<>();
+		ResponseResult<String> rr = new ResponseResult<>();
 		rr.setState(SUCCESS);
 		rr.setData(htFile5);
 		return rr;

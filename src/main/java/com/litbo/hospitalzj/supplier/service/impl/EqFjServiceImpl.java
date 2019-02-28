@@ -2,6 +2,7 @@ package com.litbo.hospitalzj.supplier.service.impl;
 
 import java.util.List;
 
+import com.litbo.hospitalzj.supplier.service.exception.InsertException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,10 @@ public class EqFjServiceImpl implements EqFjService{
 
 	@Override
 	public EqFj insertEqFj(EqFj eqfj) {
+		EqFj data=eqFjMapper.selectByName(eqfj.getEqFjmc());
+		if(data!=null){
+			throw new InsertException("设备附件已存在");
+		}
 		eqFjMapper.insertEqFj(eqfj);
 		return eqfj;
 	}

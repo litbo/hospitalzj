@@ -16,7 +16,6 @@ public class UserController {
     UserService userService;
     @RequestMapping("/setUser")
     public Result setUser(String userId){
-
         if(userService.setUser(userId)>0){
             return Result.success();
         }
@@ -29,7 +28,6 @@ public class UserController {
         }
         return Result.error();
     }
-
     //批量设置为用户
     @PostMapping("/setUsers")
     public Result setUsers(@RequestBody List<String> ids){
@@ -38,7 +36,6 @@ public class UserController {
                 return Result.error(id);
             }
         }
-
         return Result.success();
     }
 

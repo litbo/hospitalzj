@@ -2,24 +2,27 @@ package com.litbo.hospitalzj.user.util;
 
 
 public class Result<T> {
-    private String msg;
-    private int code;
+    /*private String msg;
+    private int state;
+    private T data;*/
+    private Integer state;
+    private String message;
     private T data;
 
-    public String getMsg() {
-        return msg;
+    public Integer getState() {
+        return state;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setState(Integer state) {
+        this.state = state;
     }
 
-    public int getCode() {
-        return code;
+    public String getMessage() {
+        return message;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public T getData() {
@@ -37,57 +40,49 @@ public class Result<T> {
     public static <T> Result<T> success(){
         return new Result<T>();
     }
-    public static <T> Result<T> success(int code , String msg ){
-        return new Result<T>(code,msg);
+    public static <T> Result<T> success(int state , String message ){
+        return new Result<T>(state,message);
     }
 
 
     //失败的时候调用此方法
-    public static<T>  Result<T> error(CodeMsg cm){
-        return new Result<>(cm);
-    }
-    public static<T>  Result<T> error(String msg) {
-        return new Result<>(msg);
+
+    public static<T>  Result<T> error(String message) {
+        return new Result<>(message);
     }
     public static<T>  Result<T> error() {
         return error("error");
     }
-    public static<T>  Result<T> error(int code) {
-        return new Result<>(code);
+    public static<T>  Result<T> error(int state) {
+        return new Result<>(state);
     }
-    public static<T>  Result<T> error(int code,String msg) {
-        return new Result<>(code,msg);
+    public static<T>  Result<T> error(int state,String message) {
+        return new Result<>(state,message);
     }
 
 
-    private Result(CodeMsg cm){
-        if(cm==null){
-            return;
-        }
-        this.msg = cm.getMsg();
-        this.code = cm.getCode();
-    }
-    private Result(int code,String msg ){
-        this.msg = msg;
-        this.code = code;
+
+    private Result(int state,String message ){
+        this.message = message;
+        this.state = state;
     }
     private Result(T data){
-        this.code = 0;
-        this.msg = "success";
+        this.state = 200;
+        this.message = "success";
         this.data = data;
     }
     private Result(){
-        this.code=0;
-        this.msg="success";
+        this.state=200;
+        this.message="success";
     }
 
-    private Result(String msg){
-        this.code=1;
-        this.msg=msg;
+    private Result(String message){
+        this.state=1;
+        this.message=message;
     }
-    private Result(int code){
-        this.code=code;
-        this.msg="error";
+    private Result(int state){
+        this.state=state;
+        this.message="error";
     }
 
 }

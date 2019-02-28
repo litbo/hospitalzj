@@ -5,8 +5,11 @@ import com.litbo.hospitalzj.supplier.controller.ex.HtInfoIsNullException;
 import com.litbo.hospitalzj.supplier.entity.HtLc;
 import com.litbo.hospitalzj.supplier.mapper.HtLcMapper;
 import com.litbo.hospitalzj.supplier.service.HtLcService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 /**
  * 合同流程业务层
@@ -18,10 +21,10 @@ import org.springframework.stereotype.Service;
 public class HtLcServiceImpl implements HtLcService {
 	@Autowired
 	private  HtLcMapper htLcMapper;
+
 	@Override
-	public HtLc InsertHtLc(HtLc htLc) {
-		htLcMapper.insertEqlc(htLc);
-		return htLc;
+	public void InsertHtLc(Integer  htId , String htCldz,  Date htClsj) {
+		htLcMapper.insertEqlc(htId,htCldz, htClsj);
 	}
 
 	@Override

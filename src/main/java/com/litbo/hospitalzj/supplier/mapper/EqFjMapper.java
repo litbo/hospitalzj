@@ -25,7 +25,8 @@ public interface EqFjMapper {
 	
 	@Select("select eq_fjid as eqFjId,eq_ids as eqIds,eq_fjmc eqFjmc,eq_fjxh eqFjxh,eq_fjsl eqFjsl,eq_fjdw eqFjdw,eq_fjsccs eqFjsccs,eq_fjccbh eqFjccbh,bz from eq_fj where eq_ids=#{eqIds}")
 	List<EqFj> selectEqFj(Integer eqIds);
-	
+	@Select("select eq_fjid as eqFjId,eq_ids as eqIds,eq_fjmc eqFjmc,eq_fjxh eqFjxh,eq_fjsl eqFjsl,eq_fjdw eqFjdw,eq_fjsccs eqFjsccs,eq_fjccbh eqFjccbh,bz from eq_fj where eq_fjmc=#{eqFjmc}")
+	EqFj selectByName(String  eqFjmc);
 	@Update("update eq_fj set eq_fjxh=#{eqFjxh},eq_fjsl=#{eqFjsl},eq_fjdw=#{eqFjdw},"
 			+ "eq_fjsccs=#{eqFjsccs},eq_fjccbh=#{eqFjccbh},bz=#{bz} where eq_fjmc=#{eqFjmc}")
 	Integer updataInfo(EqFj eqfj);

@@ -6,10 +6,13 @@ package com.litbo.hospitalzj.supplier.service;
  */
 
 import com.litbo.hospitalzj.supplier.entity.HtLc;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.Date;
 
 
 public interface HtLcService {
-	HtLc InsertHtLc(HtLc htLc);
+	void InsertHtLc(@Param("htId") Integer  htId , @Param("htCldz") String htCldz, @Param("htClsj") Date htClsj);
 	void DeleteLc(Integer lcId);
 	HtLc Select(Integer htId);
 }

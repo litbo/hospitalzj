@@ -7,16 +7,19 @@ package com.litbo.hospitalzj.supplier.service;
 
 import java.util.List;
 
+import com.litbo.hospitalzj.supplier.entity.EqJfly;
 import com.litbo.hospitalzj.supplier.entity.EqLy;
+import org.apache.ibatis.annotations.Insert;
 
 public interface EqLyService {
-	/*
-	 * 查找设备来源名称
-	 */
+
 	EqLy getById(String eqlyId);
 	
-	/*
-	 * 查找所有设备来源
-	 */
+
 	List<EqLy> getAll();
+
+	void delete(String eqlyId);
+
+	void insert(EqLy eqLy);
+	EqLy update(EqLy eqLy);
 }

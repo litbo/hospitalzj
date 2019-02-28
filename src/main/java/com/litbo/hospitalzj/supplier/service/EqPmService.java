@@ -7,16 +7,21 @@ package com.litbo.hospitalzj.supplier.service;
 
 import java.util.List;
 
+import com.litbo.hospitalzj.supplier.entity.EqLy;
 import com.litbo.hospitalzj.supplier.entity.EqPm;
+import org.apache.ibatis.annotations.Insert;
 
 public interface EqPmService {
-	/*
-	 * 查找设备品名名称
-	 */
+
 	EqPm getById(String eqPmId);
 	
-	/*
-	 * 查找所有品名来源
-	 */
+
 	List<EqPm> getAll();
+
+	void delete(String eqPmId);
+
+
+	void insert(EqPm eqPm);
+
+	EqPm update(EqPm eqPm);
 }

@@ -11,9 +11,11 @@ import java.util.Date;
 public class HtLc {
     private Integer lcId;
 
-    private String htId;
+    private Integer htId;
 
     private String htCldz;
+
+    private Date htClsj;
 
     public Integer getLcId() {
         return lcId;
@@ -23,11 +25,11 @@ public class HtLc {
         this.lcId = lcId;
     }
 
-    public String getHtId() {
+    public Integer getHtId() {
         return htId;
     }
 
-    public void setHtId(String htId) {
+    public void setHtId(Integer htId) {
         this.htId = htId;
     }
 
@@ -46,10 +48,5 @@ public class HtLc {
     public void setHtClsj(Date htClsj) {
         this.htClsj = htClsj;
     }
-
-    private Date htClsj;
-
-
-
 }
 

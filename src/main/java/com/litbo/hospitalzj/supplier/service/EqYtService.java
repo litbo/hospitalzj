@@ -8,15 +8,17 @@ package com.litbo.hospitalzj.supplier.service;
 import java.util.List;
 
 import com.litbo.hospitalzj.supplier.entity.EqYt;
+import org.apache.ibatis.annotations.Insert;
 
 public interface EqYtService {
-	/*
-	 * 查找设备来源名称
-	 */
+
 	EqYt getById(String eqytId);
-	
-	/*
-	 * 查找所有设备来源
-	 */
+
 	List<EqYt> getAll();
+
+	void delete(String eqytId);
+
+	void insert(EqYt eqYt);
+
+	EqYt update(EqYt eqYt);
 }

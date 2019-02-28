@@ -6,38 +6,39 @@ package com.litbo.hospitalzj.entity;
  */
 public class YqRole {
 	private Integer id;
-	private String userId;
+	private Integer userId;
 	private Integer roleStatus;
-	private String eqId;
+	private Integer eqId;
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
 	public Integer getRoleStatus() {
 		return roleStatus;
 	}
+
 	public void setRoleStatus(Integer roleStatus) {
 		this.roleStatus = roleStatus;
 	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-	public String getEqId() {
+
+	public Integer getEqId() {
 		return eqId;
 	}
-	public void setEqId(String eqId) {
+
+	public void setEqId(Integer eqId) {
 		this.eqId = eqId;
 	}
-	@Override
-	public String toString() {
-		return "yqrole [id=" + id + ", userId=" + userId + ", roleStatus=" + roleStatus + ", eqId=" + eqId + "]";
-	}
-	
-
-	
 }

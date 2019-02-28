@@ -17,39 +17,32 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/hospital")
 public class LoginController {
-
     @RequestMapping("/")
     public String tologin(){
-        return "/admin/index/login";
+        return "/login";
     }
     @RequestMapping("/tomain")
     public String tomain(){
-        return "/admin/index/index";
+        return "shiro";
     }
-
     @RequestMapping("/submit")
     @ResponseBody
     public Result submit(@Valid LoginVo loginVo, BindingResult bindingResult){
+        //判断为空
         if(bindingResult.hasErrors()) {
             return Result.error(bindingResult.getFieldErrorCount());
         }
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(loginVo.getUserName(),loginVo.getUserPwd());
-
-
         try {
             subject.login(token);
             //把用户名存入session
             Session session =  subject.getSession();
             session.setAttribute("username",loginVo.getUserName());
-
             return Result.success("登录验证通过");
-
         }catch (Exception e){
             return Result.error("用户名密码错误");
         }
-
-
     }
 }
 
