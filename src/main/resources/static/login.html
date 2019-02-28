@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="div-logo">
-                    <img src="static/images/logo.png" class="logo-img" alt="健龙世纪">
+                    <img src="static/images/logo.png" class="logo-img" alt="南方医院">
                 </div>
             </form>
         </div>
@@ -67,7 +67,7 @@
                 success:function(res){
                     if(res.state === 200){
                         setTimeout(function () {
-                            location.href = "./user/index.html";
+                            location.href = "/user/index.html";
                             //location.href = "./index.html";
                         }, 1000);
                         layer.msg("欢迎您（"+data.field.username+")")
