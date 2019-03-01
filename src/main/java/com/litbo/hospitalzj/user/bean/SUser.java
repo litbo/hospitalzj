@@ -1,6 +1,8 @@
 package com.litbo.hospitalzj.user.bean;
 
-
+/**
+ * 用户实体类
+ */
 public class SUser {
 
     private String userId;

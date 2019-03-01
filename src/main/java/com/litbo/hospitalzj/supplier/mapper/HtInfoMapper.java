@@ -53,7 +53,7 @@ public interface HtInfoMapper {
 			+ "ht_sglb=#{htSglb},ht_sbyt=#{htSbyt},ht_jfly=#{htJfly},ht_jlsb=#{htJlsb},ht_fssb=#{htFssb},"
 			+ "ht_file1=#{htFile1},ht_file2=#{htFile2},ht_file3=#{htFile3},ht_file4=#{htFile4},ht_file5=#{htFile5},ht_State=#{htState} "
 			+ "where ht_id=#{htId}")
-	Integer updateInfo(HtInfo htinfo);
+	HtInfo updateInfo(HtInfo htinfo);
 	
 	@Select("select ht_id htId,ht_ghsn htGhsn,ht_ghslxr htGhslxr,ht_ghsdh htGhsdh,ht_ghsdh htGhsdh,IFNULL(ht_hthao,'无') htHthao,IFNULL(ht_gzspd,'无') htGzspd,"
 			+ "ht_zhbhao htZhbhao,ht_bz htBz,ht_qytime htQytime,ht_dhtime htDhtime,ht_bxtime htBxtime,"

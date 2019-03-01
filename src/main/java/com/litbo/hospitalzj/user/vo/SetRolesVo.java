@@ -1,14 +1,11 @@
 package com.litbo.hospitalzj.user.vo;
 
-
-
 import java.util.ArrayList;
-
 
 public class SetRolesVo {
 
+	private String roleId;
     private ArrayList<String> userIds;
-    private String roleId;
 	public ArrayList<String> getUserIds() {
 		return userIds;
 	}

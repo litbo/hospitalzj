@@ -6,11 +6,13 @@ import com.litbo.hospitalzj.supplier.entity.HtLc;
 import com.litbo.hospitalzj.supplier.service.EqJfService;
 import com.litbo.hospitalzj.supplier.service.HtLcService;
 import com.litbo.hospitalzj.util.ResponseResult;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,9 +27,9 @@ public class HtLcController extends BaseController{
 	public HtLcService htLcService;
 
 	@RequestMapping("/insert")
-	public ResponseResult<HtLc> insertHtLc(HtLc htLc) {
-		HtLc data=htLcService.InsertHtLc(htLc);
-		return new ResponseResult<HtLc>(SUCCESS,data);
+	public ResponseResult<Void> insertHtLc(@Param("htId") Integer  htId , @Param("htCldz") String htCldz, @Param("htClsj") Date htClsj) {
+		htLcService.InsertHtLc(htId,htCldz, htClsj);
+		return new ResponseResult<Void>(SUCCESS);
 	}
 	@RequestMapping("/delete")
 	public ResponseResult<Void> insertHtLc(Integer htId) {

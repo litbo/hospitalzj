@@ -58,7 +58,7 @@ public abstract class BaseController {
 	 * 正确响应时的代号
 	 */
 	public static final Integer SUCCESS = 200;
-
+	public static final Integer ERROR = 201;
 	@ExceptionHandler({ServiceException.class,RequestException.class})
 	@ResponseBody
 	public ResponseResult<Void> handleException(

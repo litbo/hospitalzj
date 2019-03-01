@@ -78,8 +78,9 @@ public class HtInfoServiceImpl implements HtInfoService {
 	}
 	
 	@Override
-	public void updateInfo(HtInfo htinfo) {
-		htInfoMapper.updateInfo(htinfo);
+	public HtInfo updateInfo(HtInfo htinfo) {
+		HtInfo data=htInfoMapper.updateInfo(htinfo);
+		return data;
 	}
 	@Override
 	public List<HtInfo> selectHtinfo(Integer sbcsId) {
@@ -140,4 +141,5 @@ public class HtInfoServiceImpl implements HtInfoService {
 		List<HtInfo> data=htInfoMapper.findAll(EnumProcess.ACCEPT_OVER.getCode());
 		return data;
 	}
+	
 }

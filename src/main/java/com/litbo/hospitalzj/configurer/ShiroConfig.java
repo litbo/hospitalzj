@@ -10,6 +10,7 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
 import java.util.LinkedHashMap;
@@ -38,9 +39,9 @@ public class  ShiroConfig {
 
         //设置默认访问路径
 
-        shiroFilterFactoryBean.setLoginUrl("/admin/index/login.html");
-        shiroFilterFactoryBean.setSuccessUrl("/success.html");
-        shiroFilterFactoryBean.setUnauthorizedUrl("unauthorized.html");
+        shiroFilterFactoryBean.setLoginUrl("/login.html");
+        shiroFilterFactoryBean.setSuccessUrl("/shiro.html");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/unauthorized.html");
 
         //过滤器
         Map<String,String> filterChainDefinitionMap = new LinkedHashMap<String, String>();

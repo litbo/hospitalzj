@@ -10,13 +10,14 @@ import java.util.List;
 import com.litbo.hospitalzj.supplier.entity.EqCgfs;
 
 public interface EqCgService {
-	/*
-	 * 查找设备来源名称
-	 */
+
 	EqCgfs getById(String eqcgId);
-	
-	/*
-	 * 查找所有设备来源
-	 */
+
 	List<EqCgfs> getAll();
+
+	void delete(String eqcgId);
+
+	void insert(EqCgfs eqCgfs);
+
+	EqCgfs update(EqCgfs eqCgfs);
 }

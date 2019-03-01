@@ -96,7 +96,7 @@ public class EqCsController extends BaseController{
 			System.err.println("上传完成！");
 		} catch (IllegalStateException |IOException e) {
 			throw new FileUploadException("文件上传异常");
-		} 
+		}
 		// 获取当前用户的id
 		String sbcsCertificatep = "/" + UPLOAD_DIR_NAME + "/" + fileName;
 		System.out.println(sbcsCertificatep);
@@ -129,15 +129,15 @@ public class EqCsController extends BaseController{
 		System.out.println(fileName);
 		// 确定文件
 		File dest = new File(parent, fileName);
-		
+
 		// 执行保存文件
 		try {
 			file.transferTo(dest);
 			System.err.println("上传完成！");
 		} catch (IllegalStateException |IOException e) {
 			throw new FileUploadException("文件上传异常");
-		} 
-		
+		}
+
 		// 获取当前用户的id
 		// 获取当前用户的id
 		String sbcsCreditCodep = "/" + UPLOAD_DIR_NAME + "/" + fileName;

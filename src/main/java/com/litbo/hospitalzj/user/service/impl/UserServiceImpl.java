@@ -18,7 +18,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer setUser(String userId) {
-
         SUser u =new SUser();
         u.setUserId(userId);
         u.setUserName(userId);
@@ -29,7 +28,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer updatePwd(String userId, String userPwd) {
-
         return userDao.updatePwd(userId,userPwd);
     }
 }

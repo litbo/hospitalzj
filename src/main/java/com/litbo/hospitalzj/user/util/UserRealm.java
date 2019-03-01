@@ -36,6 +36,7 @@ public class UserRealm extends AuthorizingRealm
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         String username = (String) SecurityUtils.getSubject().getPrincipal();
+        //容器，存放权限
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         Set<String> roles = new HashSet<>();
         List<SRole> rolesByUsername = roleService.getRoleByUsername(username);
@@ -47,7 +48,6 @@ public class UserRealm extends AuthorizingRealm
             }
         }
 
-
         info.setRoles(roles);
         return info;
     }
@@ -57,8 +57,9 @@ public class UserRealm extends AuthorizingRealm
 
         String username = token.getPrincipal().toString();
         SUser user = userService.getUserByUsername(username);
-
+//用户名是否存在
         if(user!=null){
+            //比对密码
             AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(user.getUserName(),user.getUserPwd(),getName());
             return authcInfo;
         }

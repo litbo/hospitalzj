@@ -10,13 +10,13 @@ import java.util.List;
 import com.litbo.hospitalzj.supplier.entity.EqJfly;
 
 public interface EqJfService {
-	/*
-	 * 查找设备来源名称
-	 */
+
 	EqJfly getById(String eqjfId);
-	
-	/*
-	 * 查找所有设备来源
-	 */
+
 	List<EqJfly> getAll();
+
+	void delete(String eqjfId);
+
+	void insert(EqJfly eqJfly);
+	EqJfly update(EqJfly eqJfly);
 }

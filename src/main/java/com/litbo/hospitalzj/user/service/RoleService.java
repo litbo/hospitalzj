@@ -16,12 +16,7 @@ public interface RoleService {
 
     Integer setRole(String userId, String roleId);
 
-
-
-
     PageInfo listUser(int pageNum, int pageSize);
-
-
 
     PageInfo listUserByX(SelectUserVo selectUserVo, int pageNum, int pageSize);
 
