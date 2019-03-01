@@ -24,8 +24,6 @@
         </fieldset>
         <table class="layui-table" id="testInfo" lay-filter="handle"></table>
         <div class="col-xs-12 btn">
-            <!-- <button id="addcheck" class="layui-btn layui-btn-normal">添加新字典</button> -->
-            <!-- <button id="nextap" class="layui-btn">下一步</button> -->
         </div>
     </div>
 </div>
@@ -36,7 +34,6 @@
     // 获取上个页面传递的类型
     var type = window.location.search;
     var ids = parseInt(type.split("=")[1]);
-    var rate;
     //Demo
     layui.use(['layer','jquery','table'], function(){
         var layer = layui.layer

@@ -22,46 +22,45 @@
         <fieldset class="layui-elem-field layui-field-title">
             <legend style="color: #000000;font-weight: bold;">设备品名字典</legend>
         </fieldset>
-        <table class="layui-table" id="sbpmdic" lay-filter="sb"></table>
+        <table class="layui-table" id="sbpmdic" lay-filter="handle"></table>
 
         <fieldset class="layui-elem-field layui-field-title">
             <legend style="color: #000000;font-weight: bold;">设备采购方式字典</legend>
         </fieldset>
-        <table class="layui-table" id="sbcgdic" lay-filter="sb"></table>
+        <table class="layui-table" id="sbcgdic" lay-filter="handle"></table>
 
         <fieldset class="layui-elem-field layui-field-title">
             <legend style="color: #000000;font-weight: bold;">设备经费来源</legend>
         </fieldset>
-        <table class="layui-table" id="sbjfdic" lay-filter="sb"></table>
+        <table class="layui-table" id="sbjfdic" lay-filter="handle"></table>
 
         <fieldset class="layui-elem-field layui-field-title">
             <legend style="color: #000000;font-weight: bold;">设备用途</legend>
         </fieldset>
-        <table class="layui-table" id="sbytdic" lay-filter="sb"></table>
+        <table class="layui-table" id="sbytdic" lay-filter="handle"></table>
 
         <fieldset class="layui-elem-field layui-field-title">
             <legend style="color: #000000;font-weight: bold;">设备申购类型</legend>
         </fieldset>
-        <table class="layui-table" id="sbsgdic" lay-filter="sb"></table>
+        <table class="layui-table" id="sbsgdic" lay-filter="handle"></table>
 
         <fieldset class="layui-elem-field layui-field-title">
             <legend style="color: #000000;font-weight: bold;">设备来源</legend>
         </fieldset>
-        <table class="layui-table" id="sblydic" lay-filter="sb"></table>
+        <table class="layui-table" id="sblydic" lay-filter="handle"></table>
         <div class="col-xs-12 btn">
             <button id="addcheck" class="layui-btn layui-btn-normal">添加新字典</button>
-            <!-- <button id="nextap" class="layui-btn">下一步</button> -->
         </div>
     </div>
 </div>
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="adds">添加设备附件</a>
+    <a class="layui-btn layui-btn-xs" lay-event="update">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <script>
     // 获取上个页面传递的类型
     var type = window.location.search;
     var ids = parseInt(type.split("=")[1]);
-    var rate;
     //Demo
     layui.use(['layer','jquery','table'], function(){
         var layer = layui.layer
@@ -103,7 +102,7 @@
                 {fixed: 'right', title:'操作',minWidth:"130", toolbar: '#barDemo',align:'center'}
             ]]
         });
-        var tableIns = table.render({
+        table.render({
             elem:"#sbcgdic"
             ,cellMinWidth: 80
             ,url:"/eqInfo/selectEqInfo?htIds="+ids
@@ -139,7 +138,7 @@
                 {fixed: 'right', title:'操作',minWidth:"130", toolbar: '#barDemo',align:'center'}
             ]]
         });
-        var tableIns = table.render({
+        table.render({
             elem:"#sbjfdic"
             ,cellMinWidth: 80
             ,url:"/eqInfo/selectEqInfo?htIds="+ids
@@ -175,7 +174,7 @@
                 {fixed: 'right', title:'操作',minWidth:"130", toolbar: '#barDemo',align:'center'}
             ]]
         });
-        var tableIns = table.render({
+        table.render({
             elem:"#sbytdic"
             ,cellMinWidth: 80
             ,url:"/eqInfo/selectEqInfo?htIds="+ids
@@ -211,7 +210,7 @@
                 {fixed: 'right', title:'操作',minWidth:"130", toolbar: '#barDemo',align:'center'}
             ]]
         });
-        var tableIns = table.render({
+        table.render({
             elem:"#sbsgdic"
             ,cellMinWidth: 80
             ,url:"/eqInfo/selectEqInfo?htIds="+ids
@@ -247,7 +246,7 @@
                 {fixed: 'right', title:'操作',minWidth:"130", toolbar: '#barDemo',align:'center'}
             ]]
         });
-        var tableIns = table.render({
+        table.render({
             elem:"#sblydic"
             ,cellMinWidth: 80
             ,url:"/eqInfo/selectEqInfo?htIds="+ids
@@ -284,30 +283,18 @@
             ]]
         });
         //监听行工具事件
-        table.on('tool(sb)', function(obj){
-            var data = obj.data
-                ,  rate = obj.data.htGzspd;
-            console.log(obj);
-            if(rate == "无"){
-                if(obj.event === 'adds'){
-                    location.href="/user/apply/hhsbfj_table.html?eqIds="+obj.data.eqId;
-                }else{
-                    layer.msg("您是购置审批单号供应商,无需提交设备附件信息,进行下一步即可")
-                }
+        table.on('tool(handle)', function(obj){
+            var data = obj.data;
+            //console.log(obj)
+            if(obj.event === 'update'){
+                location.href="/admin/home/dictionary/update_dic.html?id="+id;
+            }else if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    obj.del();
+                    layer.close(index);
+                });
             }
         });
-        $("#addcheck").click(function(){
-            location.href="/user/apply/fixing_info.html?htIds="+ids;
-        })
-        if(rate == "无"){
-            $("#nextap").click(function(){
-                location.href="/user/apply/hh_upload_enclosure.html?htIds="+ids;
-            })
-        }else{
-            $("#nextap").click(function(){
-                location.href="/user/apply/hg_upload_enclosure.html?htIds="+ids;
-            })
-        }
     });
 </script>
 </body>
