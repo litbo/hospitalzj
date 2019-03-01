@@ -7,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
     <title>管理员系统</title>
-    <link rel="stylesheet" type="text/css" href="../static/layui/css/layui.css"/>
-    <link rel="stylesheet" type="text/css" href="../static/css/admin.css"/>
-    <link rel="stylesheet" href="../static/css/all.min.css"/>
-    <script src="../static/js/jquery-3.3.1.min.js"></script>
-    <script src="../static/js/basic.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/static/layui/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../static/static/css/admin.css"/>
+    <link rel="stylesheet" href="../../static/static/css/all.min.css"/>
+    <script src="../../static/static/js/jquery-3.3.1.min.js"></script>
+    <script src="../../static/static/js/basic.js"></script>
     <!--[if IE 8]>
-    <script type="text/javascript" src="../../static/admin/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
     <![endif]-->
     <style>
         .loading{
@@ -36,14 +36,14 @@
     <div class="main-layout-side">
         <!--LOGO-->
         <div class="m-logo">
-            <img src="../static/images/logo.png" alt="LOGO">
+            <img src="../../static/static/images/logo.png" alt="LOGO">
         </div>
         <!--site Map-->
         <!--<div class="map_site">-->
         <!--位置：首页-->
         <!--</div>-->
         <!--左侧主列表-->
-        <ul class="layui-nav layui-nav-tree" lay-shrink="all" lay-filter="leftNav" id="main_nav_list">
+        <ul class="layui-nav layui-nav-tree" id="main_nav_list">
             <li class="layui-nav-item" shiro:haspermission="" name="a">
                 <a href="?p=admin"><i class="fas fa-fas fa-home"></i>主页</a>
             </li>
@@ -73,15 +73,15 @@
             <!--顶部导航-->
             <div class="menus">
                 <div class="layui-nav">
-                    <div class="menus_con">
-                        <li class="layui-nav-item menu-btn">
-                            <a href="../apply_manage/index.html?p=apply"><i  class="layui-icon layui-icon-survey"></i><p class="menu-tit">验收管理</p></a>
+                    <div class="menus_con" lay-shrink="all" lay-filter="leftNav">
+                        <li class="layui-nav-item menu-btn" shiro:haspermission="验收管理">
+                            <a href="../../static/apply_manage/index.html?p=apply"><i class="layui-icon layui-icon-survey"></i><p class="menu-tit">验收管理</p></a>
                         </li>
-                        <li class="layui-nav-item menu-btn">
-                            <a href="../control/index.html?p=control"><i class="layui-icon layui-icon-diamond"></i><p class="menu-tit">质控管理</p></a>
+                        <li class="layui-nav-item menu-btn" shiro:haspermission="质控管理">
+                            <a href="../../static/control/index.html?p=control"><i class="layui-icon layui-icon-diamond"></i><p class="menu-tit">质控管理</p></a>
                         </li>
-                        <li class="layui-nav-item menu-btn">
-                            <a href="?p=admin"><i  class="layui-icon layui-icon-set"></i><p class="menu-tit">系统设置</p></a>
+                        <li class="layui-nav-item menu-btn" shiro:haspermission="系统设置">
+                            <a href="?p=admin"><i class="layui-icon layui-icon-set"></i><p class="menu-tit">系统设置</p></a>
                         </li>
                     </div>
                 </div>
@@ -148,8 +148,8 @@
     <div class="main-mask"></div>
 </div>
 <!--<script src="js/nav.js" type="text/javascript" charset="utf-8"></script>-->
-<script src="../static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
-<script src="../static/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../static/static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../static/static/js/main.js" type="text/javascript" charset="utf-8"></script>
 <script>
     layui.use('element',function(){
         var element = layui.element;
