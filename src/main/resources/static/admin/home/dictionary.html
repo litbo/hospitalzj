@@ -20,9 +20,34 @@
 <div class="layui-row">
     <div class="col-xs-12">
         <fieldset class="layui-elem-field layui-field-title">
-            <legend style="color: #000000;font-weight: bold;">所有字典信息</legend>
+            <legend style="color: #000000;font-weight: bold;">设备品名字典</legend>
         </fieldset>
-        <table class="layui-table" id="sbInfo" lay-filter="sb"></table>
+        <table class="layui-table" id="sbpmdic" lay-filter="sb"></table>
+
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend style="color: #000000;font-weight: bold;">设备采购方式字典</legend>
+        </fieldset>
+        <table class="layui-table" id="sbcgdic" lay-filter="sb"></table>
+
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend style="color: #000000;font-weight: bold;">设备经费来源</legend>
+        </fieldset>
+        <table class="layui-table" id="sbjfdic" lay-filter="sb"></table>
+
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend style="color: #000000;font-weight: bold;">设备用途</legend>
+        </fieldset>
+        <table class="layui-table" id="sbytdic" lay-filter="sb"></table>
+
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend style="color: #000000;font-weight: bold;">设备申购类型</legend>
+        </fieldset>
+        <table class="layui-table" id="sbsgdic" lay-filter="sb"></table>
+
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend style="color: #000000;font-weight: bold;">设备来源</legend>
+        </fieldset>
+        <table class="layui-table" id="sblydic" lay-filter="sb"></table>
         <div class="col-xs-12 btn">
             <button id="addcheck" class="layui-btn layui-btn-normal">添加新字典</button>
             <!-- <button id="nextap" class="layui-btn">下一步</button> -->
@@ -43,7 +68,187 @@
             ,   $ = layui.jquery
             ,   table = layui.table;
         var tableIns = table.render({
-            elem:"#sbInfo"
+            elem:"#sbpmdic"
+            ,cellMinWidth: 80
+            ,url:"/eqInfo/selectEqInfo?htIds="+ids
+            ,method:"GET"
+            ,response: {
+                statusName: 'status' //规定数据状态的字段名称，默认：code
+                ,statusCode: 200 //规定成功的状态码，默认：0
+                ,msgName: 'hint' //规定状态信息的字段名称，默认：msg
+                ,countName: 'total' //规定数据总数的字段名称，默认：count
+                ,dataName: 'data' //规定数据列表的字段名称，默认：data
+            }
+            ,parseData:function(res){
+                console.log(res);
+                return{
+                    "status":200
+                    ,"msg":res.message
+                    ,"count":res.total
+                    ,"data":res.data
+                }
+            },
+            title:"验收申请记录表",
+            // page:true,
+            cols:[[
+                {field:'eqPm', title:'字典类名',align:'center'},
+                {field:'eqXh', title:'字典字段',align:'center'},
+                // {field:'eqGg', title:'',align:'center'},
+                // {field:'eqPrice', title:'单价',sort: true,align:'center'},
+                // {field:'eqJldwId', title:'单位',align:'center'},
+                // {field:'eqNum', title:'数量',sort: true,align:'center'},
+                // {field:'eqTotalprice', title:'总价',sort: true,align:'center'},
+                // {field:'eqScbh', title:'出厂编号',align:'center'},
+                // {field:'eqCcdate', title:'出厂日期',align:'center'},
+                {fixed: 'right', title:'操作',minWidth:"130", toolbar: '#barDemo',align:'center'}
+            ]]
+        });
+        var tableIns = table.render({
+            elem:"#sbcgdic"
+            ,cellMinWidth: 80
+            ,url:"/eqInfo/selectEqInfo?htIds="+ids
+            ,method:"GET"
+            ,response: {
+                statusName: 'status' //规定数据状态的字段名称，默认：code
+                ,statusCode: 200 //规定成功的状态码，默认：0
+                ,msgName: 'hint' //规定状态信息的字段名称，默认：msg
+                ,countName: 'total' //规定数据总数的字段名称，默认：count
+                ,dataName: 'data' //规定数据列表的字段名称，默认：data
+            }
+            ,parseData:function(res){
+                console.log(res);
+                return{
+                    "status":200
+                    ,"msg":res.message
+                    ,"count":res.total
+                    ,"data":res.data
+                }
+            },
+            title:"验收申请记录表",
+            // page:true,
+            cols:[[
+                {field:'eqPm', title:'字典类名',align:'center'},
+                {field:'eqXh', title:'字典字段',align:'center'},
+                // {field:'eqGg', title:'',align:'center'},
+                // {field:'eqPrice', title:'单价',sort: true,align:'center'},
+                // {field:'eqJldwId', title:'单位',align:'center'},
+                // {field:'eqNum', title:'数量',sort: true,align:'center'},
+                // {field:'eqTotalprice', title:'总价',sort: true,align:'center'},
+                // {field:'eqScbh', title:'出厂编号',align:'center'},
+                // {field:'eqCcdate', title:'出厂日期',align:'center'},
+                {fixed: 'right', title:'操作',minWidth:"130", toolbar: '#barDemo',align:'center'}
+            ]]
+        });
+        var tableIns = table.render({
+            elem:"#sbjfdic"
+            ,cellMinWidth: 80
+            ,url:"/eqInfo/selectEqInfo?htIds="+ids
+            ,method:"GET"
+            ,response: {
+                statusName: 'status' //规定数据状态的字段名称，默认：code
+                ,statusCode: 200 //规定成功的状态码，默认：0
+                ,msgName: 'hint' //规定状态信息的字段名称，默认：msg
+                ,countName: 'total' //规定数据总数的字段名称，默认：count
+                ,dataName: 'data' //规定数据列表的字段名称，默认：data
+            }
+            ,parseData:function(res){
+                console.log(res);
+                return{
+                    "status":200
+                    ,"msg":res.message
+                    ,"count":res.total
+                    ,"data":res.data
+                }
+            },
+            title:"验收申请记录表",
+            // page:true,
+            cols:[[
+                {field:'eqPm', title:'字典类名',align:'center'},
+                {field:'eqXh', title:'字典字段',align:'center'},
+                // {field:'eqGg', title:'',align:'center'},
+                // {field:'eqPrice', title:'单价',sort: true,align:'center'},
+                // {field:'eqJldwId', title:'单位',align:'center'},
+                // {field:'eqNum', title:'数量',sort: true,align:'center'},
+                // {field:'eqTotalprice', title:'总价',sort: true,align:'center'},
+                // {field:'eqScbh', title:'出厂编号',align:'center'},
+                // {field:'eqCcdate', title:'出厂日期',align:'center'},
+                {fixed: 'right', title:'操作',minWidth:"130", toolbar: '#barDemo',align:'center'}
+            ]]
+        });
+        var tableIns = table.render({
+            elem:"#sbytdic"
+            ,cellMinWidth: 80
+            ,url:"/eqInfo/selectEqInfo?htIds="+ids
+            ,method:"GET"
+            ,response: {
+                statusName: 'status' //规定数据状态的字段名称，默认：code
+                ,statusCode: 200 //规定成功的状态码，默认：0
+                ,msgName: 'hint' //规定状态信息的字段名称，默认：msg
+                ,countName: 'total' //规定数据总数的字段名称，默认：count
+                ,dataName: 'data' //规定数据列表的字段名称，默认：data
+            }
+            ,parseData:function(res){
+                console.log(res);
+                return{
+                    "status":200
+                    ,"msg":res.message
+                    ,"count":res.total
+                    ,"data":res.data
+                }
+            },
+            title:"验收申请记录表",
+            // page:true,
+            cols:[[
+                {field:'eqPm', title:'字典类名',align:'center'},
+                {field:'eqXh', title:'字典字段',align:'center'},
+                // {field:'eqGg', title:'',align:'center'},
+                // {field:'eqPrice', title:'单价',sort: true,align:'center'},
+                // {field:'eqJldwId', title:'单位',align:'center'},
+                // {field:'eqNum', title:'数量',sort: true,align:'center'},
+                // {field:'eqTotalprice', title:'总价',sort: true,align:'center'},
+                // {field:'eqScbh', title:'出厂编号',align:'center'},
+                // {field:'eqCcdate', title:'出厂日期',align:'center'},
+                {fixed: 'right', title:'操作',minWidth:"130", toolbar: '#barDemo',align:'center'}
+            ]]
+        });
+        var tableIns = table.render({
+            elem:"#sbsgdic"
+            ,cellMinWidth: 80
+            ,url:"/eqInfo/selectEqInfo?htIds="+ids
+            ,method:"GET"
+            ,response: {
+                statusName: 'status' //规定数据状态的字段名称，默认：code
+                ,statusCode: 200 //规定成功的状态码，默认：0
+                ,msgName: 'hint' //规定状态信息的字段名称，默认：msg
+                ,countName: 'total' //规定数据总数的字段名称，默认：count
+                ,dataName: 'data' //规定数据列表的字段名称，默认：data
+            }
+            ,parseData:function(res){
+                console.log(res);
+                return{
+                    "status":200
+                    ,"msg":res.message
+                    ,"count":res.total
+                    ,"data":res.data
+                }
+            },
+            title:"验收申请记录表",
+            // page:true,
+            cols:[[
+                {field:'eqPm', title:'字典类名',align:'center'},
+                {field:'eqXh', title:'字典字段',align:'center'},
+                // {field:'eqGg', title:'',align:'center'},
+                // {field:'eqPrice', title:'单价',sort: true,align:'center'},
+                // {field:'eqJldwId', title:'单位',align:'center'},
+                // {field:'eqNum', title:'数量',sort: true,align:'center'},
+                // {field:'eqTotalprice', title:'总价',sort: true,align:'center'},
+                // {field:'eqScbh', title:'出厂编号',align:'center'},
+                // {field:'eqCcdate', title:'出厂日期',align:'center'},
+                {fixed: 'right', title:'操作',minWidth:"130", toolbar: '#barDemo',align:'center'}
+            ]]
+        });
+        var tableIns = table.render({
+            elem:"#sblydic"
             ,cellMinWidth: 80
             ,url:"/eqInfo/selectEqInfo?htIds="+ids
             ,method:"GET"
