@@ -18,26 +18,10 @@
 <body>
 <div class="layui-row">
     <div class="col-xs-12">
-        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-            <ul class="layui-tab-title">
-                <li class="layui-this">待检测任务</li>
-                <li>新建任务</li>
-            </ul>
-            <div class="layui-tab-content">
-                <div class="layui-tab-item layui-show">
-                    <fieldset class="layui-elem-field layui-field-title">
-                        <legend style="font-weight: bold;color: red;">待处理检测任务</legend>
-                    </fieldset>
-                    <table class="layui-table" id="noHandle" lay-filter="handle"></table>
-                </div>
-                <div class="layui-tab-item">
-                    <fieldset class="layui-elem-field layui-field-title">
-                        <legend style="font-weight: bold;color: #000000;">新建任务</legend>
-                    </fieldset>
-                    <table class="layui-table" id="myJob" lay-filter="handle"></table>
-                </div>
-            </div>
-        </div>
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend style="font-weight: bold;color: red;">待处理检测任务</legend>
+        </fieldset>
+        <table class="layui-table" id="noHandle" lay-filter="handle"></table>
     </div>
 </div>
 <script type="text/html" id="toolbarDemo">
@@ -47,9 +31,6 @@
 
 <script type="text/html" id="noTest">
     <a class="layui-btn layui-btn-xs" lay-event="handle">处理</a>
-</script>
-<script type="text/html" id="addJob">
-    <a class="layui-btn layui-btn-xs" lay-event="add">添加任务</a>
 </script>
 <script>
     layui.use(['element','table','jquery'],function(){
@@ -86,48 +67,12 @@
                 {fixed: 'right', title:'操作',toolbar: '#noTest',align:'center'}
             ]]
         });
-        table.render({
-            elem:"#myJob",
-            url:"ss",
-            method:"GET",
-            toolbar:"#toolbarDemo",
-            response: {
-                statusName: 'status' //规定数据状态的字段名称，默认：code
-                ,statusCode: 200 //规定成功的状态码，默认：0
-                ,msgName: 'hint' //规定状态信息的字段名称，默认：msg
-                ,countName: 'total' //规定数据总数的字段名称，默认：count
-                ,dataName: 'data' //规定数据列表的字段名称，默认：data
-            },
-            parseData:function(res){
-                console.log(res);
-                return{
-                    "status":200
-                    ,"msg":res.message
-                    ,"count":res.total
-                    ,"data":res.data
-                }
-            },
-            cols:[[
-                {field:'eqPm', title:'设备名称',align:'center'},
-                {field:'eqXh', title:'型号',align:'center'},
-                {field:'eqGg', title:'科室',align:'center'},
-                {field:'eqPrice', title:'品牌',align:'center'},
-                {field:'eqJldwId', title:'总数量',align:'center'},
-                {field:'eqJldwId', title:'已检数量',align:'center'},
-                {field:'eqJldwId', title:'待检数量',align:'center',sort: true},
-                {fixed: 'right', title:'操作',toolbar: '#addJob',align:'center'}
-            ]]
-        });
         //监听行工具事件
         table.on('tool(test)', function(obj){
             var data = obj.data;
             //console.log(obj)
             if(obj.event === 'handle'){
                 location.href="/control/waiting_fixing/fix_info.html?id="+obj.data.id;
-            }else if(obj.event === 'add'){
-                layer.open({
-                    type:2
-                })
             }
         });
     });

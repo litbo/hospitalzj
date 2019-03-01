@@ -20,14 +20,11 @@
         .btn{
             margin-top: 50px;
         }
-        .bf{
-            display: none;
-        }
     </style>
 </head>
 <body>
 <div class="layui-row">
-    <p style="height: 34px;width: 100%;line-height: 34px;background-color: lightyellow; text-align: center;"><span class="sign">***</span>请谨慎录入数据信息<span class="sign">***</span></p>
+    <p style="height: 34px;width: 100%;line-height: 34px;background-color: lightyellow; text-align: center;"><span class="sign">***</span>请谨慎核对数据信息<span class="sign">***</span></p>
     <div class="col-xs-12">
         <fieldset class="layui-elem-field layui-field-title">
             <legend style="font-size: 22px;font-weight: bold;">医疗设备通用电气安全检测原始记录表</legend>
@@ -39,19 +36,19 @@
             <div class="layui-form-item col-md-4">
                 <label class="layui-form-label">电源电压(V)</label>
                 <div class="layui-input-block">
-                    <input type="text" name="title" required placeholder="允许值（220±22）V" autocomplete="off" class="layui-input">
+                    <input type="text" name="dydyValue" required placeholder="允许值（220±22）V" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item col-md-4">
                 <label class="layui-form-label">保护接地阻抗（mΩ）</label>
                 <div class="layui-input-block">
-                    <input type="text" name="title" required  placeholder="允许值 ≤200 mΩ" autocomplete="off" class="layui-input">
+                    <input type="text" name="jdzkValue" required  placeholder="允许值 ≤200 mΩ" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item col-md-4">
                 <label class="layui-form-label">绝缘阻抗(电源—外壳)(MΩ)</label>
                 <div class="layui-input-block">
-                    <input type="text" name="title" required placeholder="允许值 ≥10 MΩ" autocomplete="off" class="layui-input">
+                    <input type="text" name="jyzkValue" required placeholder="允许值 ≥10 MΩ" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <fieldset class="layui-elem-field layui-field-title">
@@ -60,13 +57,13 @@
             <div class="layui-form-item col-md-4">
                 <label class="layui-form-label">正向</label>
                 <div class="layui-input-block">
-                    <input type="text" name="title" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
+                    <input type="text" name="ddldlZcZxValue" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item col-md-4">
                 <label class="layui-form-label">反向</label>
                 <div class="layui-input-block">
-                    <input type="text" name="title" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
+                    <input type="text" name="ddldlZcFxValue" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <fieldset class="layui-elem-field layui-field-title">
@@ -75,13 +72,13 @@
             <div class="layui-form-item col-md-4">
                 <label class="layui-form-label">正向断零</label>
                 <div class="layui-input-block">
-                    <input type="text" name="title" required placeholder="允许值 ≤1000µA" autocomplete="off" class="layui-input">
+                    <input type="text" name="ddldlDyZxdlValue" required placeholder="允许值 ≤1000µA" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item col-md-4">
                 <label class="layui-form-label">反向断零</label>
                 <div class="layui-input-block">
-                    <input type="text" name="title" required placeholder="允许值 ≤1000µA" autocomplete="off" class="layui-input">
+                    <input type="text" name="ddldlDyFxdlValue" required placeholder="允许值 ≤1000µA" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <fieldset class="layui-elem-field layui-field-title">
@@ -90,13 +87,13 @@
             <div class="layui-form-item col-md-4">
                 <label class="layui-form-label">正向</label>
                 <div class="layui-input-block">
-                    <input type="text" name="title" required placeholder="允许值 ≤100µA" autocomplete="off" class="layui-input">
+                    <input type="text" name="wkldlZcZxValue" required placeholder="允许值 ≤100µA" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item col-md-4">
                 <label class="layui-form-label">反向</label>
                 <div class="layui-input-block">
-                    <input type="text" name="title" required placeholder="允许值 ≤100µA" autocomplete="off" class="layui-input">
+                    <input type="text" name="wkldlZcFxValue" required placeholder="允许值 ≤100µA" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <fieldset class="layui-elem-field layui-field-title">
@@ -105,144 +102,216 @@
             <div class="layui-form-item col-md-4">
                 <label class="layui-form-label">正向断零</label>
                 <div class="layui-input-block">
-                    <input type="text" name="title" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
+                    <input type="text" name="wkldlDyZxdlValue" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item col-md-4">
+                <label class="layui-form-label">正向断地</label>
+                <div class="layui-input-block">
+                    <input type="text" name="wkldlDyFxdlValue" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item col-md-4">
                 <label class="layui-form-label">反向断零</label>
                 <div class="layui-input-block">
-                    <input type="text" name="title" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
+                    <input type="text" name="wkldlDyZxdlValue" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item col-md-4">
+                <label class="layui-form-label">反向断地</label>
+                <div class="layui-input-block">
+                    <input type="text" name="wkldlDyFxdlValue" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <fieldset class="layui-elem-field layui-field-title">
                 <legend style="color: red;">应用端类型选择</legend>
             </fieldset>
-            <div class="layui-form-item col-md-4">
-                <label class="layui-form-label">选择类型</label>
-                <input type="radio" name="ytype" value="B/BF" title="B型/BF型" checked>
-                <input type="radio" name="ytype" value="CF" title="CF型">
-            </div>
-            <div class="bf">
-                <fieldset class="layui-elem-field layui-field-title">
-                    <legend style="color: red;">患者漏电流（µA）—— 正常状态</legend>
-                </fieldset>
-                <div class="layui-form-item col-md-4">
-                    <label class="layui-form-label">正向</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title" required placeholder="允许值 ≤100µA" autocomplete="off" class="layui-input">
+            <!--<div id="choses" class="layui-form-item col-md-4">-->
+                <!--<label class="layui-form-label">选择类型</label>-->
+                <!--<input type="radio" name="bcType" value="B/BF" title="" checked>-->
+                <!--<input type="radio" name="bcType" value="CF" title="">-->
+            <!--</div>-->
+            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">
+                        B型/BF型
+                    </li>
+                    <li>
+                        CF型
+                    </li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <fieldset class="layui-elem-field layui-field-title">
+                            <legend style="color: red;">患者漏电流（µA）—— 正常状态</legend>
+                        </fieldset>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">正向</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzldlZcZxValue" required placeholder="允许值 ≤100µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">反向</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzldlZcFxValue" required placeholder="允许值 ≤100µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <fieldset class="layui-elem-field layui-field-title">
+                            <legend style="color: red;">患者漏电流（µA）—— 单一故障状态</legend>
+                        </fieldset>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">正向断零</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzldlDyZxdlValue" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">正向断地</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzldlDyFxdlValue" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">反向断零</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzldlDyZxdlValue" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">反向断地</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzldlDyFxdlValue" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <fieldset class="layui-elem-field layui-field-title">
+                            <legend style="color: red;">患者辅助漏电流（µA）—— 正常状态</legend>
+                        </fieldset>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">正向</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzfzldlZcZxValue" required placeholder="允许值 ≤100µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">反向</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzfzldlZcFxValue" required placeholder="允许值 ≤100µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <fieldset class="layui-elem-field layui-field-title">
+                            <legend style="color: red;">患者辅助漏电流（µA）—— 单一故障状态</legend>
+                        </fieldset>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">正向断零</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzfzldlDyZxdlValue" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">正向断地</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzfzldlDyFxdlValue" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">反向断零</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzfzldlDyZxdlValue" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">反向断地</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzfzldlDyFxdlValue" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="layui-form-item col-md-4">
-                    <label class="layui-form-label">反向</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title" required placeholder="允许值 ≤100µA" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <fieldset class="layui-elem-field layui-field-title">
-                    <legend style="color: red;">患者漏电流（µA）—— 单一故障状态</legend>
-                </fieldset>
-                <div class="layui-form-item col-md-4">
-                    <label class="layui-form-label">正向断零</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item col-md-4">
-                    <label class="layui-form-label">反向断零</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <fieldset class="layui-elem-field layui-field-title">
-                    <legend style="color: red;">患者辅助漏电流（µA）—— 正常状态</legend>
-                </fieldset>
-                <div class="layui-form-item col-md-4">
-                    <label class="layui-form-label">正向</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title" required placeholder="允许值 ≤100µA" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item col-md-4">
-                    <label class="layui-form-label">反向</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title" required placeholder="允许值 ≤100µA" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <fieldset class="layui-elem-field layui-field-title">
-                    <legend style="color: red;">患者辅助漏电流（µA）—— 单一故障状态</legend>
-                </fieldset>
-                <div class="layui-form-item col-md-4">
-                    <label class="layui-form-label">正向断零</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item col-md-4">
-                    <label class="layui-form-label">反向断零</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title" required placeholder="允许值 ≤500µA" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-            </div>
-            <div class="cf">
-                <fieldset class="layui-elem-field layui-field-title">
-                    <legend style="color: red;">患者漏电流（µA）—— 正常状态</legend>
-                </fieldset>
-                <div class="layui-form-item col-md-4">
-                    <label class="layui-form-label">正向</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title" required placeholder="允许值 ≤10µA" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item col-md-4">
-                    <label class="layui-form-label">反向</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title" required placeholder="允许值 ≤10µA" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <fieldset class="layui-elem-field layui-field-title">
-                    <legend style="color: red;">患者漏电流（µA）—— 单一故障状态</legend>
-                </fieldset>
-                <div class="layui-form-item col-md-4">
-                    <label class="layui-form-label">正向断零</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title" required placeholder="允许值 ≤50µA" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item col-md-4">
-                    <label class="layui-form-label">反向断零</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title" required placeholder="允许值 ≤50µA" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <fieldset class="layui-elem-field layui-field-title">
-                    <legend style="color: red;">患者辅助漏电流（µA）—— 正常状态</legend>
-                </fieldset>
-                <div class="layui-form-item col-md-4">
-                    <label class="layui-form-label">正向</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title" required placeholder="允许值 ≤10µA" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item col-md-4">
-                    <label class="layui-form-label">反向</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title" required placeholder="允许值 ≤10µA" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <fieldset class="layui-elem-field layui-field-title">
-                    <legend style="color: red;">患者辅助漏电流（µA）—— 单一故障状态</legend>
-                </fieldset>
-                <div class="layui-form-item col-md-4">
-                    <label class="layui-form-label">正向断零</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title" required placeholder="允许值 ≤50µA" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item col-md-4">
-                    <label class="layui-form-label">反向断零</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title" required placeholder="允许值 ≤50µA" autocomplete="off" class="layui-input">
+                    <div class="layui-tab-item">
+                        <fieldset class="layui-elem-field layui-field-title">
+                            <legend style="color: red;">患者漏电流（µA）—— 正常状态</legend>
+                        </fieldset>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">正向</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzldlZcZxValue" required placeholder="允许值 ≤10µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">反向</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzldlZcFxValue" required placeholder="允许值 ≤10µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <fieldset class="layui-elem-field layui-field-title">
+                            <legend style="color: red;">患者漏电流（µA）—— 单一故障状态</legend>
+                        </fieldset>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">正向断零</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzldlDyZxdlValue" required placeholder="允许值 ≤50µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">正向断地</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzldlDyFxdlValue" required placeholder="允许值 ≤50µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">反向断零</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzldlDyZxdlValue" required placeholder="允许值 ≤50µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">反向断地</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzldlDyFxdlValue" required placeholder="允许值 ≤50µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <fieldset class="layui-elem-field layui-field-title">
+                            <legend style="color: red;">患者辅助漏电流（µA）—— 正常状态</legend>
+                        </fieldset>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">正向</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzfzldlZcZxValue" required placeholder="允许值 ≤10µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">反向</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzfzldlZcFxValue" required placeholder="允许值 ≤10µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <fieldset class="layui-elem-field layui-field-title">
+                            <legend style="color: red;">患者辅助漏电流（µA）—— 单一故障状态</legend>
+                        </fieldset>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">正向断零</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzfzldlDyZxdlValue" required placeholder="允许值 ≤50µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">正向断地</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzfzldlDyFxdlValue" required placeholder="允许值 ≤50µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">反向断零</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzfzldlDyZxdlValue" required placeholder="允许值 ≤50µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item col-md-4">
+                            <label class="layui-form-label">反向断地</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="hzfzldlDyFxdlValue" required placeholder="允许值 ≤50µA" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -307,7 +376,7 @@
         });
         $("#next").click(function () {
             location.href="";
-        })
+        });
     });
 </script>
 </body>
