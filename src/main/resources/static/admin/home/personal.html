@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>人员分配管理</title>
+    <link rel="stylesheet" type="text/css" href="../../static/layui/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../static/css/admin.css"/>
+    <script src="../../static/layui/layui.js"></script>
+    <style>
+        .btn{
+            margin-top: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-row">
+    <div class="col-xs-12">
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend style="color: #000000;font-weight: bold;">人员分配管理</legend>
+        </fieldset>
+        <table class="layui-table" id="sbInfo" lay-filter="sb"></table>
+        <div class="col-xs-12 btn">
+            <!-- <button id="addcheck" class="layui-btn layui-btn-normal">添加新字典</button> -->
+            <!-- <button id="nextap" class="layui-btn">下一步</button> -->
+        </div>
+    </div>
+</div>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="adds">添加设备附件</a>
+</script>
+<script>
+    // 获取上个页面传递的类型
+    var type = window.location.search;
+    var ids = parseInt(type.split("=")[1]);
+    var rate;
+    //Demo
+    layui.use(['layer','jquery','table'], function(){
+        var layer = layui.layer
+            ,   $ = layui.jquery
+            ,   table = layui.table;
+        var tableIns = table.render({
+            elem:"#sbInfo"
+            ,cellMinWidth: 80
+            ,url:"/eqInfo/selectEqInfo?htIds="+ids
+            ,method:"GET"
+            ,response: {
+                statusName: 'status' //规定数据状态的字段名称，默认：code
+                ,statusCode: 200 //规定成功的状态码，默认：0
+                ,msgName: 'hint' //规定状态信息的字段名称，默认：msg
+                ,countName: 'total' //规定数据总数的字段名称，默认：count
+                ,dataName: 'data' //规定数据列表的字段名称，默认：data
+            }
+            ,parseData:function(res){
+                console.log(res);
+                return{
+                    "status":200
+                    ,"msg":res.message
+                    ,"count":res.total
+                    ,"data":res.data
+                }
+            },
+            title:"验收申请记录表",
+            // page:true,
+            cols:[[
+                {field:'eqPm', title:'字典类名',align:'center'},
+                {field:'eqXh', title:'字典字段',align:'center'},
+                // {field:'eqGg', title:'',align:'center'},
+                // {field:'eqPrice', title:'单价',sort: true,align:'center'},
+                // {field:'eqJldwId', title:'单位',align:'center'},
+                // {field:'eqNum', title:'数量',sort: true,align:'center'},
+                // {field:'eqTotalprice', title:'总价',sort: true,align:'center'},
+                // {field:'eqScbh', title:'出厂编号',align:'center'},
+                // {field:'eqCcdate', title:'出厂日期',align:'center'},
+                {fixed: 'right', title:'操作',minWidth:"130", toolbar: '#barDemo',align:'center'}
+            ]]
+        });
+        //监听行工具事件
+        table.on('tool(sb)', function(obj){
+            var data = obj.data
+                ,  rate = obj.data.htGzspd;
+            console.log(obj);
+            if(rate == "无"){
+                if(obj.event === 'adds'){
+                    location.href="/user/apply/hhsbfj_table.html?eqIds="+obj.data.eqId;
+                }else{
+                    layer.msg("您是购置审批单号供应商,无需提交设备附件信息,进行下一步即可")
+                }
+            }
+        });
+        $("#addcheck").click(function(){
+            location.href="/user/apply/fixing_info.html?htIds="+ids;
+        })
+        if(rate == "无"){
+            $("#nextap").click(function(){
+                location.href="/user/apply/hh_upload_enclosure.html?htIds="+ids;
+            })
+        }else{
+            $("#nextap").click(function(){
+                location.href="/user/apply/hg_upload_enclosure.html?htIds="+ids;
+            })
+        }
+    });
+</script>
+</body>
+
+</html>

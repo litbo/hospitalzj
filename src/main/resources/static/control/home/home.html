@@ -14,41 +14,49 @@
     <![endif]-->
     <script src="../../static/js/basic.js"></script>
     <script src="../../static/layui/layui.js"></script>
-    <style>
-        .layui-elem-field{
-            width: 100%;
-            margin-top: 20px;
-            color: red;
-        }
-    </style>
 </head>
 <body>
 <div class="layui-row">
     <div class="col-xs-12">
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
             <ul class="layui-tab-title">
-                <li class="layui-this">新设备验收检测提醒</li>
-                <li>检测未通过提醒</li>
+                <li class="layui-this">检测任务清单</li>
+                <li>检测任务预警</li>
             </ul>
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">
                     <fieldset class="layui-elem-field layui-field-title">
-                        <legend style="color: red;">检测提醒</legend>
+                        <legend style="font-weight: bold;color: red;">待处理检测任务</legend>
                     </fieldset>
-                    <table class="layui-hide" id="test" lay-filter="handle"></table>
+                    <table class="layui-hide" id="noHandle" lay-filter="handle"></table>
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend style="font-weight: bold;color: orange;">待审核检测任务</legend>
+                    </fieldset>
+                    <table class="layui-hide" id="onHandle"></table>
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend style="font-weight: bold;color: #000000;">已检测成功任务</legend>
+                    </fieldset>
+                    <table class="layui-hide" id="isHandle" lay-filter="handle"></table>
                 </div>
                 <div class="layui-tab-item">
                     <fieldset class="layui-elem-field layui-field-title">
-                        <legend style="color: red;">任务预警</legend>
+                        <legend style="font-weight: bold;color: red;">检测周期提醒</legend>
                     </fieldset>
-                    <table class="layui-hide" id="danger" lay-filter="handle"></table>
+                    <table class="layui-hide" id="istimer" lay-filter="handle"></table>
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend style="font-weight: bold;color: red;">审核不通过提醒</legend>
+                    </fieldset>
+                    <table class="layui-hide" id="nopass" lay-filter="handle"></table>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script type="text/html" id="barDemo">
+<script type="text/html" id="noHandles">
     <a class="layui-btn layui-btn-xs" lay-event="hands">处理</a>
+</script>
+<script type="text/html" id="isHandles">
+    <a class="layui-btn layui-btn-xs" lay-event="more">查看详情</a>
 </script>
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
@@ -62,7 +70,7 @@
             ,   table = layui.table
             ,   element = layer.element;
         table.render({
-            elem:"#test",
+            elem:"#noHandle",
             url:"s",
             toolbar:"#toolbarDemo",
             method:"GET",
@@ -83,16 +91,16 @@
                 }
             },
             cols:[[
-                {field:'eqPm', title:'科室',align:'center'},
-                {field:'eqXh', title:'数量',align:'center'},
+                {field:'eqPm', title:'设备名称',align:'center'},
+                {field:'eqXh', title:'型号',align:'center'},
                 {field:'eqGg', title:'品牌',align:'center'},
-                {field:'eqPrice', title:'型号',sort: true,align:'center'},
-                {field:'eqJldwId', title:'设备名称',align:'center'},
-                {fixed: 'right', title:'验收检测',toolbar: '#barDemo',align:'center'}
+                {field:'eqPrice', title:'数量',sort: true,align:'center'},
+                {field:'eqJldwId', title:'科室',align:'center'},
+                {fixed: 'right', title:'操作',toolbar: '#noHandles',align:'center'}
             ]]
         });
         table.render({
-            elem:"#danger",
+            elem:"#onHandle",
             url:"s",
             toolbar:"#toolbarDemo",
             method:"GET",
@@ -113,18 +121,111 @@
                 }
             },
             cols:[[
-                {field:'eqPm', title:'检测仪器名称',align:'center'},
-                {field:'eqXh', title:'机身编码',align:'center'},
-                {field:'eqGg', title:'校准日期',align:'center'},
-                {field:'eqPrice', title:'剩余时间',sort: true,align:'center'},
-                {fixed: 'right', title:'操作',toolbar: '#barDemo',align:'center'}
+                {field:'eqPm', title:'设备名称',align:'center'},
+                {field:'eqXh', title:'型号',align:'center'},
+                {field:'eqGg', title:'品牌',align:'center'},
+                {field:'eqPrice', title:'数量',sort: true,align:'center'},
+                {field:'eqJldwId', title:'科室',align:'center'},
+                {field:'eqJldwId', title:'状态',align:'center'},
+            ]]
+        });
+        table.render({
+            elem:"#isHandle",
+            url:"s",
+            toolbar:"#toolbarDemo",
+            method:"GET",
+            response: {
+                statusName: 'status' //规定数据状态的字段名称，默认：code
+                ,statusCode: 200 //规定成功的状态码，默认：0
+                ,msgName: 'hint' //规定状态信息的字段名称，默认：msg
+                ,countName: 'total' //规定数据总数的字段名称，默认：count
+                ,dataName: 'data' //规定数据列表的字段名称，默认：data
+            },
+            parseData:function(res){
+                console.log(res);
+                return{
+                    "status":200
+                    ,"msg":res.message
+                    ,"count":res.total
+                    ,"data":res.data
+                }
+            },
+            cols:[[
+                {field:'eqPm', title:'设备名称',align:'center'},
+                {field:'eqXh', title:'型号',align:'center'},
+                {field:'eqGg', title:'品牌',align:'center'},
+                {field:'eqPrice', title:'数量',sort: true,align:'center'},
+                {field:'eqJldwId', title:'科室',align:'center'},
+                {fixed: 'right', title:'操作',toolbar: '#isHandles',align:'center'}
+            ]]
+        });
+        table.render({
+            elem:"#istimer",
+            url:"s",
+            toolbar:"#toolbarDemo",
+            method:"GET",
+            response: {
+                statusName: 'status' //规定数据状态的字段名称，默认：code
+                ,statusCode: 200 //规定成功的状态码，默认：0
+                ,msgName: 'hint' //规定状态信息的字段名称，默认：msg
+                ,countName: 'total' //规定数据总数的字段名称，默认：count
+                ,dataName: 'data' //规定数据列表的字段名称，默认：data
+            },
+            parseData:function(res){
+                console.log(res);
+                return{
+                    "status":200
+                    ,"msg":res.message
+                    ,"count":res.total
+                    ,"data":res.data
+                }
+            },
+            cols:[[
+                {field:'eqPm', title:'设备名称',align:'center'},
+                {field:'eqXh', title:'型号',align:'center'},
+                {field:'eqGg', title:'品牌',align:'center'},
+                {field:'eqPrice', title:'数量',sort: true,align:'center'},
+                {field:'eqJldwId', title:'科室',align:'center'},
+                {fixed: 'right', title:'操作',toolbar: '#noHandles',align:'center'}
+            ]]
+        });
+        table.render({
+            elem:"#nopass",
+            url:"s",
+            toolbar:"#toolbarDemo",
+            method:"GET",
+            response: {
+                statusName: 'status' //规定数据状态的字段名称，默认：code
+                ,statusCode: 200 //规定成功的状态码，默认：0
+                ,msgName: 'hint' //规定状态信息的字段名称，默认：msg
+                ,countName: 'total' //规定数据总数的字段名称，默认：count
+                ,dataName: 'data' //规定数据列表的字段名称，默认：data
+            },
+            parseData:function(res){
+                console.log(res);
+                return{
+                    "status":200
+                    ,"msg":res.message
+                    ,"count":res.total
+                    ,"data":res.data
+                }
+            },
+            cols:[[
+                {field:'eqPm', title:'设备名称',align:'center'},
+                {field:'eqXh', title:'型号',align:'center'},
+                {field:'eqGg', title:'品牌',align:'center'},
+                {field:'eqPrice', title:'数量',sort: true,align:'center'},
+                {field:'eqJldwId', title:'科室',align:'center'},
+                {fixed: 'right', title:'操作',toolbar: '#noHandles',align:'center'}
             ]]
         });
         table.on('tool(handle)', function(obj){
             var data = obj.data;
             //console.log(obj)
             if(obj.event === 'hands'){
-                location.href="/control/waiting_fixing/onuse_fix.html?id="+obj.data.id;
+                location.href="/control/waiting_fixing/fix_info.html?id="+obj.data.id;
+            }else if(obj.event === 'more'){
+                location.href="?id="+obj.data.id;
             }
         });
     });

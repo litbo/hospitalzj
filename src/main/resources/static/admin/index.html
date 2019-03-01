@@ -40,7 +40,7 @@
         </div>
         <!--site Map-->
         <!--<div class="map_site">-->
-            <!--位置：首页-->
+        <!--位置：首页-->
         <!--</div>-->
         <!--左侧主列表-->
         <ul class="layui-nav layui-nav-tree" lay-shrink="all" lay-filter="leftNav" id="main_nav_list">
@@ -48,16 +48,16 @@
                 <a href="?p=admin"><i class="fas fa-fas fa-home"></i>主页</a>
             </li>
             <li class="layui-nav-item" shiro:haspermission="" name="a">
-                <a href="javascript:void(0);" data-url="./home/home.html" data-id="4" data-text="字典管理"><i class="fas fa-star"></i>字典管理</a>
+                <a href="javascript:void(0);" data-url="./home/dictionary.html" data-id="4" data-text="字典管理"><i class="layui-icon layui-icon-read"></i>字典管理</a>
             </li>
             <li class="layui-nav-item" shiro:haspermission="" name="a">
-                <a href="javascript:void(0);" data-url="./home/home.html" data-id="41" data-text="权限分配"><i class="fas fa-star"></i>权限分配</a>
+                <a href="javascript:void(0);" data-url="./home/powers.html" data-id="41" data-text="权限分配"><i class="layui-icon layui-icon-friends"></i>权限分配</a>
             </li>
             <li class="layui-nav-item" shiro:haspermission="" name="a">
-                <a href="javascript:void(0);" data-url="./home/home.html" data-id="42" data-text="人员分配设置"><i class="fas fa-star"></i>人员分配设置</a>
+                <a href="javascript:void(0);" data-url="./home/personal.html" data-id="42" data-text="人员分配设置"><i class="layui-icon layui-icon-group"></i>人员分配设置</a>
             </li>
             <li class="layui-nav-item" shiro:haspermission="" name="a">
-                <a href="javascript:void(0);" data-url="./home/home.html" data-id="43" data-text="检测仪器分配设置"><i class="fas fa-star"></i>检测仪器分配设置</a>
+                <a href="javascript:void(0);" data-url="./home/check_fixing.html" data-id="43" data-text="检测仪器分配设置"><i class="layui-icon layui-icon-engine"></i>检测仪器分配设置</a>
             </li>
         </ul>
     </div>
@@ -156,7 +156,7 @@
     });
 
     window.onload = function(){
-            var homes = document.getElementById('home');
+        var homes = document.getElementById('home');
         //判断当前页面渲染是否正确，不正确的话将刷新页面重新渲染
         if($('.layui-nav-tree .layui-nav-child').length >0 && $('.layui-nav-tree .layui-nav-child').prev().children("span").length <= 0){
             $.cookie("reload",$.cookie("reload")+"-66-");//判断刷新几次

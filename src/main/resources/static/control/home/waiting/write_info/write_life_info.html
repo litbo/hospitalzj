@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
     <title>心电监护仪检测数据</title>
-    <link rel="stylesheet" type="text/css" href="../../../static/layui/css/layui.css"/>
-    <link rel="stylesheet" type="text/css" href="../../../static/css/admin.css"/>
-    <link rel="stylesheet" href="../../../static/css/all.min.css"/>
-    <script src="../../../static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="../../../../static/layui/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../../static/css/admin.css"/>
+    <link rel="stylesheet" href="../../../../static/css/all.min.css"/>
+    <script src="../../../../static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
     <!--[if IE 8]>
-    <script type="text/javascript" src="../../../static/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../../../static/js/jquery-1.11.3.min.js"></script>
     <![endif]-->
     <style>
         .layui-elem-field{
@@ -24,7 +24,7 @@
 </head>
 <body>
 <div class="layui-row">
-    <p style="height: 34px;width: 100%;line-height: 34px;background-color: lightyellow; text-align: center;"><span class="sign">***</span>请谨慎核对数据信息<span class="sign">***</span></p>
+    <p style="height: 34px;width: 100%;line-height: 34px;background-color: lightyellow; text-align: center;"><span class="sign">***</span>请谨慎录入数据信息<span class="sign">***</span></p>
     <div class="col-xs-12">
         <fieldset class="layui-elem-field layui-field-title">
             <legend style="font-size: 22px;font-weight: bold;">生命体征模拟器检测数据录入</legend>
@@ -579,9 +579,9 @@
     //Demo
     layui.use(['element','jquery','form','layer'], function(){
         var element = layui.element
-        ,   $ = layui.jquery
-        ,   form = layui.form
-        ,   layer = layui.layer;
+            ,   $ = layui.jquery
+            ,   form = layui.form
+            ,   layer = layui.layer;
         form.on('submit(subman)',function (data) {
             console.log(data.field);
             $.ajax({
