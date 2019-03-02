@@ -73,51 +73,59 @@ public class Dqjc {
 
     private Byte wkldlDyResult;
 
-    private Double hzldlZcBf;
+    private Double hzldlZcZxbfValue;
 
-    private Double hzldlZcCf;
+    private Double hzldlZcFxbfValue;
 
-    private Double hzldlZcZxValue;
+    private Double hzldlZcZxcfValue;
 
-    private Double hzldlZcFxValue;
+    private Double hzldlZcFxcfValue;
 
     private Byte hzldlZcResult;
 
-    private Double hzldlDyBf;
+    private Double hzldlDyZxdlbfValue;
 
-    private Double hzldlDyCf;
+    private Double hzldlDyZxddbfValue;
 
-    private Double hzldlDyZxdlValue;
+    private Double hzldlDyFxdlbfValue;
 
-    private Double hzldlDyZxddValue;
+    private Double hzldlDyFxddbfValue;
 
-    private Double hzldlDyFxdlValue;
+    private Double hzldlDyZxdlcfValue;
 
-    private Double hzldlDyFxddValue;
+    private Double hzldlDyZxddcfValue;
+
+    private Double hzldlDyFxdlcfValue;
+
+    private Double hzldlDyFxddcfValue;
 
     private Byte hzldlDyResult;
 
-    private Double hzfzldlZcBf;
+    private Double hzfzldlZcZxbfValue;
 
-    private Double hzfzldlZcCf;
+    private Double hzfzldlZcFxbfValue;
 
-    private Double hzfzldlZcZxValue;
+    private Double hzfzldlZcZxcfValue;
 
-    private Double hzfzldlZcFxValue;
+    private Double hzfzldlZcFxcfValue;
 
     private Byte hzfzldlZcResult;
 
-    private Double hzfzldlDyBf;
+    private Double hzfzldlDyZxdlbfValue;
 
-    private Double hzfzldlDyCf;
+    private Double hzfzldlDyZxddbfValue;
 
-    private Double hzfzldlDyZxdlValue;
+    private Double hzfzldlDyFxdlbfValue;
 
-    private Double hzfzldlDyZxddValue;
+    private Double hzfzldlDyFxddbfValue;
 
-    private Double hzfzldlDyFxdlValue;
+    private Double hzfzldlDyZxdlcfValue;
 
-    private Double hzfzldlDyFxddValue;
+    private Double hzfzldlDyZxddcfValue;
+
+    private Double hzfzldlDyFxdlcfValue;
+
+    private Double hzfzldlDyFxddcfValue;
 
     private Byte hzfzldlDyResult;
 
@@ -411,36 +419,36 @@ public class Dqjc {
         this.wkldlDyResult = wkldlDyResult;
     }
 
-    public Double getHzldlZcBf() {
-        return hzldlZcBf;
+    public Double getHzldlZcZxbfValue() {
+        return hzldlZcZxbfValue;
     }
 
-    public void setHzldlZcBf(Double hzldlZcBf) {
-        this.hzldlZcBf = hzldlZcBf;
+    public void setHzldlZcZxbfValue(Double hzldlZcZxbfValue) {
+        this.hzldlZcZxbfValue = hzldlZcZxbfValue;
     }
 
-    public Double getHzldlZcCf() {
-        return hzldlZcCf;
+    public Double getHzldlZcFxbfValue() {
+        return hzldlZcFxbfValue;
     }
 
-    public void setHzldlZcCf(Double hzldlZcCf) {
-        this.hzldlZcCf = hzldlZcCf;
+    public void setHzldlZcFxbfValue(Double hzldlZcFxbfValue) {
+        this.hzldlZcFxbfValue = hzldlZcFxbfValue;
     }
 
-    public Double getHzldlZcZxValue() {
-        return hzldlZcZxValue;
+    public Double getHzldlZcZxcfValue() {
+        return hzldlZcZxcfValue;
     }
 
-    public void setHzldlZcZxValue(Double hzldlZcZxValue) {
-        this.hzldlZcZxValue = hzldlZcZxValue;
+    public void setHzldlZcZxcfValue(Double hzldlZcZxcfValue) {
+        this.hzldlZcZxcfValue = hzldlZcZxcfValue;
     }
 
-    public Double getHzldlZcFxValue() {
-        return hzldlZcFxValue;
+    public Double getHzldlZcFxcfValue() {
+        return hzldlZcFxcfValue;
     }
 
-    public void setHzldlZcFxValue(Double hzldlZcFxValue) {
-        this.hzldlZcFxValue = hzldlZcFxValue;
+    public void setHzldlZcFxcfValue(Double hzldlZcFxcfValue) {
+        this.hzldlZcFxcfValue = hzldlZcFxcfValue;
     }
 
     public Byte getHzldlZcResult() {
@@ -451,52 +459,68 @@ public class Dqjc {
         this.hzldlZcResult = hzldlZcResult;
     }
 
-    public Double getHzldlDyBf() {
-        return hzldlDyBf;
+    public Double getHzldlDyZxdlbfValue() {
+        return hzldlDyZxdlbfValue;
     }
 
-    public void setHzldlDyBf(Double hzldlDyBf) {
-        this.hzldlDyBf = hzldlDyBf;
+    public void setHzldlDyZxdlbfValue(Double hzldlDyZxdlbfValue) {
+        this.hzldlDyZxdlbfValue = hzldlDyZxdlbfValue;
     }
 
-    public Double getHzldlDyCf() {
-        return hzldlDyCf;
+    public Double getHzldlDyZxddbfValue() {
+        return hzldlDyZxddbfValue;
     }
 
-    public void setHzldlDyCf(Double hzldlDyCf) {
-        this.hzldlDyCf = hzldlDyCf;
+    public void setHzldlDyZxddbfValue(Double hzldlDyZxddbfValue) {
+        this.hzldlDyZxddbfValue = hzldlDyZxddbfValue;
     }
 
-    public Double getHzldlDyZxdlValue() {
-        return hzldlDyZxdlValue;
+    public Double getHzldlDyFxdlbfValue() {
+        return hzldlDyFxdlbfValue;
     }
 
-    public void setHzldlDyZxdlValue(Double hzldlDyZxdlValue) {
-        this.hzldlDyZxdlValue = hzldlDyZxdlValue;
+    public void setHzldlDyFxdlbfValue(Double hzldlDyFxdlbfValue) {
+        this.hzldlDyFxdlbfValue = hzldlDyFxdlbfValue;
     }
 
-    public Double getHzldlDyZxddValue() {
-        return hzldlDyZxddValue;
+    public Double getHzldlDyFxddbfValue() {
+        return hzldlDyFxddbfValue;
     }
 
-    public void setHzldlDyZxddValue(Double hzldlDyZxddValue) {
-        this.hzldlDyZxddValue = hzldlDyZxddValue;
+    public void setHzldlDyFxddbfValue(Double hzldlDyFxddbfValue) {
+        this.hzldlDyFxddbfValue = hzldlDyFxddbfValue;
     }
 
-    public Double getHzldlDyFxdlValue() {
-        return hzldlDyFxdlValue;
+    public Double getHzldlDyZxdlcfValue() {
+        return hzldlDyZxdlcfValue;
     }
 
-    public void setHzldlDyFxdlValue(Double hzldlDyFxdlValue) {
-        this.hzldlDyFxdlValue = hzldlDyFxdlValue;
+    public void setHzldlDyZxdlcfValue(Double hzldlDyZxdlcfValue) {
+        this.hzldlDyZxdlcfValue = hzldlDyZxdlcfValue;
     }
 
-    public Double getHzldlDyFxddValue() {
-        return hzldlDyFxddValue;
+    public Double getHzldlDyZxddcfValue() {
+        return hzldlDyZxddcfValue;
     }
 
-    public void setHzldlDyFxddValue(Double hzldlDyFxddValue) {
-        this.hzldlDyFxddValue = hzldlDyFxddValue;
+    public void setHzldlDyZxddcfValue(Double hzldlDyZxddcfValue) {
+        this.hzldlDyZxddcfValue = hzldlDyZxddcfValue;
+    }
+
+    public Double getHzldlDyFxdlcfValue() {
+        return hzldlDyFxdlcfValue;
+    }
+
+    public void setHzldlDyFxdlcfValue(Double hzldlDyFxdlcfValue) {
+        this.hzldlDyFxdlcfValue = hzldlDyFxdlcfValue;
+    }
+
+    public Double getHzldlDyFxddcfValue() {
+        return hzldlDyFxddcfValue;
+    }
+
+    public void setHzldlDyFxddcfValue(Double hzldlDyFxddcfValue) {
+        this.hzldlDyFxddcfValue = hzldlDyFxddcfValue;
     }
 
     public Byte getHzldlDyResult() {
@@ -507,36 +531,36 @@ public class Dqjc {
         this.hzldlDyResult = hzldlDyResult;
     }
 
-    public Double getHzfzldlZcBf() {
-        return hzfzldlZcBf;
+    public Double getHzfzldlZcZxbfValue() {
+        return hzfzldlZcZxbfValue;
     }
 
-    public void setHzfzldlZcBf(Double hzfzldlZcBf) {
-        this.hzfzldlZcBf = hzfzldlZcBf;
+    public void setHzfzldlZcZxbfValue(Double hzfzldlZcZxbfValue) {
+        this.hzfzldlZcZxbfValue = hzfzldlZcZxbfValue;
     }
 
-    public Double getHzfzldlZcCf() {
-        return hzfzldlZcCf;
+    public Double getHzfzldlZcFxbfValue() {
+        return hzfzldlZcFxbfValue;
     }
 
-    public void setHzfzldlZcCf(Double hzfzldlZcCf) {
-        this.hzfzldlZcCf = hzfzldlZcCf;
+    public void setHzfzldlZcFxbfValue(Double hzfzldlZcFxbfValue) {
+        this.hzfzldlZcFxbfValue = hzfzldlZcFxbfValue;
     }
 
-    public Double getHzfzldlZcZxValue() {
-        return hzfzldlZcZxValue;
+    public Double getHzfzldlZcZxcfValue() {
+        return hzfzldlZcZxcfValue;
     }
 
-    public void setHzfzldlZcZxValue(Double hzfzldlZcZxValue) {
-        this.hzfzldlZcZxValue = hzfzldlZcZxValue;
+    public void setHzfzldlZcZxcfValue(Double hzfzldlZcZxcfValue) {
+        this.hzfzldlZcZxcfValue = hzfzldlZcZxcfValue;
     }
 
-    public Double getHzfzldlZcFxValue() {
-        return hzfzldlZcFxValue;
+    public Double getHzfzldlZcFxcfValue() {
+        return hzfzldlZcFxcfValue;
     }
 
-    public void setHzfzldlZcFxValue(Double hzfzldlZcFxValue) {
-        this.hzfzldlZcFxValue = hzfzldlZcFxValue;
+    public void setHzfzldlZcFxcfValue(Double hzfzldlZcFxcfValue) {
+        this.hzfzldlZcFxcfValue = hzfzldlZcFxcfValue;
     }
 
     public Byte getHzfzldlZcResult() {
@@ -547,52 +571,68 @@ public class Dqjc {
         this.hzfzldlZcResult = hzfzldlZcResult;
     }
 
-    public Double getHzfzldlDyBf() {
-        return hzfzldlDyBf;
+    public Double getHzfzldlDyZxdlbfValue() {
+        return hzfzldlDyZxdlbfValue;
     }
 
-    public void setHzfzldlDyBf(Double hzfzldlDyBf) {
-        this.hzfzldlDyBf = hzfzldlDyBf;
+    public void setHzfzldlDyZxdlbfValue(Double hzfzldlDyZxdlbfValue) {
+        this.hzfzldlDyZxdlbfValue = hzfzldlDyZxdlbfValue;
     }
 
-    public Double getHzfzldlDyCf() {
-        return hzfzldlDyCf;
+    public Double getHzfzldlDyZxddbfValue() {
+        return hzfzldlDyZxddbfValue;
     }
 
-    public void setHzfzldlDyCf(Double hzfzldlDyCf) {
-        this.hzfzldlDyCf = hzfzldlDyCf;
+    public void setHzfzldlDyZxddbfValue(Double hzfzldlDyZxddbfValue) {
+        this.hzfzldlDyZxddbfValue = hzfzldlDyZxddbfValue;
     }
 
-    public Double getHzfzldlDyZxdlValue() {
-        return hzfzldlDyZxdlValue;
+    public Double getHzfzldlDyFxdlbfValue() {
+        return hzfzldlDyFxdlbfValue;
     }
 
-    public void setHzfzldlDyZxdlValue(Double hzfzldlDyZxdlValue) {
-        this.hzfzldlDyZxdlValue = hzfzldlDyZxdlValue;
+    public void setHzfzldlDyFxdlbfValue(Double hzfzldlDyFxdlbfValue) {
+        this.hzfzldlDyFxdlbfValue = hzfzldlDyFxdlbfValue;
     }
 
-    public Double getHzfzldlDyZxddValue() {
-        return hzfzldlDyZxddValue;
+    public Double getHzfzldlDyFxddbfValue() {
+        return hzfzldlDyFxddbfValue;
     }
 
-    public void setHzfzldlDyZxddValue(Double hzfzldlDyZxddValue) {
-        this.hzfzldlDyZxddValue = hzfzldlDyZxddValue;
+    public void setHzfzldlDyFxddbfValue(Double hzfzldlDyFxddbfValue) {
+        this.hzfzldlDyFxddbfValue = hzfzldlDyFxddbfValue;
     }
 
-    public Double getHzfzldlDyFxdlValue() {
-        return hzfzldlDyFxdlValue;
+    public Double getHzfzldlDyZxdlcfValue() {
+        return hzfzldlDyZxdlcfValue;
     }
 
-    public void setHzfzldlDyFxdlValue(Double hzfzldlDyFxdlValue) {
-        this.hzfzldlDyFxdlValue = hzfzldlDyFxdlValue;
+    public void setHzfzldlDyZxdlcfValue(Double hzfzldlDyZxdlcfValue) {
+        this.hzfzldlDyZxdlcfValue = hzfzldlDyZxdlcfValue;
     }
 
-    public Double getHzfzldlDyFxddValue() {
-        return hzfzldlDyFxddValue;
+    public Double getHzfzldlDyZxddcfValue() {
+        return hzfzldlDyZxddcfValue;
     }
 
-    public void setHzfzldlDyFxddValue(Double hzfzldlDyFxddValue) {
-        this.hzfzldlDyFxddValue = hzfzldlDyFxddValue;
+    public void setHzfzldlDyZxddcfValue(Double hzfzldlDyZxddcfValue) {
+        this.hzfzldlDyZxddcfValue = hzfzldlDyZxddcfValue;
+    }
+
+    public Double getHzfzldlDyFxdlcfValue() {
+        return hzfzldlDyFxdlcfValue;
+    }
+
+    public void setHzfzldlDyFxdlcfValue(Double hzfzldlDyFxdlcfValue) {
+        this.hzfzldlDyFxdlcfValue = hzfzldlDyFxdlcfValue;
+    }
+
+    public Double getHzfzldlDyFxddcfValue() {
+        return hzfzldlDyFxddcfValue;
+    }
+
+    public void setHzfzldlDyFxddcfValue(Double hzfzldlDyFxddcfValue) {
+        this.hzfzldlDyFxddcfValue = hzfzldlDyFxddcfValue;
     }
 
     public Byte getHzfzldlDyResult() {
