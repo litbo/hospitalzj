@@ -104,8 +104,8 @@ public class BaseController {
 	 * @param eqId
 	 * @return
 	 */
-	@RequestMapping("/findTable/{eqId}")
-	public ResponseResult<Object> findTable( @PathVariable("eqId") String eqId){
+	@RequestMapping("/findTable")
+	public ResponseResult<Object> findTable(@RequestParam("eqId")String eqId){
 		String tableName = baseService.findTableName(eqId);
 		if(tableName == null){
 			Dqjc dqjc = dqjcService.findDqjc(eqId);
