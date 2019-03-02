@@ -334,26 +334,6 @@
             ,   $ = layui.jquery
             ,   form = layui.form
             ,   layer = layui.layer;
-        form.on('submit(subman)',function (data) {
-            console.log(data.field);
-            $.ajax({
-                url:"",
-                method:"POST",
-                data:data.field,
-                dataType:"JSON",
-                success:function (res) {
-                    if(res.state === 200){
-                        layer.msg("提交成功");
-                    }else{
-                        layer.msg("提交失败");
-                    }
-                },
-                error:function (data) {
-                    layer.msg("提交失败");
-                    console.log(data);
-                }
-            });
-        });
         form.on('submit(subchild)',function (data) {
             console.log(data.field);
             $.ajax({
@@ -373,9 +353,6 @@
                     console.log(data);
                 }
             })
-        });
-        $("#next").click(function () {
-            location.href="";
         });
     });
 </script>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.springframework.org/schema/jdbc">
 <head>
     <meta charset="UTF-8">
     <meta name="renderer" content="webkit">
@@ -22,42 +22,62 @@
         <fieldset class="layui-elem-field layui-field-title">
             <legend style="color: #000000;font-weight: bold;">设备品名字典</legend>
         </fieldset>
-        <table class="layui-table" id="sbpmdic" lay-filter="handle"></table>
+        <table class="layui-table" id="sbpmdic" lay-filter="handle1"></table>
 
         <fieldset class="layui-elem-field layui-field-title">
             <legend style="color: #000000;font-weight: bold;">设备采购方式字典</legend>
         </fieldset>
-        <table class="layui-table" id="sbcgdic" lay-filter="handle"></table>
+        <table class="layui-table" id="sbcgdic" lay-filter="handle2"></table>
 
         <fieldset class="layui-elem-field layui-field-title">
             <legend style="color: #000000;font-weight: bold;">设备经费来源</legend>
         </fieldset>
-        <table class="layui-table" id="sbjfdic" lay-filter="handle"></table>
+        <table class="layui-table" id="sbjfdic" lay-filter="handle3"></table>
 
         <fieldset class="layui-elem-field layui-field-title">
             <legend style="color: #000000;font-weight: bold;">设备用途</legend>
         </fieldset>
-        <table class="layui-table" id="sbytdic" lay-filter="handle"></table>
+        <table class="layui-table" id="sbytdic" lay-filter="handle4"></table>
 
         <fieldset class="layui-elem-field layui-field-title">
             <legend style="color: #000000;font-weight: bold;">设备申购类型</legend>
         </fieldset>
-        <table class="layui-table" id="sbsgdic" lay-filter="handle"></table>
+        <table class="layui-table" id="sbsgdic" lay-filter="handle5"></table>
 
         <fieldset class="layui-elem-field layui-field-title">
             <legend style="color: #000000;font-weight: bold;">设备来源</legend>
         </fieldset>
-        <table class="layui-table" id="sblydic" lay-filter="handle"></table>
-        <div class="col-xs-12 btn">
+        <table class="layui-table" id="sblydic" lay-filter="handle6"></table>
+        <!-- <div class="col-xs-12 btn">
             <button id="addcheck" class="layui-btn layui-btn-normal">添加新字典</button>
-        </div>
+        </div> -->
     </div>
 </div>
-<script type="text/html" id="barDemo">
+<script type="text/html" id="barDemo1">
     <a class="layui-btn layui-btn-xs" lay-event="update">修改</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
-<script>
+<script type="text/html" id="barDemo2">
+    <a class="layui-btn layui-btn-xs" lay-event="update">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script type="text/html" id="barDemo3">
+    <a class="layui-btn layui-btn-xs" lay-event="update">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script type="text/html" id="barDemo4">
+    <a class="layui-btn layui-btn-xs" lay-event="update">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script type="text/html" id="barDemo5">
+    <a class="layui-btn layui-btn-xs" lay-event="update">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script type="text/html" id="barDemo6">
+    <a class="layui-btn layui-btn-xs" lay-event="update">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script th:inline="none">
     // 获取上个页面传递的类型
     var type = window.location.search;
     var ids = parseInt(type.split("=")[1]);
@@ -69,7 +89,7 @@
         var tableIns = table.render({
             elem:"#sbpmdic"
             ,cellMinWidth: 80
-            ,url:"/eqInfo/selectEqInfo?htIds="+ids
+            ,url:"/eqpm/all"
             ,method:"GET"
             ,response: {
                 statusName: 'status' //规定数据状态的字段名称，默认：code
@@ -87,25 +107,17 @@
                     ,"data":res.data
                 }
             },
-            title:"验收申请记录表",
             // page:true,
             cols:[[
-                {field:'eqPm', title:'字典类名',align:'center'},
-                {field:'eqXh', title:'字典字段',align:'center'},
-                // {field:'eqGg', title:'',align:'center'},
-                // {field:'eqPrice', title:'单价',sort: true,align:'center'},
-                // {field:'eqJldwId', title:'单位',align:'center'},
-                // {field:'eqNum', title:'数量',sort: true,align:'center'},
-                // {field:'eqTotalprice', title:'总价',sort: true,align:'center'},
-                // {field:'eqScbh', title:'出厂编号',align:'center'},
-                // {field:'eqCcdate', title:'出厂日期',align:'center'},
-                {fixed: 'right', title:'操作',minWidth:"130", toolbar: '#barDemo',align:'center'}
+                {field:'eqPmId', title:'设备品名序列',align:'center'},
+                {field:'eqPmName', title:'设备品名名称',align:'center'},
+                {fixed: 'right', title:'操作', toolbar: '#barDemo1',align:'center'}
             ]]
         });
         table.render({
             elem:"#sbcgdic"
             ,cellMinWidth: 80
-            ,url:"/eqInfo/selectEqInfo?htIds="+ids
+            ,url:"/eqcg/all"
             ,method:"GET"
             ,response: {
                 statusName: 'status' //规定数据状态的字段名称，默认：code
@@ -123,25 +135,17 @@
                     ,"data":res.data
                 }
             },
-            title:"验收申请记录表",
             // page:true,
             cols:[[
-                {field:'eqPm', title:'字典类名',align:'center'},
-                {field:'eqXh', title:'字典字段',align:'center'},
-                // {field:'eqGg', title:'',align:'center'},
-                // {field:'eqPrice', title:'单价',sort: true,align:'center'},
-                // {field:'eqJldwId', title:'单位',align:'center'},
-                // {field:'eqNum', title:'数量',sort: true,align:'center'},
-                // {field:'eqTotalprice', title:'总价',sort: true,align:'center'},
-                // {field:'eqScbh', title:'出厂编号',align:'center'},
-                // {field:'eqCcdate', title:'出厂日期',align:'center'},
-                {fixed: 'right', title:'操作',minWidth:"130", toolbar: '#barDemo',align:'center'}
+                {field:'eqcgId', title:'设备采购方式序列',align:'center'},
+                {field:'eqcgName', title:'设备采购方式名称',align:'center'},
+                {fixed: 'right', title:'操作',toolbar: '#barDemo2',align:'center'}
             ]]
         });
         table.render({
             elem:"#sbjfdic"
             ,cellMinWidth: 80
-            ,url:"/eqInfo/selectEqInfo?htIds="+ids
+            ,url:"/eqjf/all"
             ,method:"GET"
             ,response: {
                 statusName: 'status' //规定数据状态的字段名称，默认：code
@@ -159,25 +163,17 @@
                     ,"data":res.data
                 }
             },
-            title:"验收申请记录表",
             // page:true,
             cols:[[
-                {field:'eqPm', title:'字典类名',align:'center'},
-                {field:'eqXh', title:'字典字段',align:'center'},
-                // {field:'eqGg', title:'',align:'center'},
-                // {field:'eqPrice', title:'单价',sort: true,align:'center'},
-                // {field:'eqJldwId', title:'单位',align:'center'},
-                // {field:'eqNum', title:'数量',sort: true,align:'center'},
-                // {field:'eqTotalprice', title:'总价',sort: true,align:'center'},
-                // {field:'eqScbh', title:'出厂编号',align:'center'},
-                // {field:'eqCcdate', title:'出厂日期',align:'center'},
-                {fixed: 'right', title:'操作',minWidth:"130", toolbar: '#barDemo',align:'center'}
+                {field:'eqjfId', title:'设备经费来源序列',align:'center'},
+                {field:'eqjfName', title:'设备经费来源名称',align:'center'},
+                {fixed: 'right', title:'操作', toolbar: '#barDemo3',align:'center'}
             ]]
         });
         table.render({
             elem:"#sbytdic"
             ,cellMinWidth: 80
-            ,url:"/eqInfo/selectEqInfo?htIds="+ids
+            ,url:"/eqyt/all"
             ,method:"GET"
             ,response: {
                 statusName: 'status' //规定数据状态的字段名称，默认：code
@@ -195,25 +191,17 @@
                     ,"data":res.data
                 }
             },
-            title:"验收申请记录表",
             // page:true,
             cols:[[
-                {field:'eqPm', title:'字典类名',align:'center'},
-                {field:'eqXh', title:'字典字段',align:'center'},
-                // {field:'eqGg', title:'',align:'center'},
-                // {field:'eqPrice', title:'单价',sort: true,align:'center'},
-                // {field:'eqJldwId', title:'单位',align:'center'},
-                // {field:'eqNum', title:'数量',sort: true,align:'center'},
-                // {field:'eqTotalprice', title:'总价',sort: true,align:'center'},
-                // {field:'eqScbh', title:'出厂编号',align:'center'},
-                // {field:'eqCcdate', title:'出厂日期',align:'center'},
-                {fixed: 'right', title:'操作',minWidth:"130", toolbar: '#barDemo',align:'center'}
+                {field:'eqytId', title:'设备用途系列',align:'center'},
+                {field:'eqytName', title:'设备用途名称',align:'center'},
+                {fixed: 'right', title:'操作', toolbar: '#barDemo4',align:'center'}
             ]]
         });
         table.render({
             elem:"#sbsgdic"
             ,cellMinWidth: 80
-            ,url:"/eqInfo/selectEqInfo?htIds="+ids
+            ,url:"/eqsglb/all"
             ,method:"GET"
             ,response: {
                 statusName: 'status' //规定数据状态的字段名称，默认：code
@@ -231,25 +219,17 @@
                     ,"data":res.data
                 }
             },
-            title:"验收申请记录表",
             // page:true,
             cols:[[
-                {field:'eqPm', title:'字典类名',align:'center'},
-                {field:'eqXh', title:'字典字段',align:'center'},
-                // {field:'eqGg', title:'',align:'center'},
-                // {field:'eqPrice', title:'单价',sort: true,align:'center'},
-                // {field:'eqJldwId', title:'单位',align:'center'},
-                // {field:'eqNum', title:'数量',sort: true,align:'center'},
-                // {field:'eqTotalprice', title:'总价',sort: true,align:'center'},
-                // {field:'eqScbh', title:'出厂编号',align:'center'},
-                // {field:'eqCcdate', title:'出厂日期',align:'center'},
-                {fixed: 'right', title:'操作',minWidth:"130", toolbar: '#barDemo',align:'center'}
+                {field:'eqsgId', title:'设备申购序列',align:'center'},
+                {field:'eqsgName', title:'设备申购名称',align:'center'},
+                {fixed: 'right', title:'操作', toolbar: '#barDemo5',align:'center'}
             ]]
         });
         table.render({
             elem:"#sblydic"
             ,cellMinWidth: 80
-            ,url:"/eqInfo/selectEqInfo?htIds="+ids
+            ,url:"/eqly/all"
             ,method:"GET"
             ,response: {
                 statusName: 'status' //规定数据状态的字段名称，默认：code
@@ -270,33 +250,198 @@
             title:"验收申请记录表",
             // page:true,
             cols:[[
-                {field:'eqPm', title:'字典类名',align:'center'},
-                {field:'eqXh', title:'字典字段',align:'center'},
-                // {field:'eqGg', title:'',align:'center'},
-                // {field:'eqPrice', title:'单价',sort: true,align:'center'},
-                // {field:'eqJldwId', title:'单位',align:'center'},
-                // {field:'eqNum', title:'数量',sort: true,align:'center'},
-                // {field:'eqTotalprice', title:'总价',sort: true,align:'center'},
-                // {field:'eqScbh', title:'出厂编号',align:'center'},
-                // {field:'eqCcdate', title:'出厂日期',align:'center'},
-                {fixed: 'right', title:'操作',minWidth:"130", toolbar: '#barDemo',align:'center'}
+                {field:'eqlyId', title:'设备来源序列',align:'center'},
+                {field:'eqlyName', title:'设备来源名称',align:'center'},
+                {fixed: 'right', title:'操作', toolbar: '#barDemo6',align:'center'}
             ]]
         });
         //监听行工具事件
-        table.on('tool(handle)', function(obj){
+        table.on('tool(handle1)', function(obj){
             var data = obj.data;
             //console.log(obj)
             if(obj.event === 'update'){
-                location.href="/admin/home/dictionary/update_dic.html?id="+id;
+                location.href="/admin/home/dictionary/update_dic.html?id="+obj.data.eqPmId;
             }else if(obj.event === 'del'){
-                layer.confirm('真的删除行么', function(index){
+                layer.confirm('确定删除此条数据么', function(index){
                     obj.del();
-                    layer.close(index);
+                    // layer.close(index);
+                    $.ajax({
+                        url:"?eqPmId="+obj.data.eqPmId,
+                        method:"POST",
+                        success:function(res){
+                            if(res.state === 200){
+                                setTimeout(function(){
+                                    location.href="/admin/home/dictionary.html";
+                                },1000);
+                                layer.msg("删除成功");
+                            }else{
+                                layer.msg("删除失败");
+                            }
+                        },
+                        error:function(data){
+                            layer.msg("删除失败,请稍后再试");
+                            console.log(data);
+                        }
+                    })
+                });
+            }
+        });
+
+        table.on('tool(handle2)', function(obj){
+            var data = obj.data;
+            //console.log(obj)
+            if(obj.event === 'update'){
+                location.href="/admin/home/dictionary/update_dic.html?id="+obj.data.eqcgId;
+            }else if(obj.event === 'del'){
+                layer.confirm('确定删除此条数据么', function(index){
+                    obj.del();
+                    // layer.close(index);
+                    $.ajax({
+                        url:"?eqcgId="+obj.data.eqcgId,
+                        method:"POST",
+                        success:function(res){
+                            if(res.state === 200){
+                                setTimeout(function(){
+                                    location.href="/admin/home/dictionary.html";
+                                },1000);
+                                layer.msg("删除成功");
+                            }else{
+                                layer.msg("删除失败");
+                            }
+                        },
+                        error:function(data){
+                            layer.msg("删除失败,请稍后再试");
+                            console.log(data);
+                        }
+                    })
+                });
+            }
+        });
+
+        table.on('tool(handle3)', function(obj){
+            var data = obj.data;
+            //console.log(obj)
+            if(obj.event === 'update'){
+                location.href="/admin/home/dictionary/update_dic.html?id="+obj.data.eqjfId;
+            }else if(obj.event === 'del'){
+                layer.confirm('确定删除此条数据么', function(index){
+                    obj.del();
+                    // layer.close(index);
+                    $.ajax({
+                        url:"?eqjfId="+obj.data.eqjfId,
+                        method:"POST",
+                        success:function(res){
+                            if(res.state === 200){
+                                setTimeout(function(){
+                                    location.href="/admin/home/dictionary.html";
+                                },1000);
+                                layer.msg("删除成功");
+                            }else{
+                                layer.msg("删除失败");
+                            }
+                        },
+                        error:function(data){
+                            layer.msg("删除失败,请稍后再试");
+                            console.log(data);
+                        }
+                    })
+                });
+            }
+        });
+
+        table.on('tool(handle4)', function(obj){
+            var data = obj.data;
+            //console.log(obj)
+            if(obj.event === 'update'){
+                location.href="/admin/home/dictionary/update_dic.html?id="+obj.data.eqytId;
+            }else if(obj.event === 'del'){
+                layer.confirm('确定删除此条数据么', function(index){
+                    obj.del();
+                    // layer.close(index);
+                    $.ajax({
+                        url:"?eqytId="+obj.data.eqytId,
+                        method:"POST",
+                        success:function(res){
+                            if(res.state === 200){
+                                setTimeout(function(){
+                                    location.href="/admin/home/dictionary.html";
+                                },1000);
+                                layer.msg("删除成功");
+                            }else{
+                                layer.msg("删除失败");
+                            }
+                        },
+                        error:function(data){
+                            layer.msg("删除失败,请稍后再试");
+                            console.log(data);
+                        }
+                    })
+                });
+            }
+        });
+
+        table.on('tool(handle5)', function(obj){
+            var data = obj.data;
+            //console.log(obj)
+            if(obj.event === 'update'){
+                location.href="/admin/home/dictionary/update_dic.html?id="+obj.data.eqsgId;
+            }else if(obj.event === 'del'){
+                layer.confirm('确定删除此条数据么', function(index){
+                    obj.del();
+                    // layer.close(index);
+                    $.ajax({
+                        url:"?eqsgId="+obj.data.eqsgId,
+                        method:"POST",
+                        success:function(res){
+                            if(res.state === 200){
+                                setTimeout(function(){
+                                    location.href="/admin/home/dictionary.html";
+                                },1000);
+                                layer.msg("删除成功");
+                            }else{
+                                layer.msg("删除失败");
+                            }
+                        },
+                        error:function(data){
+                            layer.msg("删除失败,请稍后再试");
+                            console.log(data);
+                        }
+                    })
+                });
+            }
+        });
+
+        table.on('tool(handle6)', function(obj){
+            var data = obj.data;
+            //console.log(obj)
+            if(obj.event === 'update'){
+                location.href="/admin/home/dictionary/update_dic.html?id="+obj.data.eqlyId;
+            }else if(obj.event === 'del'){
+                layer.confirm('确定删除此条数据么', function(index){
+                    obj.del();
+                    // layer.close(index);
+                    $.ajax({
+                        url:"?eqlyId="+obj.data.eqlyId,
+                        method:"POST",
+                        success:function(res){
+                            if(res.state === 200){
+                                layer.msg("删除成功");
+                                setTimeout(function(){
+                                    location.href="/admin/home/dictionary.html";
+                                },1000);
+                            }else{
+                                layer.msg("删除失败");
+                            }
+                        },
+                        error:function(data){
+                            layer.msg("删除失败,请稍后再试");
+                            console.log(data);
+                        }
+                    })
                 });
             }
         });
     });
 </script>
 </body>
-
 </html>

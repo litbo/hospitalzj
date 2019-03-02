@@ -9,12 +9,6 @@
     <link rel="stylesheet" type="text/css" href="../../static/layui/css/layui.css"/>
     <link rel="stylesheet" type="text/css" href="../../static/css/admin.css"/>
     <script src="../../static/layui/layui.js"></script>
-    <style>
-        .btn{
-            margin-top: 30px;
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
 <div class="layui-row">
@@ -23,12 +17,11 @@
             <legend style="color: #000000;font-weight: bold;">检测仪器分配管理</legend>
         </fieldset>
         <table class="layui-table" id="testInfo" lay-filter="handle"></table>
-        <div class="col-xs-12 btn">
-        </div>
     </div>
 </div>
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="chose">查看被检仪器</a>
+    <a class="layui-btn layui-btn-xs" lay-event="more">检测设备信息</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <script>
     // 获取上个页面传递的类型
@@ -42,7 +35,7 @@
         var tableIns = table.render({
             elem:"#testInfo"
             ,cellMinWidth: 80
-            ,url:"/eq/findAll"
+            ,url:"?id="+ids
             ,method:"GET"
             ,response: {
                 statusName: 'status' //规定数据状态的字段名称，默认：code
@@ -73,13 +66,35 @@
         //监听行工具事件
         table.on('tool(handle)', function(obj){
             var data = obj.data;
-            console.log(obj);
-            if(obj.event === 'chose'){
-                location.href="/admin/check_fixing/fix_table.html?id="+obj.data.id;
+            //console.log(obj)
+            if(obj.event === 'more'){
+                location.href="/admin/home/check/fix_info.html?id="+obj.data.id;
+            }else if(obj.event === 'del'){
+                layer.confirm('确定删除此条数据么', function(index){
+                    obj.del();
+                    // layer.close(index);
+                    $.ajax({
+                        url:"?eqcgId="+obj.data.eqcgId,
+                        method:"POST",
+                        success:function(res){
+                            if(res.state === 200){
+                                setTimeout(function(){
+                                    location.href="/admin/home/check_fixing.html";
+                                },1000);
+                                layer.msg("删除成功");
+                            }else{
+                                layer.msg("删除失败");
+                            }
+                        },
+                        error:function(data){
+                            layer.msg("删除失败,请稍后再试");
+                            console.log(data);
+                        }
+                    })
+                });
             }
         });
     });
 </script>
 </body>
-
 </html>

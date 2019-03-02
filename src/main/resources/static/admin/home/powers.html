@@ -51,7 +51,7 @@
             </div>
             <div class="inp layui-form-item col-md-3 col-xs-12">
                 <div class="layui-input-block">
-                    <button class="layui-btn layui-btn-lg layui-btn-normal" lay-submit lay-filter="hhsbumit">创建该角色</button>
+                    <button class="layui-btn layui-btn-lg layui-btn-normal" lay-submit lay-filter="create">创建该角色</button>
                 </div>
             </div>
         </form>
@@ -67,10 +67,11 @@
     var ids = parseInt(type.split("=")[1]);
     var rate;
     //Demo
-    layui.use(['layer','jquery','table'], function(){
+    layui.use(['layer','jquery','table','form'], function(){
         var layer = layui.layer
             ,   $ = layui.jquery
-            ,   table = layui.table;
+            ,   table = layui.table
+            ,   form = layui.form;
         var tableIns = table.render({
             elem:"#sbInfo"
             ,cellMinWidth: 80
@@ -109,10 +110,48 @@
             }else if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     obj.del();
-                    layer.close(index);
+                    $.ajax({
+                        url:"?eqcgId="+obj.data.id,
+                        method:"POST",
+                        success:function(res){
+                            if(res.state === 200){
+                                setTimeout(function(){
+                                    location.href="/admin/home/powers.html";
+                                },1000);
+                                layer.msg("删除成功");
+                            }else{
+                                layer.msg("删除失败");
+                            }
+                        },
+                        error:function(data){
+                            layer.msg("删除失败,请稍后再试");
+                            console.log(data);
+                        }
+                    });
                 });
             }
         });
+        form.on('submit(create)',function (data) {
+            console.log(data.field);
+            $.ajax({
+                url:"",
+                method:"POST",
+                data:data.field,
+                dataType:"JSON",
+                success:function(res){
+                    if(res.state === 200){
+                        layer.msg("创建成功");
+                        location.href="/admin/home/powers.html";
+                    }else{
+                        layer.msg("创建失败");
+                    }
+                },
+                error:function (data) {
+                    layer.msg("创建失败,请稍后再试");
+                    console.log(data);
+                }
+            })
+        })
     });
 </script>
 </body>

@@ -20,7 +20,8 @@
     </div>
 </div>
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="more">查看更多</a>
+    <a class="layui-btn layui-btn-xs" lay-event="more">负责设备信息</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <script>
     // 获取上个页面传递的类型
@@ -52,11 +53,10 @@
                     ,"data":res.data
                 }
             },
-            title:"验收申请记录表",
             cols:[[
-                {field:'eqPm', title:'角色名称',align:'center'},
+                {field:'eqPm', title:'用户名称',align:'center'},
                 {field:'eqXh', title:'角色权限',align:'center'},
-                {fixed: 'right', title:'操作',minWidth:"130", toolbar: '#barDemo',align:'center'}
+                {fixed: 'right', title:'操作', toolbar: '#barDemo',align:'center'}
             ]]
         });
         //监听行工具事件
@@ -64,7 +64,30 @@
             var data = obj.data;
             //console.log(obj)
             if(obj.event === 'more'){
-                location.href="/admin/home/personal/more_info.html?id="+obj.data.id;
+                location.href="/admin/home/personal/job_info.html?id="+obj.data.id;
+            }else if(obj.event === 'del'){
+                layer.confirm('确定删除此条数据么', function(index){
+                    obj.del();
+                    // layer.close(index);
+                    $.ajax({
+                        url:"?eqcgId="+obj.data.eqcgId,
+                        method:"POST",
+                        success:function(res){
+                            if(res.state === 200){
+                                setTimeout(function(){
+                                    location.href="/admin/home/personal.html";
+                                },1000);
+                                layer.msg("删除成功");
+                            }else{
+                                layer.msg("删除失败");
+                            }
+                        },
+                        error:function(data){
+                            layer.msg("删除失败,请稍后再试");
+                            console.log(data);
+                        }
+                    })
+                });
             }
         });
     });
