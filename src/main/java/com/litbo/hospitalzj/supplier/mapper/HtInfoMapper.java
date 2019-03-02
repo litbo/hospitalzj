@@ -86,8 +86,8 @@ public interface HtInfoMapper {
 			+ "ht_ysbz  from ht_info where ht_state=#{state}")
     List<HtInfo> findAll(Integer state);
 	@Update("UPDATE ht_info SET ht_State=#{htState},ht_bz =#{yy},ht_yssj=#{date} where ht_id=#{htId}")
-	int updateState(@Param("htId") Integer htId, @Param("yy") String yy, @Param("date") String date,@Param("htState")Integer htState);
+	int updateState(@Param("htId") Integer htId, @Param("yy") String yy, @Param("date") String date, @Param("htState") Integer htState);
 
 	@Update("UPDATE ht_info SET ht_State=#{htState} where ht_id=#{htId}")
-	int updateStateById(@Param("htId") Integer htId,@Param("htState")Integer htState);
+	int updateStateById(@Param("htId") Integer htId, @Param("htState") Integer htState);
 }

@@ -17,13 +17,13 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/hospital")
 public class LoginController {
-    @RequestMapping("/")
+    /*@RequestMapping("/")
     public String tologin(){
         return "/login";
-    }
+    }*/
     @RequestMapping("/tomain")
     public String tomain(){
-        return "shiro";
+        return "admin/index";
     }
     @RequestMapping("/submit")
     @ResponseBody
@@ -38,6 +38,7 @@ public class LoginController {
             subject.login(token);
             //把用户名存入session
             Session session =  subject.getSession();
+            System.out.println(loginVo.getUserName());
             session.setAttribute("username",loginVo.getUserName());
             return Result.success("登录验证通过");
         }catch (Exception e){

@@ -13,10 +13,10 @@ import com.litbo.hospitalzj.supplier.entity.EqCgfs;
 @Mapper
 public interface EqCgMapper {
 	@Select("SELECT eqcg_id eqcgId, eqcg_name eqcgName FROM eq_cgfs WHERE eqcg_id=#{eqcgId}")
-	EqCgfs findById(@Param("eqcgId")String eqcgId);
+	EqCgfs findById(@Param("eqcgId") String eqcgId);
 
 	@Select("SELECT eqcg_id eqcgId, eqcg_name eqcgName FROM eq_cgfs WHERE eqcg_name=#{eqcgName}")
-	EqCgfs findByName(@Param("eqcgName")String eqcgName);
+	EqCgfs findByName(@Param("eqcgName") String eqcgName);
 
 	@Select("SELECT eqcg_id eqcgId, eqcg_name eqcgName FROM eq_cgfs")
 	List<EqCgfs> findAll();

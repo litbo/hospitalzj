@@ -57,13 +57,12 @@ public class UserRealm extends AuthorizingRealm
 
         String username = token.getPrincipal().toString();
         SUser user = userService.getUserByUsername(username);
-//用户名是否存在
+        //用户名是否存在
         if(user!=null){
             //比对密码
             AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(user.getUserName(),user.getUserPwd(),getName());
             return authcInfo;
         }
         return  null;
-
     }
 }

@@ -15,4 +15,8 @@ public interface EqInfoService {
 	List<EqInfo> selectEqInfo(Integer htIds);
 	
 	List<SelHtEqVo> selectEqHtVo(Integer htIds);
+
+	List<EqInfo> selectByState();
+
+	void delete(Integer eqId);
 }

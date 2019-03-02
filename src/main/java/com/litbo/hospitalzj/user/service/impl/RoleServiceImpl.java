@@ -38,7 +38,6 @@ public class RoleServiceImpl implements RoleService {
     public PageInfo listUser(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum,pageSize);
         return new PageInfo(roleDao.ListUser());
-
     }
 
 

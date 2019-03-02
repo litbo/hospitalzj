@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.litbo.hospitalzj.hospital.enums.EnumProcess;
 import com.litbo.hospitalzj.hospital.utils.FileUpload;
+import com.litbo.hospitalzj.supplier.mapper.EqInfoMapper;
 import com.litbo.hospitalzj.supplier.service.HtLcService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,8 @@ public class HtInfoController extends BaseController{
 	private HtInfoService htinfoService;
 	@Autowired
 	public HtLcService htLcService;
+	@Autowired
+	private EqInfoMapper eqInfoMapper;
 	@RequestMapping("/insert")
 	public ResponseResult<Integer> insertHtInfo(HtInfo htInfo,HttpSession session){
 		htInfo.setSbcsId(getUidFromSession(session));
@@ -78,6 +81,7 @@ public class HtInfoController extends BaseController{
 	public ResponseResult<Void> updataStatePerfectThree(Integer htId){
 		htinfoService.updateHtInfoState(htId, EnumProcess.ACCEPT_OVER.getCode());
 		htLcService.InsertHtLc(htId,EnumProcess.ACCEPT_OVER.getMessage(),new Date());
+		eqInfoMapper.update(htId,1);
 		return new ResponseResult<Void>(SUCCESS);
 	}
 

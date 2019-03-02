@@ -53,4 +53,14 @@ public class EqInfoController extends BaseController{
 		Integer data=eqinfoService.findHtId(eqId);
 		return new ResponseResult<Integer>(SUCCESS,data);
 	}
+	@RequestMapping("/selectByState")
+	public ResponseResult<List<EqInfo>> findByState(){
+		List<EqInfo> data=eqinfoService.selectByState();
+		return new ResponseResult<List<EqInfo>>(SUCCESS,data);
+	}
+	@RequestMapping("/delete")
+	public ResponseResult<Void> delete(Integer eqId) {
+		eqinfoService.delete(eqId);
+		return new ResponseResult<Void>(SUCCESS);
+	}
 }

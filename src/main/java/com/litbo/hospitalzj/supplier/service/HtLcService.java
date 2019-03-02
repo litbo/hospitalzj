@@ -12,7 +12,7 @@ import java.util.Date;
 
 
 public interface HtLcService {
-	void InsertHtLc(@Param("htId") Integer  htId , @Param("htCldz") String htCldz, @Param("htClsj") Date htClsj);
+	void InsertHtLc(@Param("htId") Integer htId, @Param("htCldz") String htCldz, @Param("htClsj") Date htClsj);
 	void DeleteLc(Integer lcId);
 	HtLc Select(Integer htId);
 }

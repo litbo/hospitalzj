@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="static/layui/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="static/css/login.css"/>
+    <script src="static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+        .registerItem{
+            width: 100%;
+            height: 30px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .registerItem a{
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+<div class="m-login-bg">
+    <div class="m-login">
+        <div class="m-login-warp">
+            <h3 style="color:#000;">系统登录</h3>
+            <form class="layui-form">
+                <div class="layui-form-item">
+                    <input id="user" type="text" name="userName" lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <input type="password" name="userPwd" lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-item m-login-btn">
+                    <div class="layui-inline subBut">
+                        <button class="layui-btn layui-btn-normal btn" lay-submit lay-filter="login" id="check-btn">登录</button>
+                    </div>
+                    <div class="registerItem">
+                        <a href="../templates/user/forgeted.html">忘记密码</a>
+                        <a href="../templates/user/register.html">代理商注册</a>
+                    </div>
+                </div>
+                <div class="div-logo">
+                    <img src="static/images/logo.png" class="logo-img" alt="健龙世纪">
+                </div>
+            </form>
+        </div>
+        <!-- <p class="copyright"><span class="sign">***</span> 初次登录，用户名和密码均使用员工号 <span class="sign">***</span></p> -->
+    </div>
+</div>
+<script type="text/javascript">
+    layui.use(['form','jquery','layer'], function () {
+        var form = layui.form
+        ,   $ = layui.jquery
+        ,   layer = layui.layer;
+        form.on("submit(login)",function(data){
+            console.log(data.field);
+            $.ajax({
+                url:"/hospital/submit",
+                method:"POST",
+                data:data.field,
+                dataType:"JSON",
+                success:function(res){
+                    if(res.state === 200){
+                        setTimeout(function () {
+                            location.href = "/hospital/tomain";
+                            //location.href = "./index.html";
+                        }, 1000);
+                        layer.msg("欢迎您（"+data.field.username+")")
+                    }else if(res.state === 402){
+                        layer.msg("密码错误,请重新输入")
+                    }else if(res.state === 401){
+                        layer.msg("该用户名不存在，请确认")
+                    }
+                },
+                error:function(data){
+                    layer.msg("登录失败,请稍后再试");
+                    console.log(data);
+                }
+            });
+            return false;
+        })
+    });
+</script>
+</body>
+</html>

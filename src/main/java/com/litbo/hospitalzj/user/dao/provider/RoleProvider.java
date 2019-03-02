@@ -20,14 +20,13 @@ public class RoleProvider {
     }
     public String listUser(){
         String sql = "SELECT\n" +
-                "                e.user_id AS userId,\n" +
-                "                e.user_xm AS name,\n" +
-                "                r.role_name AS roleName  \n" +
-                "                FROM\n" +
-                "                s_user u\n" +
-                "               LEFT JOIN s_user_role AS ur ON u.user_id =ur.user_id\n" +
-                "               LEFT JOIN s_role AS r on ur.role_id = r.role_id\n" +
-                "               LEFT JOIN s_emp  AS e on u.user_id = e.user_id";
+                "u.user_id AS userId,\n" +
+                "u.user_name AS name,\n" +
+                "r.role_name AS roleName\n" +
+                "FROM\n" +
+                "s_user u\n" +
+                "LEFT JOIN s_user_role AS ur ON u.user_id =ur.user_id            \n" +
+                "LEFT JOIN s_role AS r on ur.role_id = r.role_id";
         return sql;
     }
     public String listUserByX(SelectUserVo selectUserVo){

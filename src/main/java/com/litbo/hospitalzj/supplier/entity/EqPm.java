@@ -7,6 +7,7 @@ package com.litbo.hospitalzj.supplier.entity;
 public class EqPm {
 	private String eqPmId;
 	private String eqPmName;
+	private String eqPmLx;
 	public String getEqPmId() {
 		return eqPmId;
 	}
@@ -19,9 +20,12 @@ public class EqPm {
 	public void setEqPmName(String eqPmName) {
 		this.eqPmName = eqPmName;
 	}
-	@Override
-	public String toString() {
-		return "EqPm [eqPmId=" + eqPmId + ", eqPmName=" + eqPmName + "]";
+
+	public String getEqPmLx() {
+		return eqPmLx;
 	}
-	
+
+	public void setEqPmLx(String eqPmLx) {
+		this.eqPmLx = eqPmLx;
+	}
 }

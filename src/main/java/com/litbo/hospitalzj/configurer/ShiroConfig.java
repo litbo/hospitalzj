@@ -15,8 +15,7 @@ import org.springframework.context.annotation.DependsOn;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-/*@Configuration*/
+@Configuration
 public class  ShiroConfig {
 
     /**
@@ -40,7 +39,7 @@ public class  ShiroConfig {
         //设置默认访问路径
 
         shiroFilterFactoryBean.setLoginUrl("/login.html");
-        shiroFilterFactoryBean.setSuccessUrl("/shiro.html");
+        shiroFilterFactoryBean.setSuccessUrl("/admin/index.html");
         shiroFilterFactoryBean.setUnauthorizedUrl("/unauthorized.html");
 
         //过滤器
@@ -49,10 +48,15 @@ public class  ShiroConfig {
 
         filterChainDefinitionMap.put("/hospital/**","anon");
 
-        filterChainDefinitionMap.put("/js/**","anon");
-        filterChainDefinitionMap.put("/layui/**","anon");
-        filterChainDefinitionMap.put("/static/**","anon");
 
+        filterChainDefinitionMap.put("/static/css/**","anon");
+        filterChainDefinitionMap.put("/static/echarts/**","anon");
+        filterChainDefinitionMap.put("/static/images/**","anon");
+        filterChainDefinitionMap.put("/static/js/**","anon");
+        filterChainDefinitionMap.put("/static/layui/**","anon");
+        filterChainDefinitionMap.put("/static/less/**","anon");
+        filterChainDefinitionMap.put("/static/webfonts/**","anon");
+        filterChainDefinitionMap.put("/static/**","anon");
         filterChainDefinitionMap.put("/logout", "logout");
 
 

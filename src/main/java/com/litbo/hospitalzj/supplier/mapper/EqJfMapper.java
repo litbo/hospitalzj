@@ -16,9 +16,9 @@ import com.litbo.hospitalzj.supplier.entity.EqLy;
 @Mapper
 public interface EqJfMapper {
 	@Select("SELECT eqjf_id eqjfId, eqjf_name eqjfName FROM eq_jfly WHERE eqjf_id=#{eqjfId}")
-	EqJfly findById(@Param("eqjfId")String eqjfId);
+	EqJfly findById(@Param("eqjfId") String eqjfId);
 	@Select("SELECT eqjf_id eqjfId, eqjf_name eqjfName FROM eq_jfly WHERE eqjf_name=#{eqjfName}")
-	EqJfly findByName(@Param("eqjfName")String eqjfName);
+	EqJfly findByName(@Param("eqjfName") String eqjfName);
 	@Select("SELECT eqjf_id eqjfId, eqjf_name eqjfName FROM eq_jfly")
 	List<EqJfly> findAll();
 	@Delete("delete from eq_jfly where eqjf_id = #{eqjfId}")

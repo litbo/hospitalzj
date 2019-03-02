@@ -21,7 +21,6 @@ public class RightServiceImpl implements RightService {
 
     @Override
     public Integer setRights(String rightId, String roleId) {
-
             return rightDao.addRights(rightId,roleId);
     }
 

@@ -40,7 +40,7 @@ public class EqLyController extends BaseController{
 		return new ResponseResult<Void>(SUCCESS);
 	}
 	@RequestMapping("/delete")
-	public ResponseResult<Void> idelete(String eqlyId) {
+	public ResponseResult<Void> delete(String eqlyId) {
 		eqLyService.delete(eqlyId);
 		return new ResponseResult<Void>(SUCCESS);
 	}

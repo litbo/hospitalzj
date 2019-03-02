@@ -13,7 +13,7 @@ import com.litbo.hospitalzj.supplier.entity.EqYt;
 @Mapper
 public interface EqYtMapper {
 	@Select("SELECT eqyt_id eqytId, eqyt_name eqytName FROM eq_sbyt WHERE eqyt_id=#{eqytId}")
-	EqYt findById(@Param("eqytId")String eqytId);
+	EqYt findById(@Param("eqytId") String eqytId);
 	@Select("SELECT eqyt_id eqytId, eqyt_name eqytName FROM eq_sbyt")
 	List<EqYt> findAll();
 	@Delete(" delete from eq_sbyt\n" +

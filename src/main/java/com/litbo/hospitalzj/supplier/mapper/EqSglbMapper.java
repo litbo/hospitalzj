@@ -12,7 +12,7 @@ import com.litbo.hospitalzj.supplier.entity.EqSglb;
 @Mapper
 public interface EqSglbMapper {
 	@Select("SELECT eqsg_id eqsgId, eqsg_name eqsgName FROM eq_sglb WHERE eqsg_id=#{eqsgId}")
-	EqSglb findById(@Param("eqsgId")String eqsgId);
+	EqSglb findById(@Param("eqsgId") String eqsgId);
 
 	@Select("SELECT eqsg_id eqsgId, eqsg_name eqsgName FROM eq_sglb")
 	List<EqSglb> findAll();

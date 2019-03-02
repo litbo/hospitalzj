@@ -45,6 +45,17 @@ public class EqInfoServiceImpl implements EqInfoService {
 		}
 		return data;
 	}
+
+	@Override
+	public List<EqInfo> selectByState() {
+		return eqInfoMapper.selectByState();
+	}
+
+	@Override
+	public void delete(Integer eqId) {
+		 eqInfoMapper.delete(eqId);
+	}
+
 	@Override
 	public Integer findHtId(Integer eqId) {
 		Integer data=eqInfoMapper.selectHtId(eqId);

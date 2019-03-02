@@ -16,7 +16,7 @@ public class EqInfo {
 
 	private String eqDah;
 
-	private String eqPm;
+	private String eqPmid;
 
 	private String eqGg;
 
@@ -79,7 +79,7 @@ public class EqInfo {
 	}
 
 	public void setEqMc(String eqMc) {
-		this.eqMc = eqMc == null ? null : eqMc.trim();
+		this.eqMc = eqMc;
 	}
 
 	public String getEqDah() {
@@ -87,15 +87,15 @@ public class EqInfo {
 	}
 
 	public void setEqDah(String eqDah) {
-		this.eqDah = eqDah == null ? null : eqDah.trim();
+		this.eqDah = eqDah;
 	}
 
-	public String getEqPm() {
-		return eqPm;
+	public String getEqPmid() {
+		return eqPmid;
 	}
 
-	public void setEqPm(String eqPm) {
-		this.eqPm = eqPm == null ? null : eqPm.trim();
+	public void setEqPmid(String eqPmid) {
+		this.eqPmid = eqPmid;
 	}
 
 	public String getEqGg() {
@@ -103,7 +103,7 @@ public class EqInfo {
 	}
 
 	public void setEqGg(String eqGg) {
-		this.eqGg = eqGg == null ? null : eqGg.trim();
+		this.eqGg = eqGg;
 	}
 
 	public String getEqXh() {
@@ -111,7 +111,7 @@ public class EqInfo {
 	}
 
 	public void setEqXh(String eqXh) {
-		this.eqXh = eqXh == null ? null : eqXh.trim();
+		this.eqXh = eqXh;
 	}
 
 	public String getEqJldwId() {
@@ -119,7 +119,7 @@ public class EqInfo {
 	}
 
 	public void setEqJldwId(String eqJldwId) {
-		this.eqJldwId = eqJldwId == null ? null : eqJldwId.trim();
+		this.eqJldwId = eqJldwId;
 	}
 
 	public BigDecimal getEqPrice() {
@@ -135,7 +135,7 @@ public class EqInfo {
 	}
 
 	public void setEqZczbh(String eqZczbh) {
-		this.eqZczbh = eqZczbh == null ? null : eqZczbh.trim();
+		this.eqZczbh = eqZczbh;
 	}
 
 	public String getEqScbh() {
@@ -143,7 +143,7 @@ public class EqInfo {
 	}
 
 	public void setEqScbh(String eqScbh) {
-		this.eqScbh = eqScbh == null ? null : eqScbh.trim();
+		this.eqScbh = eqScbh;
 	}
 
 	public String getEqNum() {
@@ -151,7 +151,7 @@ public class EqInfo {
 	}
 
 	public void setEqNum(String eqNum) {
-		this.eqNum = eqNum == null ? null : eqNum.trim();
+		this.eqNum = eqNum;
 	}
 
 	public String getEqTotalprice() {
@@ -159,7 +159,7 @@ public class EqInfo {
 	}
 
 	public void setEqTotalprice(String eqTotalprice) {
-		this.eqTotalprice = eqTotalprice == null ? null : eqTotalprice.trim();
+		this.eqTotalprice = eqTotalprice;
 	}
 
 	public String getEqCcdate() {
@@ -167,7 +167,7 @@ public class EqInfo {
 	}
 
 	public void setEqCcdate(String eqCcdate) {
-		this.eqCcdate = eqCcdate == null ? null : eqCcdate.trim();
+		this.eqCcdate = eqCcdate;
 	}
 
 	public String getEqCscs() {
@@ -175,7 +175,7 @@ public class EqInfo {
 	}
 
 	public void setEqCscs(String eqCscs) {
-		this.eqCscs = eqCscs == null ? null : eqCscs.trim();
+		this.eqCscs = eqCscs;
 	}
 
 	public String getEqGb() {
@@ -183,7 +183,7 @@ public class EqInfo {
 	}
 
 	public void setEqGb(String eqGb) {
-		this.eqGb = eqGb == null ? null : eqGb.trim();
+		this.eqGb = eqGb;
 	}
 
 	public String getEqBgbh() {
@@ -191,7 +191,7 @@ public class EqInfo {
 	}
 
 	public void setEqBgbh(String eqBgbh) {
-		this.eqBgbh = eqBgbh == null ? null : eqBgbh.trim();
+		this.eqBgbh = eqBgbh;
 	}
 
 	public String getEqShFws() {
@@ -199,7 +199,7 @@ public class EqInfo {
 	}
 
 	public void setEqShFws(String eqShFws) {
-		this.eqShFws = eqShFws == null ? null : eqShFws.trim();
+		this.eqShFws = eqShFws;
 	}
 
 	public String getEqShQddh() {
@@ -207,7 +207,7 @@ public class EqInfo {
 	}
 
 	public void setEqShQddh(String eqShQddh) {
-		this.eqShQddh = eqShQddh == null ? null : eqShQddh.trim();
+		this.eqShQddh = eqShQddh;
 	}
 
 	public String getEqShShjl() {
@@ -215,7 +215,7 @@ public class EqInfo {
 	}
 
 	public void setEqShShjl(String eqShShjl) {
-		this.eqShShjl = eqShShjl == null ? null : eqShShjl.trim();
+		this.eqShShjl = eqShShjl;
 	}
 
 	public String getEqShJldh() {
@@ -223,7 +223,7 @@ public class EqInfo {
 	}
 
 	public void setEqShJldh(String eqShJldh) {
-		this.eqShJldh = eqShJldh == null ? null : eqShJldh.trim();
+		this.eqShJldh = eqShJldh;
 	}
 
 	public String getEqShFwr() {
@@ -231,7 +231,7 @@ public class EqInfo {
 	}
 
 	public void setEqShFwr(String eqShFwr) {
-		this.eqShFwr = eqShFwr == null ? null : eqShFwr.trim();
+		this.eqShFwr = eqShFwr;
 	}
 
 	public String getEqShLxr() {
@@ -239,7 +239,7 @@ public class EqInfo {
 	}
 
 	public void setEqShLxr(String eqShLxr) {
-		this.eqShLxr = eqShLxr == null ? null : eqShLxr.trim();
+		this.eqShLxr = eqShLxr;
 	}
 
 	public String getEqShLxrdh() {
@@ -247,7 +247,7 @@ public class EqInfo {
 	}
 
 	public void setEqShLxrdh(String eqShLxrdh) {
-		this.eqShLxrdh = eqShLxrdh == null ? null : eqShLxrdh.trim();
+		this.eqShLxrdh = eqShLxrdh;
 	}
 
 	public Integer getEqState() {
@@ -263,7 +263,7 @@ public class EqInfo {
 	}
 
 	public void setEqYzm(String eqYzm) {
-		this.eqYzm = eqYzm == null ? null : eqYzm.trim();
+		this.eqYzm = eqYzm;
 	}
 
 	public String getEqShJlsb() {
@@ -271,7 +271,7 @@ public class EqInfo {
 	}
 
 	public void setEqShJlsb(String eqShJlsb) {
-		this.eqShJlsb = eqShJlsb == null ? null : eqShJlsb.trim();
+		this.eqShJlsb = eqShJlsb;
 	}
 
 	public String getEqShFssb() {
@@ -279,7 +279,7 @@ public class EqInfo {
 	}
 
 	public void setEqShFssb(String eqShFssb) {
-		this.eqShFssb = eqShFssb == null ? null : eqShFssb.trim();
+		this.eqShFssb = eqShFssb;
 	}
 
 	public Integer getHtIds() {
@@ -289,6 +289,4 @@ public class EqInfo {
 	public void setHtIds(Integer htIds) {
 		this.htIds = htIds;
 	}
-	
-	
 }

@@ -15,10 +15,10 @@ import com.litbo.hospitalzj.supplier.entity.EqLy;
 @Mapper
 public interface EqLyMapper {
 	@Select("SELECT eqly_id eqlyId, eqly_name eqlyName FROM eq_ly WHERE eqly_id=#{eqlyId}")
-	EqLy findById(@Param("eqlyId")String eqlyId);
+	EqLy findById(@Param("eqlyId") String eqlyId);
 
 	@Select("SELECT eqly_id eqlyId, eqly_name eqlyName FROM eq_ly WHERE eqly_name=#{eqlyName}")
-	EqLy findByName(@Param("eqlyName")String eqlyName);
+	EqLy findByName(@Param("eqlyName") String eqlyName);
 
 	@Select("SELECT eqly_id eqlyId, eqly_name eqlyName FROM eq_ly")
 	List<EqLy> findAll();
