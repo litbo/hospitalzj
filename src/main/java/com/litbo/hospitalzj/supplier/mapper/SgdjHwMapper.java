@@ -44,4 +44,6 @@ public interface SgdjHwMapper {
 			+ "djhw_bz11 djhwBz11,djhw_bz12 djhwBz12,djhw_bz13 djhwBz13,djhw_bz14 djhwBz14,djhw_bz15 djhwBz15,djhw_bz16 djhwBz16 from "
 			+ "sg_djhw where ht_ids=#{htIds}")
 	SgdjHw selectSgdjHwByHtIds(Integer htIds);
+	@Select("select djhw_url from sg_djhw where ht_ids = #{htIds}")
+	String showImages(Integer htIds);
 }

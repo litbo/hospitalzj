@@ -8,5 +8,7 @@ public interface SgdjHwService {
 	Integer updateInfo(SgdjHw sgdjHw);
 
     int updateURL(Integer htIds, String path);
+
+    String[] showImages(Integer htIds);
     /*Integer */
 }

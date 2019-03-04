@@ -46,4 +46,13 @@ public class SgdjHwServiceImpl implements SgdjHwService{
 		}
 		return SgdjHwMapper.updateURL(htIds,path+" ");
 	}
+
+	@Override
+	public String[] showImages(Integer htIds) {
+		String djhwUrl = SgdjHwMapper.showImages(htIds);
+		if(djhwUrl!=null)
+			return djhwUrl.split(" ");
+		else
+			return null;
+	}
 }

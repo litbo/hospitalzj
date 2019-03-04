@@ -83,6 +83,10 @@ public class AcceptController {
         int res  = sgdjHwService.updateURL(htIds,path);
         return new ResponseResult(SUCCESS);
     }
-
+    @RequestMapping(value = "showImages",method = RequestMethod.GET)
+    public ResponseResult showImages(Integer htIds){
+        String[] imgs = sgdjHwService.showImages(htIds);
+        return new ResponseResult(SUCCESS,imgs);
+    }
 
 }
